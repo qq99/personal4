@@ -89,16 +89,19 @@
 											Code & Future
 											%i.icon.icon-github
 								%h4 What is it?
-								%p
-									echoplexus was designed to be a modular, anonymous, real-time chatting system. I believe it works ideally for teams that want to host a copy of echoplexus locally, and also for groups of friends who care about their data. The name echoplexus was mostly motivated by the song,
+								%p Echoplexus is an anonymous, web-based, IRC-like chatting platform that makes its best effort to respect your privacy. It allows you to create public or private channels. You can encrypt your chats. You can secure a pseudonym for linkable anonymity. You can code and draw together in real time. You can make free and secure Peer2Peer video and voice calls with the people in your channel using WebRTC.
+								%p Currently, echoplexus is composed of 4 components: Chat, Code, Draw, and Call. Each has it's own section of server code such that you could conceivably run any combination (or just 1) of these modules, depending on your needs.
+								%h4 Chat
+								%p The most important part of echoplexus is the support for anonymity. Users hate sign-ups. Anonymity fosters freedom of speech. Linkable anonymity is also possible.
+								%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. Similarly, it will attempt to parse YouTube URLs and embed an object. When the server encounters a URL, it can take a screenshot of the page in question along and attempt to provide a short excerpt to the user. To protect your privacy, media embedding is disabled for the client by default.
+								%p You can edit any message you've sent up to 2 hours ago, as long as you haven't lost your connection. This duration is configurable by server operators. You can edit across connections (regardless of time elapsed) if you were identified when you sent the message. You can do this by double clicking the message, or clicking the pencil icon that appears while hovering the message.
+								%p When you join a channel, you'll automatically sync some of the most recent chat history you may have missed while you were away. At any time, you can pull the chatlog history for that channel. Messages sent by identified users will have a green lock icon while hovering the chat message, allowing you to protect your identity throughout history.
+								%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. This is a user configurable setting that is on by default. Similarly, it will attempt to parse YouTube URLs and embed an object directly in the chat. If the server settings are enabled to do so, echoplexus will also attempt to take a screenshot and a short excerpt of any non-media URL linked in the chat to provide a quick preview/overview to chat participants.
+								%p The name echoplexus was mostly motivated by the song,
 									%a.iconal{:href=> "https://www.youtube.com/watch?feature=player_detailpage&v=BJYpWVNvI5s", :title => "'Nine Inch Nails - Echoplex - Sacramento HD Multicam', Youtube", :target => "_blank"}
 										Echoplex
 										%i.icon.icon-external-link
 									by Nine Inch Nails. Listen to it and you might get a feel for how I felt while testing this ;)
-								%p Currently, echoplexus is composed of 3 components: Chat, Code, and Draw. Each has it's own section of server code such that you could conceivably run any combination (or just 1) of these modules, depending on your needs.
-								%h4 Chat
-								%p The most important part of echoplexus is the support for anonymity. Users hate sign-ups. Anonymity fosters freedom of speech. Linkable anonymity is also possible (if you know IRC, think nickserv's identify/register).
-								%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. This is a user configurable setting that is on by default. Similarly, it will attempt to parse YouTube URLs and embed an object directly in the chat. If the server settings are enabled to do so, echoplexus will also attempt to take a screenshot and a short excerpt of any non-media URL linked in the chat to provide a quick preview/overview to chat participants.
 								%h4 Interested?
 								%p
 									I'd love it if you collaborated with us on
