@@ -3,3 +3,4 @@
 .all
 .sass-cache
 *.html
+css/all.min.css

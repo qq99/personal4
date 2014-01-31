@@ -75,6 +75,10 @@
 								%h4 The Goods
 								%ul
 									%li
+										%a.iconal{:href => "http://echoplex.us", :title => "External link to echoplex.us", :target => "_blank"}
+											echoplex.us homepage
+											%i.icon.icon-external-link
+									%li
 										%a.iconal{:href => "http://chat.echoplex.us", :title => "External link to chat.echoplex.us", :target => "_blank"}
 											chat.echoplex.us
 											%i.icon.icon-external-link
@@ -110,6 +114,8 @@
 								.slide
 									%a{:href=>"img/echoplexus_draw.jpg", :target => "_blank"}
 										%img{:src=>"img/echoplexus_draw.jpg", :alt=>"chat"}
+								.slide
+									%iframe.echoplexus-frame{:src => "https://embed.echoplex.us/embed.html?channel=/", :frameborder=> "0"}
 					#radio.project.pure-g-r
 						.pure-u-3-5
 							.project-description
