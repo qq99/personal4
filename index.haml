@@ -24,14 +24,14 @@
 						%li
 							%a.resume.different-context{:href=>"/resume.pdf"} Resume
 						%li
-							%a.iconal.external.different-context{:href=>"https://plus.google.com/u/0/106853131316331612439/posts", :title => "Google+", :target => "_blank"}
-								%i.icon-google-plus-sign
-						%li
 							%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
 								%i.icon-github-sign
 						%li
 							%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
 								%i.icon-twitter-sign
+						%li
+							%a.iconal.external.different-context{:href=>"https://plus.google.com/u/0/106853131316331612439/posts", :title => "Google+", :target => "_blank"}
+								%i.icon-google-plus-sign
 						%li
 							%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
 								%i.icon-linkedin-sign
@@ -68,332 +68,341 @@
 						%h1.readable-section-header e-laboratory
 					%p.overview I like to make digital things.
 
-					#echoplexus.project.pure-g-r
-						.pure-u-2-5
-							.project-description
-								%h3
-									%a{:href=>"#echoplexus"} echoplexus
-								%p.date 2 Feb, 2013
-								%h4 The Goods
-								%ul
-									%li
-										%a.iconal{:href => "http://echoplex.us", :title => "External link to echoplex.us", :target => "_blank"}
-											echoplex.us homepage
-											%i.icon.icon-external-link
-									%li
-										%a.iconal{:href => "http://chat.echoplex.us", :title => "External link to chat.echoplex.us", :target => "_blank"}
-											chat.echoplex.us
-											%i.icon.icon-external-link
-									%li
-										%a.iconal{:href => "https://github.com/qq99/echoplexus",  :title => "External link to the echoplexus project on github", :target => "_blank"}
-											Code & Future
-											%i.icon.icon-github
-								%h4 What is it?
-								%p Echoplexus is an anonymous, web-based, IRC-like chatting platform that makes its best effort to respect your privacy. It allows you to create public or private channels. You can encrypt your chats. You can secure a pseudonym for linkable anonymity. You can code and draw together in real time. You can make free and secure Peer2Peer video and voice calls with the people in your channel using WebRTC.
-								%p Currently, echoplexus is composed of 4 components: Chat, Code, Draw, and Call. Each has it's own section of server code such that you could conceivably run any combination (or just 1) of these modules, depending on your needs.
-								%h4 Chat
-								%p The most important part of echoplexus is the support for anonymity. Users hate sign-ups. Anonymity fosters freedom of speech. Linkable anonymity is also possible.
-								%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. Similarly, it will attempt to parse YouTube URLs and embed an object. When the server encounters a URL, it can take a screenshot of the page in question along and attempt to provide a short excerpt to the user. To protect your privacy, media embedding is disabled for the client by default.
-								%p You can edit any message you've sent up to 2 hours ago, as long as you haven't lost your connection. This duration is configurable by server operators. You can edit across connections (regardless of time elapsed) if you were identified when you sent the message. You can do this by double clicking the message, or clicking the pencil icon that appears while hovering the message.
-								%p When you join a channel, you'll automatically sync some of the most recent chat history you may have missed while you were away. At any time, you can pull the chatlog history for that channel. Messages sent by identified users will have a green lock icon while hovering the chat message, allowing you to protect your identity throughout history.
-								%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. This is a user configurable setting that is on by default. Similarly, it will attempt to parse YouTube URLs and embed an object directly in the chat. If the server settings are enabled to do so, echoplexus will also attempt to take a screenshot and a short excerpt of any non-media URL linked in the chat to provide a quick preview/overview to chat participants.
-								%p The name echoplexus was mostly motivated by the song,
-									%a.iconal{:href=> "https://www.youtube.com/watch?feature=player_detailpage&v=BJYpWVNvI5s", :title => "'Nine Inch Nails - Echoplex - Sacramento HD Multicam', Youtube", :target => "_blank"}
-										Echoplex
+					#echoplexus.project
+						.images.images-right.images-40
+							.slide
+								%a{:href=>"img/echoplexus-latest.png", :target => "_blank"}
+									%img{:src=>"img/echoplexus-latest.png", :alt=>"chat"}
+								%div.annotation echoplexus running as Firefox App on ubuntu
+							.slide
+								%a{:href=>"img/echoplexus_chat.jpg", :target => "_blank"}
+									%img{:src=>"img/echoplexus_chat.jpg", :alt=>"chat"}
+								%div.annotation echoplexus used to be a lot darker!  It got a revamp in 2014 for greater appeal.
+							.slide
+								-# %iframe.echoplexus-frame{:src => "https://embed.echoplex.us/embed.html?channel=/", :frameborder=> "0"}
+								%div.annotation This last one is not a screenshot!
+						.project-description
+							%h3
+								%a{:href=>"#echoplexus"} echoplexus
+							%p.date 2 Feb, 2013
+							%h4 The Goods
+							%ul
+								%li
+									%a.iconal{:href => "http://echoplex.us", :title => "External link to echoplex.us", :target => "_blank"}
+										echoplex.us homepage
 										%i.icon.icon-external-link
-									by Nine Inch Nails. Listen to it and you might get a feel for how I felt while testing this ;)
-								%h4 Interested?
-								%p
-									I'd love it if you collaborated with us on
+								%li
+									%a.iconal{:href => "http://chat.echoplex.us", :title => "External link to chat.echoplex.us", :target => "_blank"}
+										chat.echoplex.us
+										%i.icon.icon-external-link
+								%li
 									%a.iconal{:href => "https://github.com/qq99/echoplexus",  :title => "External link to the echoplexus project on github", :target => "_blank"}
-										github!
+										Code & Future
 										%i.icon.icon-github
-						.pure-u-3-5
-							.images
-								.slide
-									%a{:href=>"img/echoplexus_chat.jpg", :target => "_blank"}
-										%img{:src=>"img/echoplexus_chat.jpg", :alt=>"chat"}
-								.slide
-									%a{:href=>"img/echoplexus_code.jpg", :target => "_blank"}
-										%img{:src=>"img/echoplexus_code.jpg", :alt=>"chat"}
-								.slide
-									%a{:href=>"img/echoplexus_draw.jpg", :target => "_blank"}
-										%img{:src=>"img/echoplexus_draw.jpg", :alt=>"chat"}
-								.slide
-									%iframe.echoplexus-frame{:src => "https://embed.echoplex.us/embed.html?channel=/", :frameborder=> "0"}
-					#radio.project.pure-g-r
-						.pure-u-3-5
-							.project-description
-								%h3
-									%a{:href=>"#radio"} radio
-								%p.date 2 Feb, 2013
-								%h4 The Goods
-								%ul
-									%li
-										%a{:href=>"http://radio.anthonycameron.com", :title => "radio.anthonycameron.com", :target=>"_blank"} radio.anthonycameron.com
-								%h4 Why bother?
-								%p I had this idea to share my favourite songs to introduce others to my specific taste without having to rely on dozens of youtube/grooveshark links, so I created this.  It took about <1 day.  It's just a simple sinatra app that scrapes the /music/ directory and writes the paths into an array, which was preferable for speed of development.  It kinda sucks, especially when attempting to select a song with a tablet, but it gets the job done.
-								%p Chrome only :( MP3 isn't widely supported and I sure wasn't about to convert my audio to different formats for this one-off project; unfortunately all my Radiohead is in FLAC format.
-								%p Featuring:
-								%ul
-									%li
-										Some sweet player icons from
-										%a.iconal{:href => "http://fortawesome.github.com/Font-Awesome/", :title => "External link to the fontawesome project", :target => "_blank"}
-											fontawesome
-											%i.icon.icon-external-link
-											%i.icon.icon-github
-									%li Mouse wheel controls
-									%li Some 3D CSS transformations
-									%li Some of my favourite songs (of those that exist in MP3 format)
-									%li HTML5 audio
-								%p So, if ever you asked, "What kind of music does this guy listen to?", now you know.
-						.pure-u-2-5
-							.images
-								.slide
-									%a{:href=>"img/radio.jpg", :target=>"_blank"}
-										%img{:src=>"img/radio.jpg"}
-					#webglBackgroundBumps.project.pure-g-r
-						.pure-u-2-5
-							.images
-								.slide
-									%a{:href=>"/lab/background-bumps"}
-										%img{:src=>"img/background-bumps.jpg"}
-								.slide
-									%a{:href=>"/lab/background-bumps"}
-										%img{:src=>"img/background-bumps2.jpg"}
-						.pure-u-3-5
-							.project-description
-								%h3
-									%a{:href=>"#webglBackgroundBumps"} WebGL Background Bump Mapping
-								%p.date 12 May, 2012
-								%h4 The Goods
-								%ul
-									%li
-										%a{:href=>"/lab/background-bumps"} Demo
-									%li
-										%a{:href=>"/lab/background-bumps"} Documentation
-								%h4 What is it?
-								%p Background textures have always been fairly flat and static things.  I set out to increase their (apparent) depth.
-								%p It's not entirely practical, and in retrospect I'm not sure why I created it, but here it is!  I think it's kind of neat and kind of pretty.
-								%p This project features WebGL, bump mapping, and the Phong reflection model to 'enhance' a website's background.  I don't particularly recommend anyone to use it in any kind of production site at this time (like most of WebGL).
-					#webglSRPG.project.pure-g-r
-						.pure-u-2-5
-							.images
-								.slide
-									%a{:href=>"img/1.png"}
-										%img{:src=>"img/1.png"}
-								.slide
-									%a{:href=>"img/2.png"}
-										%img{:src=>"img/2.png"}
-								.slide
-									%a{:href=>"img/3.png"}
-										%img{:src=>"img/3.png"}
-								.slide
-									%a{:href=>"img/4.png"}
-										%img{:src=>"img/4.png"}
-						.pure-u-3-5
-							.project-description
-								%h3
-									%a{:href=>"#webglSRPG"} WebGL Strategy RPG Engine
-								%p.date 5 Dec, 2011
-								%h4 The Goods
-								%ul
-									%li
-										%a{:href=>"http://anthonycameron.com/cs488f2011project/app/", :target=>"_blank"} Demo
-									%li
-										%a{:href=>"http://anthonycameron.com/cs488f2011project/", :target=>"_blank"} Technical & User Manual
-									%li
-										%a.iconal{:href=>"https://github.com/qq99/WebGL_SRPG", :target=>"_blank"}
-											Code
-											%i.icon.icon-github
-								%h4 Executive Summary
-								%p
-									Created for CS488 (Introduction to Computer Graphics) during Fall 2011 at the University of Waterloo as a final project.  This marks the second
-									time that I've taken this course.  Against all odds, I somehow managed to miss the exam during my first course attempt, and was assigned a Fail outright.  I'm pleased to announce
-									that I have since passed this wonderfully fun course!
-								%p
-									The focus was on procedural generation, completely framework free code.  It was primarily an exploration in real-time interactive graphics, utilizing only shaders and
-									modern graphics techniques.
-								%p
-									I did not meet all of the objectives I set for myself, but I was able to explore: texture mapping, texture atlasing, bump mapping, procedural terrain, water reflections,
-									animations using Catmull-Rom splines, Phong shading/lighting model, WebGL, OpenGL ES 2.0, AI pathfinding, Perlin noise, and context-free trees.
-								%p
-									When I get the time, I'd like to explore more of the objectives I wasn't able to achieve, probably separate from this project.  I've put in a bit of work to polish
-									certain aspects (namely, the character animation and interleaving the terrain data), but haven't had time to commit the changes yet.
-					#perlinshader.project.pure-g-r
-						.pure-u-2-5
-							.images
-								%h2 v2
-								%a{:href=>"img/shader1.jpg", :target=>"_blank"}
+							%h4 What is it?
+							%p Echoplexus is an anonymous, web-based, IRC-like chatting platform that makes its best effort to respect your privacy. It allows you to create public or private channels. You can encrypt your chats. You can secure a pseudonym for linkable anonymity. You can code and draw together in real time. You can make free and secure Peer2Peer video and voice calls with the people in your channel using WebRTC.
+							%p Currently, echoplexus is composed of 4 components: Chat, Code, Draw, and Call. Each has it's own section of server code such that you could conceivably run any combination (or just 1) of these modules, depending on your needs.
+							%h4 Chat
+							%p The most important part of echoplexus is the support for anonymity. Users hate sign-ups. Anonymity fosters freedom of speech. Linkable anonymity is also possible.
+							%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. Similarly, it will attempt to parse YouTube URLs and embed an object. When the server encounters a URL, it can take a screenshot of the page in question along and attempt to provide a short excerpt to the user. To protect your privacy, media embedding is disabled for the client by default.
+							%p You can edit any message you've sent up to 2 hours ago, as long as you haven't lost your connection. This duration is configurable by server operators. You can edit across connections (regardless of time elapsed) if you were identified when you sent the message. You can do this by double clicking the message, or clicking the pencil icon that appears while hovering the message.
+							%p When you join a channel, you'll automatically sync some of the most recent chat history you may have missed while you were away. At any time, you can pull the chatlog history for that channel. Messages sent by identified users will have a green lock icon while hovering the chat message, allowing you to protect your identity throughout history.
+							%p echoplexus will attempt to embed any image URLs directly into the Media bar on the right side. This is a user configurable setting that is on by default. Similarly, it will attempt to parse YouTube URLs and embed an object directly in the chat. If the server settings are enabled to do so, echoplexus will also attempt to take a screenshot and a short excerpt of any non-media URL linked in the chat to provide a quick preview/overview to chat participants.
+							%p The name echoplexus was mostly motivated by the song,
+								%a.iconal{:href=> "https://www.youtube.com/watch?feature=player_detailpage&v=BJYpWVNvI5s", :title => "'Nine Inch Nails - Echoplex - Sacramento HD Multicam', Youtube", :target => "_blank"}
+									Echoplex
+									%i.icon.icon-external-link
+								by Nine Inch Nails. Listen to it and you might get a feel for how I felt while testing this ;)
+							%h4 Interested?
+							%p
+								I'd love it if you collaborated with us on
+								%a.iconal{:href => "https://github.com/qq99/echoplexus",  :title => "External link to the echoplexus project on github", :target => "_blank"}
+									github!
+									%i.icon.icon-github
+					#radio.project
+						.images.images-right.images-50
+							.slide
+								%a{:href=>"img/radio.jpg", :target=>"_blank"}
+									%img{:src=>"img/radio.jpg"}
+								%div.annotation Not entirely practical, but it looks pretty :)
+						.project-description
+							%h3
+								%a{:href=>"#radio"} radio
+							%p.date 2 Feb, 2013
+							%h4 The Goods
+							%ul
+								%li
+									%a{:href=>"http://radio.anthonycameron.com", :title => "radio.anthonycameron.com", :target=>"_blank"} radio.anthonycameron.com
+							%h4 Why bother?
+							%p I had this idea to share my favourite songs to introduce others to my specific taste without having to rely on dozens of youtube/grooveshark links, so I created this in <1 day.  It's just a simple sinatra app that scrapes the /music/ directory and writes the paths into an array, which was preferable for speed of development.  It kinda sucks, especially when attempting to select a song with a tablet, but it gets the job done.
+							%p MP3 isn't widely supported and I sure wasn't about to convert my audio to different formats for this one-off project; unfortunately all my Radiohead is in FLAC format.
+							%p Featuring:
+							%ul
+								%li
+									Some sweet player icons from
+									%a.iconal{:href => "http://fortawesome.github.com/Font-Awesome/", :title => "External link to the fontawesome project", :target => "_blank"}
+										fontawesome
+										%i.icon.icon-external-link
+										%i.icon.icon-github
+								%li Mouse wheel controls
+								%li Some 3D CSS transformations
+								%li Some of my favourite songs (of those that exist in MP3 format)
+								%li HTML5 audio
+							%p So, if ever you asked, "What kind of music does this guy listen to?", now you know.
+					#webglBackgroundBumps.project
+						.images.images-left.images-40
+							.slide
+								%a{:href=>"/lab/background-bumps"}
+									%img{:src=>"img/background-bumps.jpg"}
+								%div.annotation Generally: the subtler the pattern, the better the result
+							.slide
+								%a{:href=>"/lab/background-bumps"}
+									%img{:src=>"img/background-bumps2.jpg"}
+						.project-description
+							%h3
+								%a{:href=>"#webglBackgroundBumps"} WebGL Background Bump Mapping
+							%p.date 12 May, 2012
+							%h4 The Goods
+							%ul
+								%li
+									%a{:href=>"/lab/background-bumps"} Demo
+								%li
+									%a{:href=>"/lab/background-bumps"} Documentation
+							%h4 What is it?
+							%p Background textures have always been fairly flat and static things.  I set out to increase their (apparent) depth.
+							%p It's not entirely practical, and in retrospect I'm not sure why I created it, but here it is!  I think it's kind of neat and kind of pretty.
+							%p This project features WebGL, bump mapping, and the Phong reflection model to 'enhance' a website's background.  I don't particularly recommend anyone to use it in any kind of production site at this time (like most of WebGL).
+					#webglSRPG.project
+						.images.images-left.images-40
+							.slide
+								%a{:href=>"img/1.png"}
+									%img{:src=>"img/1.png"}
+							.slide
+								%a{:href=>"img/2.png"}
+									%img{:src=>"img/2.png"}
+							.slide
+								%a{:href=>"img/3.png"}
+									%img{:src=>"img/3.png"}
+							.slide
+								%a{:href=>"img/4.png"}
+									%img{:src=>"img/4.png"}
+						.project-description
+							%h3
+								%a{:href=>"#webglSRPG"} WebGL Strategy RPG Engine
+							%p.date 5 Dec, 2011
+							%h4 The Goods
+							%ul
+								%li
+									%a{:href=>"http://anthonycameron.com/cs488f2011project/app/", :target=>"_blank"} Demo
+								%li
+									%a{:href=>"http://anthonycameron.com/cs488f2011project/", :target=>"_blank"} Technical & User Manual
+								%li
+									%a.iconal{:href=>"https://github.com/qq99/WebGL_SRPG", :target=>"_blank"}
+										Code
+										%i.icon.icon-github
+							%h4 Executive Summary
+							%p
+								Created for CS488 (Introduction to Computer Graphics) during Fall 2011 at the University of Waterloo as a final project.  This marks the second
+								time that I've taken this course.  Against all odds, I somehow managed to miss the exam during my first course attempt, and was assigned a Fail outright.  I'm pleased to announce
+								that I have since passed this wonderfully fun course!
+							%p
+								The focus was on procedural generation, completely framework free code.  It was primarily an exploration in real-time interactive graphics, utilizing only shaders and
+								modern graphics techniques.
+							%p
+								I did not meet all of the objectives I set for myself, but I was able to explore: texture mapping, texture atlasing, bump mapping, procedural terrain, water reflections,
+								animations using Catmull-Rom splines, Phong shading/lighting model, WebGL, OpenGL ES 2.0, AI pathfinding, Perlin noise, and context-free trees.
+							%p
+								When I get the time, I'd like to explore more of the objectives I wasn't able to achieve, probably separate from this project.  I've put in a bit of work to polish
+								certain aspects (namely, the character animation and interleaving the terrain data), but haven't had time to commit the changes yet.
+					#perlinshader.project
+						.images.images-left.images-40
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader1.html", :target=>"_blank"}
 									%img{:src=>"img/shader1.jpg"}
-								%a{:href=>"img/shadercube.jpg", :target=>"_blank"}
+								%div.annotation
+									Multi-function scene
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/oncube.html", :target=>"_blank"}
 									%img{:src=>"img/shadercube.jpg"}
-								%a{:href=>"img/shader2.jpg", :target=>"_blank"}
+								%div.annotation
+									Mapped onto a spinning cube
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader2.html", :target=>"_blank"}
 									%img{:src=>"img/shader2.jpg"}
-								%a{:href=>"img/shader3.jpg", :target=>"_blank"}
+								%div.annotation
+									Perlin's standard turbulence
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader3.html", :target=>"_blank"}
 									%img{:src=>"img/shader3.jpg"}
-								%a{:href=>"img/shader4.png", :target=>"_blank"}
+								%div.annotation
+									Oscillator
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader4.html", :target=>"_blank"}
 									%img{:src=>"img/shader4.png"}
+								%div.annotation
+									Toon shaded / ghetto heat map
 
-								%h2 v1
-								%a{:href=>"img/perlin1.jpg", :target=>"_blank"}
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin1.jpg"}
-								%a{:href=>"img/perlin2.jpg", :target=>"_blank"}
+								%div.annotation
+									Version 1
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin2.jpg"}
-								%a{:href=>"img/perlin3.jpg", :target=>"_blank"}
+							.slide
+								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin3.jpg"}
-						.pure-u-3-5
-							.project-description
-								%h3
-									%a{:href=>"#perlinshader"} Animating Functions of Improved 3D Perlin noise
-								%p.date 27 Oct, 2011 &ndash; a sleepless night
-								%h4 Demos
-								%ul
-									%li
-										%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader1.html", :target=>"_blank"} Multi-function
-									%li
-										%a{:href=>"http://anthonycameron.com/experiments/perlinshader/oncube.html", :target=>"_blank"} Mapped onto a cube
-									%li
-										%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader2.html", :target=>"_blank"} Perlin's standard turbulence
-									%li
-										%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader3.html", :target=>"_blank"} Oscillator
-									%li
-										%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader4.html", :target=>"_blank"} toon shaded / ghetto heat map
-								%h4 Overview
-								%p
-									:plain
-										In this experiment, I made a quick port of Ken Perlin's <a href="http://mrl.nyu.edu/~perlin/noise/" target="_blank">classical noise</a> in 3 dimensions.
-										Due to its continuity properties, we can take a 2D cross-section and step through the 3<sup>rd</sup> dimension in time.  The end result is a continuous animation.
-								%h4 Technical Overview
-								%p
-									After reading some of Perlin's work, namely some of his early SIGGRAPH slides, I became intrigued with the potential this has for both 3D texturing and the animation
-									of 2D textures.  Many of these 2D textures, when animated, can produce some very compelling effects.  In this <a href="http://anthonycameron.com/experiments/perlin/" target="_blank"> early demo page</a>
-									I show one example of something that looks like the activity of the planet Jupiter.
-								%p
-									I employ fragment shaders to calculate per-pixel Perlin noise.  Geometry is minimal, consisting of only 2 triangles that are un-transformed.  Texture co-ordinates are generated and used in some animations, but for others only Fragment.xy is used.  In all cases, time is used as an index to the Z plane of the 3D noise.
-								%h4 Benchmarks & Comparisons
-								%p
-									All I can say is: Wow.  WebGL (or more accurately, GLSL) fragment shaders are a huge step up in terms of performance when we compare to
-									%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"} my old CPU implementation.
+						.project-description
+							%h3
+								%a{:href=>"#perlinshader"} Animating Functions of Improved 3D Perlin noise
+							%p.date 27 Oct, 2011 &ndash; a sleepless night
+							%h4 Demos
+							%ul
+								%li
+									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader1.html", :target=>"_blank"} Multi-function
+								%li
+									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/oncube.html", :target=>"_blank"} Mapped onto a cube
+								%li
+									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader2.html", :target=>"_blank"} Perlin's standard turbulence
+								%li
+									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader3.html", :target=>"_blank"} Oscillator
+								%li
+									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader4.html", :target=>"_blank"} toon shaded / ghetto heat map
+							%h4 Overview
+							%p
+								:plain
+									In this experiment, I made a quick port of Ken Perlin's <a href="http://mrl.nyu.edu/~perlin/noise/" target="_blank">classical noise</a> in 3 dimensions.
+									Due to its continuity properties, we can take a 2D cross-section and step through the 3<sup>rd</sup> dimension in time.  The end result is a continuous animation.
+							%h4 Technical Overview
+							%p
+								After reading some of Perlin's work, namely some of his early SIGGRAPH slides, I became intrigued with the potential this has for both 3D texturing and the animation
+								of 2D textures.  Many of these 2D textures, when animated, can produce some very compelling effects.  In this <a href="http://anthonycameron.com/experiments/perlin/" target="_blank"> early demo page</a>
+								I show one example of something that looks like the activity of the planet Jupiter.
+							%p
+								I employ fragment shaders to calculate per-pixel Perlin noise.  Geometry is minimal, consisting of only 2 triangles that are un-transformed.  Texture co-ordinates are generated and used in some animations, but for others only Fragment.xy is used.  In all cases, time is used as an index to the Z plane of the 3D noise.
+							%h4 Benchmarks & Comparisons
+							%p
+								All I can say is: Wow.  WebGL (or more accurately, GLSL) fragment shaders are a huge step up in terms of performance when we compare to
+								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"} my old CPU implementation.
 
-								%p In the old implementation, on a 1GHz machine:
-								%ul
-									%li
-										Firefox 7 would fail to achieve >30FPS on a 128x128 square.
-									%li
-										Chrome 15 seemed to achieve >30FPS, or if not, the visual stutter wasn't too noticeable.
-								%p In the WebGL shader implementation, on a 1GHz machine:
-								%ul
-									%li
-										Firefox 7 easily seems to acheive >30FPS on a 1680x945 rectangle.
-									%li
-										As it did for the old implementation, Chrome 15 seems to outshine Firefox again.
-									%li
-										Furthermore, both browsers can render arbitrary transforms (the texture mapped cube) of the noise, which is something that I would have considered impossible for real-time in the old implementation.
-								%p
-									How do we account for the speed improvements?  I would estimate that 99% of it is due to the change from CPU to GPU shaders; programming a highly parallelizable task on the GPU will naturally outperform its corresponding CPU-only implementation.  Moreover, the computation of Perlin noise is relatively simple, which makes it a good fit for approximation on the GPU.  I hypothesize that less JavaScript being employed might account for some of the speed improvement.
-								%h4 Musings
-								%p
-									It was very tempting to use the "multi-function" noise as the background "image" for the Lab page.  However, after trying it out (and it looks beautiful) I deduced that I couldn't do this in complete faith, since WebGL is still somewhat sketchy; I experienced >4 Nvidia driver crashes, leading to complete browser failure.  Interestingly, it also crashed my Photoshop (and so assumably any other program using your GPU extensively).  It was either gamble with the value of my visitors' work or use a screenshot, and I think I made the better final choice.
-								%p
-									So, where does this leave us?  I now have a useful tool that will allow me to explore various noise patterns from within the browser; no need to attempt compiling an application that will then compile the shaders.  No need for a ton of external dependencies; just download the page, edit the shaders at the top of the source, and run!  This should hopefully allow me to explore new types of noise with ease.
-								%p
-									Additionally, WebGL would seem to be a fairly good reduced-power environment.  That is to say, we can expect the shaders to perform faster if they were used in a native C++ program, for example.
-								%p
-									Finally, those who want to learn more about shaders or procedural art might find looking at my code to be of some use.  I've set up the sample pages in such a way that they should resize to fill your browser window completely.  As such, if you go to full-screen mode (F11 key in most browsers), you can take a screenshot or save a perfect-fit wallpaper quite easily!
-								%h4 Resources
-								%ul
-									%li
-										%a{:href=>"http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter26.html", :target=>"_blank"} Implementing Improved Perlin Noise (GPU Gems, by S Green)
-									%li
-										%a{:href=>"http://http.developer.nvidia.com/GPUGems/gpugems_ch05.html", :target=>"_blank"} Implementing Improved Perlin Noise (GPU Gems, by K Perlin)
-									%li
-										%a{:href=>"http://learningwebgl.com/blog/?p=507", :target=>"_blank"} Learning WebGL &ndash; Lesson 5
-					#cs488project.project.pure-g-r
-						.pure-u-2-5
-							.images
-								.slide
-									%a{:href=>"http://anthonycameron.com/cs488project/#gallery", :target=>"_blank"}
-										%img{:src=>"img/rt.jpg"}
-						.pure-u-3-5
-							.project-description
-								%h3
-									%a{:href=>"#cs488project"}
-										A ray-tracer with a focus on various material properties
-								%p.date 26 Jul, 2011
-								%h4 The Goods
-								%ul
-									%li
-										%a{:href=>"http://anthonycameron.com/cs488project/", :target=>"_blank"} Documentation
-									%li
-										%a{:href=>"http://anthonycameron.com/cs488project/#gallery", :target=>"_blank"} Gallery
-								%h4 Executive Summary
-								%p Created for CS488 (Introduction to Computer Graphics) during Summer 2011 at the University of Waterloo as a final project.  Math in action.
-								%p Render time: Approximately 2 minutes each.
+							%p In the old implementation, on a 1GHz machine:
+							%ul
+								%li
+									Firefox 7 would fail to achieve >30FPS on a 128x128 square.
+								%li
+									Chrome 15 seemed to achieve >30FPS, or if not, the visual stutter wasn't too noticeable.
+							%p In the WebGL shader implementation, on a 1GHz machine:
+							%ul
+								%li
+									Firefox 7 easily seems to acheive >30FPS on a 1680x945 rectangle.
+								%li
+									As it did for the old implementation, Chrome 15 seems to outshine Firefox again.
+								%li
+									Furthermore, both browsers can render arbitrary transforms (the texture mapped cube) of the noise, which is something that I would have considered impossible for real-time in the old implementation.
+							%p
+								How do we account for the speed improvements?  I would estimate that 99% of it is due to the change from CPU to GPU shaders; programming a highly parallelizable task on the GPU will naturally outperform its corresponding CPU-only implementation.  Moreover, the computation of Perlin noise is relatively simple, which makes it a good fit for approximation on the GPU.  I hypothesize that less JavaScript being employed might account for some of the speed improvement.
+							%h4 Musings
+							%p
+								It was very tempting to use the "multi-function" noise as the background "image" for the Lab page.  However, after trying it out (and it looks beautiful) I deduced that I couldn't do this in complete faith, since WebGL is still somewhat sketchy; I experienced >4 Nvidia driver crashes, leading to complete browser failure.  Interestingly, it also crashed my Photoshop (and so assumably any other program using your GPU extensively).  It was either gamble with the value of my visitors' work or use a screenshot, and I think I made the better final choice.
+							%p
+								So, where does this leave us?  I now have a useful tool that will allow me to explore various noise patterns from within the browser; no need to attempt compiling an application that will then compile the shaders.  No need for a ton of external dependencies; just download the page, edit the shaders at the top of the source, and run!  This should hopefully allow me to explore new types of noise with ease.
+							%p
+								Additionally, WebGL would seem to be a fairly good reduced-power environment.  That is to say, we can expect the shaders to perform faster if they were used in a native C++ program, for example.
+							%p
+								Finally, those who want to learn more about shaders or procedural art might find looking at my code to be of some use.  I've set up the sample pages in such a way that they should resize to fill your browser window completely.  As such, if you go to full-screen mode (F11 key in most browsers), you can take a screenshot or save a perfect-fit wallpaper quite easily!
+							%h4 Resources
+							%ul
+								%li
+									%a{:href=>"http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter26.html", :target=>"_blank"} Implementing Improved Perlin Noise (GPU Gems, by S Green)
+								%li
+									%a{:href=>"http://http.developer.nvidia.com/GPUGems/gpugems_ch05.html", :target=>"_blank"} Implementing Improved Perlin Noise (GPU Gems, by K Perlin)
+								%li
+									%a{:href=>"http://learningwebgl.com/blog/?p=507", :target=>"_blank"} Learning WebGL &ndash; Lesson 5
+					#cs488project.project
+						.images.images-right.images-50
+							.slide
+								%a{:href=>"https://plus.google.com/photos/+AnthonyCamerona/albums/5631455218906031857", :target=>"_blank"}
+									%img{:src=>"img/rt.jpg"}
+						.project-description
+							%h3
+								%a{:href=>"#cs488project"}
+									A ray-tracer with a focus on various material properties
+							%p.date 26 Jul, 2011
+							%h4 The Goods
+							%ul
+								%li
+									%a{:href=>"http://anthonycameron.com/cs488project/", :target=>"_blank"} Documentation
+								%li
+									%a{:href=>"http://anthonycameron.com/cs488project/#gallery", :target=>"_blank"} Gallery
+							%h4 Executive Summary
+							%p Created for CS488 (Introduction to Computer Graphics) during Summer 2011 at the University of Waterloo as a final project.  Math in action.
+							%p Render time: Approximately 2 minutes each.
 
 				#portfolio.readable-section
 					.flashy-header
 						%h1.readable-section-header Portolio
 					%p.overview Some things I worked on while freelancing.
-					.pure-g-r
-						.pure-u-1-3
-							.description
-								%h2 Front-end Work
-								%p I specialize in front-end development, and I believe I can make any design a reality.  I'm not a designer by trade.
-								%p
-									For many of these projects, I was the sole developer.  For a few, I worked with my good friend and colleague
-									%a{:href=>"http://kaizhiwei.com", :target=>"_blank"} Kaizhi Wei
-								%p Generally, the main focus was PSD2HTML.  Some were flat sites, others were driven by WordPress.  I used HAML and SASS were used for rapid prototyping, and image spritesheets whenever applicable.
-								%p Many sites had needed custom widgets.  I've coded dozens of custom slideshows in my time, interactive maps, and several full-spread responsive image-based landing pages.
-								%p I'm experienced with integration of external services &ndash; yelp, Facebook, iHomeFinder, and other 3rd party weather services.
-						.pure-u-1-3
-							.images
-								.slide
-									%img{:src=>"img/portfolio/tile_solage_mobile.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_solage.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_solhotel.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_apwan.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_jwilliams.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_pd.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_e52.jpg", :width=>"350", :height=>"350"}
-						.pure-u-1-3
-							.images
-								.slide
-									%img{:src=>"img/portfolio/tile_ab.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_hannah.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_hklane.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_jerome.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_visum.jpg", :width=>"350", :height=>"350"}
-								.slide
-									%img{:src=>"img/portfolio/tile_shirtsbyme.jpg", :width=>"350", :height=>"350"}
+					%div
+						.images.images-right.images-30
+							.slide
+								%img{:src=>"img/portfolio/tile_ab.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_hannah.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_hklane.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_jerome.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_visum.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_shirtsbyme.jpg", :width=>"350", :height=>"350"}
+						.images.images-right.images-30
+							.slide
+								%img{:src=>"img/portfolio/tile_solage_mobile.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_solage.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_solhotel.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_apwan.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_jwilliams.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_pd.jpg", :width=>"350", :height=>"350"}
+							.slide
+								%img{:src=>"img/portfolio/tile_e52.jpg", :width=>"350", :height=>"350"}
+						.description
+							%h2 Front-end Work
+							%p I specialize in front-end development, and I believe I can make any design a reality.  I'm not a designer by trade, but I like to dabble and design via CSS.
+							%p
+								For many of these projects, I was the sole developer.  For a few, I worked with my good friend and colleague
+								%a{:href=>"http://kaizhiwei.com", :target=>"_blank"} Kaizhi Wei
+							%p Generally, the main focus was PSD2HTML.  Some were flat sites, others were driven by WordPress.  I used HAML and SASS were used for rapid prototyping, and image spritesheets whenever applicable.
+							%p Many sites had needed custom widgets.  I've coded dozens of custom slideshows in my time, interactive maps, and several full-spread responsive image-based landing pages.
+							%p I'm experienced with integration of external services &ndash; yelp, Facebook, iHomeFinder, and other 3rd party weather services.
+							%p These days, I've fleshed out more in terms of back-end development.  I'd still consider myself primarily a front-end developer, as I'd say that's where the majority of my talents lie.  There's just something so satisfying about seeing things come to life in front of your eyes!
 
 				#philosophy.readable-section
 					.flashy-header
 						%h1.readable-section-header Philosophy
-					%p.overview Musings.
+					%p.overview Musings, really.
 					.wall-of-text
 						%p I don't want to hear, "philosophy is useless".
-						%p I favour determinism, and that given the initial state and a set of rules, we could compute the entire state history of the universe. This is obviously impossible from within the universe we wish to simulate, but an interesting thought nonetheless. That is to say, I believe the universe can be described by a relatively compressed closed form system, whilst our everday happenings are just emergent phenomena of the decompression and computation of the system. I believe this entails there is no such thing as free will, and this brings me peace.
-						%p My ultimate academic goal is to understand myself and my environment. This will be a never ending quest that I very much look forward to. My applied goal is to create a computational Intelligence. This goal differs from an Artificial Intelligence in that I want to create a machine that actually thinks rather than gives the appearance of thinking. I think that the term "AI" should be reformulated to pseudo-intelligence.
+						%p I favour determinism, and that given the initial state and a set of rules, we could compute the entire state history of the universe. This is impossible from within the universe we wish to simulate. That is to say, I believe the universe can be described by a relatively compressed closed form system, whilst our everday happenings are just emergent phenomena of the decompression and computation of the system.  I believe this entails there is no such thing as free will, and this brings me peace.
+						%p My ultimate academic goal is to understand myself and my environment. This will be a never ending quest that I very much look forward to. My applied goal is to create a computational intelligence. By this, I think I mean hard Artificial Intelligence. I want to create a machine that actually thinks, rather than gives the appearance of thinking.  I think that the term "AI" in popular vernacular doesn't describe this concept well at all.
+						%p Ultimately, my ultimate academic goal is very likely impossible within my lifetime, barring future events drastically increasing my life expectancy.  I love the idea of a technological singularity, but fear that it's perhaps an egotistical creation of Humankind.  In a way, I look at it as the greatest romance we can bestow upon ourselves.  I want to live in a world where I don't feel like I'm constantly struggling in my interactions with computers.
+						%p I'd describe my moral outlook as, "If it isn't hurting anybody, let them do it". I'm a bit of a moral utilitarian in the sense that I'm all for breaking laws if we can accelerate technological progress.
 						%h2 Data
-						%p I'm highly interested in compression and procedurally generated content. I feel like the two go hand-in-hand in a lot of respects. To me, there's something very elegant about being able to compress some information into it's minimum representation. We could store the contents of a signal in its "entirety" discretely (barring resolution issues), but I find it much more amazing to describe it succintly with mathematics.
-						%p For example, we could list all the points of a line or curve on a certain interval (requiring storage proportional to the size of the interval), or we can use a closed form expression (requiring constant storage independent of the size of interval) to save space at the cost of future computational resources to decompress it. This ties in with procedurally generated content, with which I'm sure the universe is such a system.
+						%p Data munging is perhaps the biggest waste of time in our field.  If we cannot accomplish real computational intelligence, it would at least be nice to have "knowledge engines" come into being.  By these, I mean systems that can store facts, types, and relations and make basic inferences and convey the probability of correctness of those inferences.  I'd love to work on an ontology based system.
+						%p I'm highly interested in compression and procedurally generated content. I feel like the two go hand-in-hand in a lot of respects. To me, there's something very elegant about being able to compress some information into it's minimum representation. We could store the contents of a signal in its "entirety" discretely (barring resolution issues), but I find it much more amazing to describe it succinctly with mathematics.
+						%p For example, we could list all the points of a line or curve on a certain interval (requiring storage proportional to the size of the interval), or we can use a closed form expression (requiring constant storage independent of the size of interval) to save space at the cost of future computational resources to decompress it. This ties in with procedurally generated content, with which I'm sure the universe is such a system.  In this sense, I feel like there's a vague time<->space tradeoff that can be made: a certain feeling of "equivalent exchange" with regards to computation.
 						%h2 Distributed Systems
-						%p I enjoy distributed systems and feel that they are the future of personal computing. I believe information of all kinds should be free (which is oddly at ends with my ideals of privacy), and the added redundancy of information that a global distributed system would add would ensure no government could ever completely censor its citizens. Ideally, web sites should not be stored by just one person but all of the users who use them.
+						%p I enjoy distributed systems and feel that they are the future of personal computing. I believe information of all kinds should be free (which is oddly at ends with my ideals of privacy), and the added redundancy of information that a global distributed system would add would ensure no government could ever completely censor its citizens. Ideally, web sites should not be stored by just one person but by all the users who visit them.
 						%h2 Security and Privacy
-						%p Security is a huge focus of mine, and I try hard to ensure that the users of my software aren't entering into any malicious clauses nor are they compromising themselves under false pretenses of security. Inblognito was an exercise in security, privacy, and anonymity, and although it's far from perfect I can proudly say that I did not look at the HTTP server logs to see people's unencrypted tripcodes (it lacks HTTPS, but obviously is stored in hashed form only).
-						%p I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. You'd be right to deduce I take issue with the narrowminded interpretation of life by students of biology.
-						%p Cryptography and cryptanalysis used to be an interest of mine, but one that I rarely persue. I played around with steganography for a while too and found it to be pretty neat. In high school I made a program to automatically decrypt Caesar ciphers with statistically analysis and to assist the decryption of Beale and other ciphers. I think this was when I first learned that information can take on any kind of encoding and still have meaning for an entity.
+						%p Security is a huge focus of mine, and I try hard to ensure that the users of my software aren't entering into any malicious clauses nor are they compromising themselves under false pretenses of security.
+						%p How can data freedom coexist with privacy?  If we could eliminate greed as a motivator, and ensure peaceful acceptance of others, we wouldn't really have any need for privacy.  One would be able to air all kinds of embarassing and terrible moments and emotions if there were no fear of judgment or negative repercussions.  I don't think we can accomplish that.
+						%p I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. I think that biological definitions of "life" and "alive" are missing the mark.
 			%footer
 			.scripts
 				%script{:type => "text/javascript", :src => "lib/js/jquery-1.9.1.min.js"}
@@ -459,14 +468,14 @@
 					</script>
 					<script type="text/javascript">
 
-					  var _gaq = _gaq || [];
-					  _gaq.push(['_setAccount', 'UA-26321085-1']);
-					  _gaq.push(['_trackPageview']);
-
-					  (function() {
-						var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-					  })();
+					  -# var _gaq = _gaq || [];
+					  -# _gaq.push(['_setAccount', 'UA-26321085-1']);
+					  -# _gaq.push(['_trackPageview']);
+						-#
+					  -# (function() {
+						-# var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+						-# ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						-# var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					  -# })();
 
 					</script>
