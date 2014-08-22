@@ -4,20 +4,20 @@
     %title Anthony Cameron - Resume
     %link{:rel => "stylesheet", :href => "css/all.min.css", :type => "text/css"}
     %meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1"}
-    %meta{:name=>"description", :content=>"Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy."}
+    %meta{:name=>"description", :content=>"The work history of Anthony Cameron"}
     %meta{:name=>"author", :content=>"Anthony Cameron"}
     %meta{charset: "utf-8"}
   %body#resume
     .readable-section
       %section#title
-        %h1 Anthony Cameron
-        %h2 I'm a software engineer with a passion for the web and computer graphics.
         .meta
           %a{href: "mailto: ar.cameron@gmail.com"} ar.cameron@gmail.com
           %br
           %a{href: "http://anthonycameron.com"} http://anthonycameron.com
           %br
           %a{href: "https://github.com/qq99"} https://github.com/qq99
+        %h1 Hi, I'm Anthony Cameron
+        %h2 I'm a software engineer with a passion for the web and computer graphics.
       %section#work-experience
         %h4.timeline-title Timeline
         %h3 Work Experience
@@ -25,11 +25,27 @@
           .position
             %h4.job-title Software Developer
             %h4.employer
+              %a{href: "https://www.shopify.com/", target: "_blank", title: "Shopify homepage"} Shopify
+          .duration
+            .from Oct 2013
+            .to Current
+          %p
+            I work primarily on the admin team &ndash; the section store owners use &ndash; fixing bugs, implementing features, filing issues, and writing maintenance tasks.  Since Shopify encourages a strong culture of ownership, I'm always looking out for potential problems regarding user experience across project and team boundaries.
+          %p
+            I worked with the client-side MVC framework
+            %a{href: "http://batmanjs.org/", target: "_blank", title: "Batman.js homepage"} Batman.js
+            before we started to move to a custom in-house server-client hybrid approach.  This launched me from no previous CoffeeScript experience to relative expertise, imparting in me a thorough love of the language.
+          %p My role shifted from primarily front-end to full-stack in our transition:  As a team of 8~10, we've developed a powerful system that allows the server to be the primary source of truth in rendering, but still gives us enough flexibility that at first glance, you might think we've made a single-page app.  It drastically reduced our mean development time for new features, and greatly simplified bug fixes.  Everybody loves it, and we're all quite proud of it :)
+          %p Shopify is the largest company (and codebase) I've ever worked for, allowing me to improve my collaboration skills with both my immediate team, and even some people I've never met in person.  I've been called the "powerhouse of the issues list".  There's a lot more to say, but not much space here!
+        .job
+          .position
+            %h4.job-title UI Developer
+            %h4.employer
               %a{href: "http://www.exinda.com/", target: "_blank", title: "Exinda Networks homepage"} Exinda Networks
           .duration
             .from Aug 2013
             .to Aug 2012
-          %p At Exinda, I was a UI developer working on a large-scope single-page JavaScript application.  We used Backbone to structure our core application, Underscore and jQuery for developer convenience, and Handlebars and i18n.js for templating.  I am deeply involved in the design and implementation of many interactive modules (e.g., line and bar graphs) at the core of the application. We unit tested our frontend with Sinon, Chai, Mocha, and Jasmine.  I wrote many acceptance tests using Cucumber (Capybara & Watir).
+          %p At Exinda, I was working on a large-scope single-page JavaScript application.  We used Backbone to structure our core application, Underscore and jQuery for developer convenience, and Handlebars and i18n.js for templating.  I was deeply involved in the design and implementation of many interactive modules (e.g., line and bar graphs) at the core of the application. We unit tested our frontend with Sinon, Chai, Mocha, and Jasmine.  I wrote many acceptance tests using Cucumber (Capybara & Watir).
           %p It was at Exinda that I first got really involved with JavaScript-based developer utilities: node, bbb, jshint, and many others.  I wrote an intercepting proxy in Ruby to aid with manual testing when targeting different versions of our RESTful API.  Combined with Apache2 load balancers, this proxy also enabled us to simulate low-latency and unreliable-link scenarios while developing UI components, discovering bugs preemptively.
           %p I was responsible for the creation of a set of utilities that added dummy data for demonstration purposes.  These utilities were also used for creating fixtures for acceptance tests. Git became a part of my daily workflow; I could not do without it.
         .job
@@ -47,7 +63,7 @@
           %p In this time, I improved my web accessibility knowledge by creating responsive layouts and mobile-aware sites.  While the sites I create greatly benefit from JavaScript, I make sure to always provide room for sensible graceful degradation.
         .job
           .position
-            %h4.job-title Web Developer
+            %h4.job-title Web Developer (co-op)
             %h4.employer University of Waterloo, Special Projects Group
           .duration
             .from Jan 2009
@@ -56,10 +72,12 @@
             At the University of Waterloo, I participated in a small team of around 6 students and 6 full-time developers, working under an agile methodology. Daily scrum is no stranger to me! We had fluid teamwork, using Microsoft Team Foundation Server for version control. We developed pages for an application in C#.net, with a heavy focus on AJAX. During this time, I took initiative to learn jQuery UI design principals, and as a result, created a fully functional widget to replace the
             %code &lt;select&gt;
             element.
+        .job
+          %em I've had a few other co-op positions, but I've omitted them here.
       %section#education
         %h3 Education
         .position
-          %h4.job-title Bachelor of Computer Science, Honours
+          %h4.job-title Bachelor of Computer Science, Honours, Co-op
           %h4.employer University of Waterloo
         %p
           %strong Key Courses:
@@ -94,4 +112,6 @@
           for a picturesque overview of some things I've worked on.
         %p
           I also contribute to OSS (my own and others)
-          %a{href: "https://github.com/qq99", target: "_blank", title: "My work on GitHub"} on GitHub.
+          %a{href: "https://github.com/qq99?tab=repositories", target: "_blank", title: "My work on GitHub"} on GitHub,
+          and write at
+          %a{href: "https://blog.echoplex.us", target: "_blank", title: "echoplexus blog"} https://blog.echoplex.us.
