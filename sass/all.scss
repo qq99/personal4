@@ -351,3 +351,55 @@ $image-section-padding: 2em;
 	width:100%;
 	height:400px;
 }
+
+#resume {
+	section {
+		@extend .clearfix;
+	}
+	$subtle-grey: #efefef;
+	.position {
+		padding: 1em;
+		margin: 0 1em 1em 0;
+		float: left;
+		text-align: center;
+		background: $subtle-grey;
+		width: 10em;
+	}
+	$duration-width: 8rem;
+	.job-title {
+		font-weight: bold;
+	}
+	.job {
+		padding-right: $duration-width;
+		position: relative;
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+		border-bottom: 1px solid $subtle-grey;
+	}
+	.timeline-title {
+		float: right;
+		width: $duration-width;
+		text-align: center;
+	}
+	.duration {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width: $duration-width;
+		text-align: center;
+		.from, .to {
+			position: absolute;
+			width: 100%;
+			color: #777;
+			font-size: 0.8em;
+			text-transform: uppercase;
+		}
+		.to {
+			top: 0;
+		}
+		.from {
+			bottom: 2em;
+		}
+	}
+}

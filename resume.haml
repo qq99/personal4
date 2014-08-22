@@ -1,0 +1,97 @@
+!!!
+%html
+  %head
+    %title Anthony Cameron - Resume
+    %link{:rel => "stylesheet", :href => "css/all.min.css", :type => "text/css"}
+    %meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1"}
+    %meta{:name=>"description", :content=>"Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy."}
+    %meta{:name=>"author", :content=>"Anthony Cameron"}
+    %meta{charset: "utf-8"}
+  %body#resume
+    .readable-section
+      %section#title
+        %h1 Anthony Cameron
+        %h2 I'm a software engineer with a passion for the web and computer graphics.
+        .meta
+          %a{href: "mailto: ar.cameron@gmail.com"} ar.cameron@gmail.com
+          %br
+          %a{href: "http://anthonycameron.com"} http://anthonycameron.com
+          %br
+          %a{href: "https://github.com/qq99"} https://github.com/qq99
+      %section#work-experience
+        %h4.timeline-title Timeline
+        %h3 Work Experience
+        .job
+          .position
+            %h4.job-title Software Developer
+            %h4.employer
+              %a{href: "http://www.exinda.com/", target: "_blank", title: "Exinda Networks homepage"} Exinda Networks
+          .duration
+            .from Aug 2013
+            .to Aug 2012
+          %p At Exinda, I was a UI developer working on a large-scope single-page JavaScript application.  We used Backbone to structure our core application, Underscore and jQuery for developer convenience, and Handlebars and i18n.js for templating.  I am deeply involved in the design and implementation of many interactive modules (e.g., line and bar graphs) at the core of the application. We unit tested our frontend with Sinon, Chai, Mocha, and Jasmine.  I wrote many acceptance tests using Cucumber (Capybara & Watir).
+          %p It was at Exinda that I first got really involved with JavaScript-based developer utilities: node, bbb, jshint, and many others.  I wrote an intercepting proxy in Ruby to aid with manual testing when targeting different versions of our RESTful API.  Combined with Apache2 load balancers, this proxy also enabled us to simulate low-latency and unreliable-link scenarios while developing UI components, discovering bugs preemptively.
+          %p I was responsible for the creation of a set of utilities that added dummy data for demonstration purposes.  These utilities were also used for creating fixtures for acceptance tests. Git became a part of my daily workflow; I could not do without it.
+        .job
+          .position
+            %h4.job-title Freelance Web Developer
+            %h4.employer
+              %a{href: "http://www.uptowncreativeinc.com", target: "_blank", title: "Uptown Creative Inc's homepage"} Uptown Creative Inc,
+              ShirtsByMe, others
+          .duration
+            .from Dec 2009
+            .to Aug 2012
+          %p Uptown Creative Group specializes in providing clean, cross-browser, interactive HTML5 websites. During my time there, I participated in the creation of many static and CMS-driven sites, with a heavy focus on interactive maps, dynamic map searches, Yelp and weather integration.  I also tailored 3rd party feeds, themed iHomeFinder sites, and provided integration for search, filtering, and pagination of MLS results.
+          %p As a freelance web developer, I was responsible for the entirety of the development phase: I received a set of design documents, and from there I created semantic HTML5 mark-up using HAML (to insure well-formedness), sensible and minified CSS with the SASS compiler, and image spritesheets for anything that couldn't be done without them.
+          %p jQuery was employed heavily on nearly every site for interactive widgets, image lazy loading, and more. From this shell template, we moved on to PHP or WordPress, depending on client needs.
+          %p In this time, I improved my web accessibility knowledge by creating responsive layouts and mobile-aware sites.  While the sites I create greatly benefit from JavaScript, I make sure to always provide room for sensible graceful degradation.
+        .job
+          .position
+            %h4.job-title Web Developer
+            %h4.employer University of Waterloo, Special Projects Group
+          .duration
+            .from Jan 2009
+            .to Apr 2009
+          %p
+            At the University of Waterloo, I participated in a small team of around 6 students and 6 full-time developers, working under an agile methodology. Daily scrum is no stranger to me! We had fluid teamwork, using Microsoft Team Foundation Server for version control. We developed pages for an application in C#.net, with a heavy focus on AJAX. During this time, I took initiative to learn jQuery UI design principals, and as a result, created a fully functional widget to replace the
+            %code &lt;select&gt;
+            element.
+      %section#education
+        %h3 Education
+        .position
+          %h4.job-title Bachelor of Computer Science, Honours
+          %h4.employer University of Waterloo
+        %p
+          %strong Key Courses:
+          Introduction to Computer Graphics, Medical Image Processing, Distributed Systems, Introduction to Artificial Intelligence, Computer Networks, Numerical Computation, Algorithms, Computer Security and Privacy, Operating Systems
+        %p
+          %strong Awards:
+          University of Waterloo Merit Scholarship, 2006
+      %section#projects
+        %h3 Personal Projects & Open Source
+        %p In my spare time, I'm either playing video games, spending time with my wife, or working on software.
+        %h4 echoplexus
+        %p
+          %a{href: "https://github.com/qq99/echoplexus", target: "_blank", title: "echoplexus on GitHub"} echoplexus
+          is perhaps my most substantial and successful personal project to date.  It aims to provide web-based anonymous chat, collaborative coding and drawing, as well as WebRTC audio & video calls.  Please see
+          %a{href: "https://echoplex.us", target: "_blank", title: "echoplexus homepage"} https://echoplex.us
+          for a full description of all features!
+
+        -# lol, header converts mu symbol into "M"
+        %h4{style: "text-transform: lowercase;"} μv
+        %p
+          %a{href: "https://github.com/qq99/muvee", target: "_blank", title: "μv on GitHub"} μv
+          (pronounced mew-vee) is a Rails 4 application that I've recently started working on in hopes of replacing
+          %a{href: "http://xbmc.org/", target: "_blank", title: "XBMC homepage"} XBMC
+          as my home streaming system.  Right now, it's able to query external datasources (
+          %a{href: "http://thetvdb.com/", target: "_blank", title: "thetvdb.com homepage"} thetvdb.com,
+          %a{href: "http://www.omdbapi.com/", target: "_blank", title: "omdb homepage"} omdb
+          ), gather metadata, download posters, and generate screenshots from video files.  It groups episodes by series and displays a Netflix-esque interface, streaming video down to any web client in your home.
+        %h4 Others
+        %p
+          Please visit
+          %a{href: "http://anthonycameron.com", target: "_blank", title: "Anthony Cameron's homepage"} http://anthonycameron.com
+          for a picturesque overview of some things I've worked on.
+        %p
+          I also contribute to OSS (my own and others)
+          %a{href: "https://github.com/qq99", target: "_blank", title: "My work on GitHub"} on GitHub.
