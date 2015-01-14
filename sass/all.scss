@@ -1,14 +1,34 @@
-@import "pure-min.scss";
-@import "eye.scss";
-
 * {
 	font-family: 'Roboto','Helvetica Neue',Helvetica,arial,freesans,clean,sans-serif;
 	color:#222;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.top-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 1em;
+	background: white;
+	z-index: 2;
+
+	ul {
+		list-style-type: none;
+		display: inline-block;
+		li {
+			display: inline-block;
+			padding: 0 1em;
+		}
+	}
 }
 
 a {
-	-webkit-transition:all 0.25s ease-in-out;
-	-moz-transition:all 0.25s ease-in-out;
 	transition:all 0.25s ease-in-out;
 	text-decoration: none;
 	color: rgba(41, 157, 221, 1);
@@ -55,74 +75,34 @@ ul {
 	position: absolute;
 	z-index: 1000;
 }
+
+$splash-height: 500px;
 .splash-container {
 	position:fixed;
-	top:0;
+	top: 0;
+	left: 0;
 	width:100%;
+	height: $splash-height;
 	box-shadow:inset 10px 10px 50px -30px rgba(0,0,0,0.95);
 	background: #eee;
 }
+
+#c {
+	width: 100%;
+	height: 100%;
+}
+
 .splash {
-	-moz-transition:background 0.5s ease-in;
-	-webkit-transition:background 0.5s ease-in;
-	transition:background 0.5s ease-in;
-	width:60em;
+	height: $splash-height;
+	width: 100%;
 	max-width:100%;
 	max-height:100%;
 	overflow:hidden;
-	height:500px;
-
-
-	margin: 2em auto 0;
-	padding: 3em 0.5em;
-
-	text-shadow:-1px -1px 0px white;
-
-	$roll-duration:2s;
-	$bounce: cubic-bezier(0.880, 0.010, 0.520, 1.470);
-
-	.splash-text {
-		padding-right:4em;
-	}
-	.eyeball-1 {
-		-webkit-transition:left $roll-duration $bounce;
-		-moz-transition:left $roll-duration $bounce;
-		transition:left $roll-duration $bounce;
-		position:absolute;
-		top:-2em;
-	}
-
-	h2,h3,h4,h5 {
-		font-weight:normal;
-	}
-	h5 {
-		-webkit-transition:all ease-in 3s;
-		-moz-transition:all ease-in 3s;
-		transition:all ease-in 3s;
-	}
-	h5.hidden {
-		opacity:0;
-	}
-	em {
-		font-size:130%;
-		font-style: normal;
-		letter-spacing: 105%;
-	}
-	.splash-head {
-		font-size: 300%;
-		margin: 0em 0;
-		line-height: 1.2em;
-		color:#433333
-	}
-	.section-description {
-		color:#433333;
-	}
-	.header-image {
-		position:relative;
-	}
+	margin: 0;
+	padding: 0;
 }
 .splash-pusher {
-	height:560px;
+	height: $splash-height;
 }
 
 @media (max-width:900px) {
@@ -172,11 +152,6 @@ ul {
 		width:30px;
 	}
 	a:hover {
-		> i {
-			font-size:200%;
-			line-height:75%;
-			text-shadow:-1px 1px 0px rgba(0,0,0,0.45);
-		}
 		> i.icon-github-sign {
 			color:pink;
 		}
@@ -213,8 +188,6 @@ ul {
 		margin: 0;
 		color: #fefefe;
 		text-shadow:-1px 1px 4px #999, 1px 1px 0px #777;
-		-webkit-transform: rotateZ(-90deg);
-		-moz-transform: rotateZ(-90deg);
 		transform: rotateZ(-90deg);
 	}
 	@media (max-width:500px) {
@@ -228,8 +201,6 @@ ul {
 			text-shadow:none;
 			text-align: left;
 			font-size:300%;
-			-webkit-transform: none;
-			-moz-transform: none;
 			transform: none;
 		}
 	}
@@ -285,8 +256,6 @@ ul {
 		color:inherit;
 	}
 	i.icon {
-		-webkit-transition:all 0.25s ease-in-out;
-		-moz-transition:all 0.25s ease-in-out;
 		transition:all 0.25s ease-in-out;
 		font-size: 1.5em;
 		color:#333;
