@@ -3,7 +3,7 @@
 	%head
 		%title Anthony Cameron
 		%link{:rel => "stylesheet", :href => "css/all.min.css", :type => "text/css"}
-		%link{:href => "http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css", :rel=>"stylesheet"}
+		%link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel=>"stylesheet"}
 		%meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1"}
 		%meta{:name=>"description", :content=>"Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy."}
 		%meta{:name=>"author", :content=>"Anthony Cameron"}
@@ -460,18 +460,21 @@
 	%body
 		.content
 			%header.top-header
-				%a{:href=>"#"} Anthony Cameron
-				%ul
-					%li
-						%a{:href=>"#lab"} Lab
-					%li
-						%a{:href=>"#portfolio"} Portfolio
-					%li
-						%a{:href=>"#philosophy"} Philosophy
-					%li
-						%a{:href=>"/resume.html"} Resume
-					%li
-						%a{:href=>"https://blog.echoplex.us", :target => "_blank"} Blog
+				.aligned-section
+					.padded
+						%ul
+							%li
+								%a.home{:href=>"#"} Anthony Cameron
+							%li
+								%a{:href=>"#lab"} Lab
+							%li
+								%a{:href=>"#portfolio"} Portfolio
+							%li
+								%a{:href=>"#philosophy"} Philosophy
+							%li
+								%a{:href=>"/resume.html"} Resume
+							%li
+								%a{:href=>"https://blog.echoplex.us", :target => "_blank"} Blog
 			.splash-container.fixed
 				.splash
 					%canvas#c
@@ -813,19 +816,21 @@
 						%p Security is a huge focus of mine, and I try hard to ensure that the users of my software aren't entering into any malicious clauses nor are they compromising themselves under false pretenses of security.
 						%p How can data freedom coexist with privacy?  If we could eliminate greed as a motivator, and ensure peaceful acceptance of others, we wouldn't really have any need for privacy.  One would be able to air all kinds of embarassing and terrible moments and emotions if there were no fear of judgment or negative repercussions.  I don't think we can accomplish that.
 						%p I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. I think that biological definitions of "life" and "alive" are missing the mark.
-			%footer
-				%li
-					%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
-						%i.icon-github-sign
-				%li
-					%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
-						%i.icon-twitter-sign
-				%li
-					%a.iconal.external.different-context{:href=>"https://plus.google.com/u/0/106853131316331612439/posts", :title => "Google+", :target => "_blank"}
-						%i.icon-google-plus-sign
-				%li
-					%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
-						%i.icon-linkedin-sign
+			%footer.bottom-footer
+				.aligned-section
+					%ul.icons
+						%li
+							%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
+								%i.fa.fa-github
+						%li
+							%a.iconal.external.different-context{:href=>"http://codepen.io/qq99", :title => "CodePen", :target => "_blank"}
+								%i.fa.fa-codepen
+						%li
+							%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
+								%i.fa.fa-twitter
+						%li
+							%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
+								%i.fa.fa-linkedin
 		.scripts
 			:plain
 				<script type="text/javascript">
