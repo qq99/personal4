@@ -464,7 +464,8 @@
 					.padded
 						%ul
 							%li
-								%a.home{:href=>"#"} Anthony Cameron
+								%a.home{href: "#", title: "Home"}
+									%i.fa.fa-home
 							%li
 								%a{:href=>"#lab"} Lab
 							%li
@@ -818,19 +819,20 @@
 						%p I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. I think that biological definitions of "life" and "alive" are missing the mark.
 			%footer.bottom-footer
 				.aligned-section
-					%ul.icons
-						%li
-							%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
-								%i.fa.fa-github
-						%li
-							%a.iconal.external.different-context{:href=>"http://codepen.io/qq99", :title => "CodePen", :target => "_blank"}
-								%i.fa.fa-codepen
-						%li
-							%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
-								%i.fa.fa-twitter
-						%li
-							%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
-								%i.fa.fa-linkedin
+					.padded
+						%ul.icons
+							%li
+								%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
+									%i.fa.fa-github
+							%li
+								%a.iconal.external.different-context{:href=>"http://codepen.io/qq99", :title => "CodePen", :target => "_blank"}
+									%i.fa.fa-codepen
+							%li
+								%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
+									%i.fa.fa-twitter
+							%li
+								%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
+									%i.fa.fa-linkedin
 		.scripts
 			:plain
 				<script type="text/javascript">
