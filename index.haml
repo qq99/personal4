@@ -604,9 +604,9 @@
 							%h4 The Goods
 							%ul
 								%li
-									%a{:href=>"http://anthonycameron.com/cs488f2011project/app/", :target=>"_blank"} Demo
+									%a{:href=>"cs488f2011project/app/", :target=>"_blank"} Demo
 								%li
-									%a{:href=>"http://anthonycameron.com/cs488f2011project/", :target=>"_blank"} Technical & User Manual
+									%a{:href=>"cs488f2011project/", :target=>"_blank"} Technical & User Manual
 								%li
 									%a.iconal{:href=>"https://github.com/qq99/WebGL_SRPG", :target=>"_blank"}
 										Code
@@ -628,41 +628,41 @@
 					#perlinshader.project
 						.images.images-left.images-40
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader1.html", :target=>"_blank"}
+								%a{:href=>"experiments/perlinshader/shader1.html", :target=>"_blank"}
 									%img{:src=>"img/shader1.jpg"}
 								%div.annotation
 									Multi-function scene
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/oncube.html", :target=>"_blank"}
+								%a{:href=>"experiments/perlinshader/oncube.html", :target=>"_blank"}
 									%img{:src=>"img/shadercube.jpg"}
 								%div.annotation
 									Mapped onto a spinning cube
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader2.html", :target=>"_blank"}
+								%a{:href=>"experiments/perlinshader/shader2.html", :target=>"_blank"}
 									%img{:src=>"img/shader2.jpg"}
 								%div.annotation
 									Perlin's standard turbulence
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader3.html", :target=>"_blank"}
+								%a{:href=>"experiments/perlinshader/shader3.html", :target=>"_blank"}
 									%img{:src=>"img/shader3.jpg"}
 								%div.annotation
 									Oscillator
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader4.html", :target=>"_blank"}
+								%a{:href=>"experiments/perlinshader/shader4.html", :target=>"_blank"}
 									%img{:src=>"img/shader4.png"}
 								%div.annotation
 									Toon shaded / ghetto heat map
 
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
+								%a{:href=>"experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin1.jpg"}
 								%div.annotation
 									Version 1
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
+								%a{:href=>"experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin2.jpg"}
 							.slide
-								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"}
+								%a{:href=>"experiments/perlin/", :target=>"_blank"}
 									%img{:src=>"img/perlin3.jpg"}
 						.project-description
 							%h3
@@ -671,15 +671,15 @@
 							%h4 Demos
 							%ul
 								%li
-									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader1.html", :target=>"_blank"} Multi-function
+									%a{:href=>"experiments/perlinshader/shader1.html", :target=>"_blank"} Multi-function
 								%li
-									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/oncube.html", :target=>"_blank"} Mapped onto a cube
+									%a{:href=>"experiments/perlinshader/oncube.html", :target=>"_blank"} Mapped onto a cube
 								%li
-									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader2.html", :target=>"_blank"} Perlin's standard turbulence
+									%a{:href=>"experiments/perlinshader/shader2.html", :target=>"_blank"} Perlin's standard turbulence
 								%li
-									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader3.html", :target=>"_blank"} Oscillator
+									%a{:href=>"experiments/perlinshader/shader3.html", :target=>"_blank"} Oscillator
 								%li
-									%a{:href=>"http://anthonycameron.com/experiments/perlinshader/shader4.html", :target=>"_blank"} toon shaded / ghetto heat map
+									%a{:href=>"experiments/perlinshader/shader4.html", :target=>"_blank"} toon shaded / ghetto heat map
 							%h4 Overview
 							%p
 								:plain
@@ -688,14 +688,14 @@
 							%h4 Technical Overview
 							%p
 								After reading some of Perlin's work, namely some of his early SIGGRAPH slides, I became intrigued with the potential this has for both 3D texturing and the animation
-								of 2D textures.  Many of these 2D textures, when animated, can produce some very compelling effects.  In this <a href="http://anthonycameron.com/experiments/perlin/" target="_blank"> early demo page</a>
+								of 2D textures.  Many of these 2D textures, when animated, can produce some very compelling effects.  In this <a href="experiments/perlin/" target="_blank"> early demo page</a>
 								I show one example of something that looks like the activity of the planet Jupiter.
 							%p
 								I employ fragment shaders to calculate per-pixel Perlin noise.  Geometry is minimal, consisting of only 2 triangles that are un-transformed.  Texture co-ordinates are generated and used in some animations, but for others only Fragment.xy is used.  In all cases, time is used as an index to the Z plane of the 3D noise.
 							%h4 Benchmarks & Comparisons
 							%p
 								All I can say is: Wow.  WebGL (or more accurately, GLSL) fragment shaders are a huge step up in terms of performance when we compare to
-								%a{:href=>"http://anthonycameron.com/experiments/perlin/", :target=>"_blank"} my old CPU implementation.
+								%a{:href=>"experiments/perlin/", :target=>"_blank"} my old CPU implementation.
 
 							%p In the old implementation, on a 1GHz machine:
 							%ul
@@ -743,9 +743,9 @@
 							%h4 The Goods
 							%ul
 								%li
-									%a{:href=>"http://anthonycameron.com/cs488project/", :target=>"_blank"} Documentation
+									%a{:href=>"cs488project/", :target=>"_blank"} Documentation
 								%li
-									%a{:href=>"http://anthonycameron.com/cs488project/#gallery", :target=>"_blank"} Gallery
+									%a{:href=>"cs488project/#gallery", :target=>"_blank"} Gallery
 							%h4 Executive Summary
 							%p Created for CS488 (Introduction to Computer Graphics) during Summer 2011 at the University of Waterloo as a final project.  Math in action.
 							%p Render time: Approximately 2 minutes each.
