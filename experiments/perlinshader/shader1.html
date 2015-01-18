@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<title>SHADERS</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
+            <script type="text/javascript">
+
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-26321085-1']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+
+            </script>   
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script id="perlin.frag" type="x-shader/x-fragment">
+    #ifdef GL_ES
+    precision highp float;
+    #endif
+
+    varying vec2 vTextureCoord;
+
+    uniform sampler2D uperm_sampler;
+    uniform sampler2D igrad_sampler;
+    uniform float time;
+    uniform float darkness;
+
+    float fade(in float t)
+    {
+        return t * t * t * (t * (t * 6.0 - 15.0) + 10.0); // new curve
+    }
+    float perm(in float x)
+    {
+        return texture2D(uperm_sampler, vec2(x / 256.0, 0)).r * 256.0;
+    }
+    float grad(in float x, in vec3 p)
+    {
+        return dot(texture2D(igrad_sampler, vec2(x,0)).rgb, p);
+    }
+    float lerp(in float a, in float b, in float c)
+    {
+        return mix(a,b,c);
+    }
+    float inoise(vec3 p)
+    {
+        vec3 P = mod(floor(p), 256.0);
+        p -= floor(p);
+        vec3 f = vec3(fade(p.x), fade(p.y), fade(p.z));
+        float A = perm(P.x) + P.y;
+        float AA = perm(A) + P.z;
+        float AB = perm(A + 1.0) + P.z;
+        float B =  perm(P.x + 1.0) + P.y;
+        float BA = perm(B) + P.z;
+        float BB = perm(B + 1.0) + P.z;
+
+
+        return lerp(
+            lerp(lerp(grad(perm(AA), p),
+                grad(perm(BA), p + vec3(-1.0, 0.0, 0.0)), f.x),
+                lerp(grad(perm(AB), p + vec3(0.0, -1.0, 0.0)),
+                    grad(perm(BB), p + vec3(-1.0, -1.0, 0.0)), f.x), f.y),
+            lerp(lerp(grad(perm(AA + 1.0), p + vec3(0.0, 0.0, -1.0)),
+                    grad(perm(BA + 1.0), p + vec3(-1.0, 0.0, -1.0)), f.x),
+            lerp(grad(perm(AB + 1.0), p + vec3(0.0, -1.0, -1.0)),
+                grad(perm(BB + 1.0), p + vec3(-1.0, -1.0, -1.0)), f.x), f.y),
+        f.z);
+
+
+    }
+
+    void main(void) {
+        //gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+        //vec4 clr =  texture2D(uperm_sampler, vec2(vTextureCoord.s, 0));
+        //gl_FragColor = texture2D(perm_sampler, vec2(vTextureCoord.s, vTextureCoord.t));
+        //vec4 g = texture2D(igrad_sampler, vec2(vTextureCoord.s, vTextureCoord.t));
+
+        //float noise = inoise(vec3(vTextureCoord.s * 30.0, vTextureCoord.t * 30.0, 0.0));
+
+
+        float u = gl_FragCoord.x * 0.001;
+        float v = gl_FragCoord.y * 0.001;
+        float w = gl_FragCoord.z;
+        //float u = vTextureCoord.s;
+        //float v = vTextureCoord.t;
+        float noiseCoef = 0.0;
+        for (float level = 1.0; level < 5.0; level ++)
+        {
+            noiseCoef = noiseCoef + (0.1 * level) 
+                * abs(inoise(
+                    vec3(level * u * 5.0, 
+                         level * v * 5.0,
+                         time)));
+        }
+        
+        // kind cool:
+        //float diff = abs(gl_FragCoord.x - mouseX*1680.0);
+        //noiseCoef *= (100.0/diff);
+        noiseCoef = abs(darkness * cos((u + v) + noiseCoef + 20.0) + (1.0 - darkness));
+        noiseCoef *= abs(darkness * cos(u + noiseCoef + 200.0)) + abs(darkness * sin(v + noiseCoef + 200.0));
+
+        //float noise = inoise(gl_FragCoord.xyz * 0.10);
+        gl_FragColor = vec4(0, noiseCoef, noiseCoef, 1);
+        //gl_FragColor = vec4(vTextureCoord.s, vTextureCoord.t, clr.g, 1);
+
+
+        //gl_FragColor *= texture2D(grad_sampler, vec2(vTextureCoord.s, vTextureCoord.t));
+        //gl_FragColor *= vec4(vTextureCoord.s, vTextureCoord.t, 1.0, 1.0);
+    }
+</script>
+<script id="perlin.vert" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec2 aTextureCoord;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying vec2 vTextureCoord;
+    void main(void) {
+        //gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        gl_Position = vec4(aVertexPosition, 1.0);
+        vTextureCoord = aTextureCoord;
+    }
+
+</script>
+<script type="text/javascript" src="perlin.shader.js"></script>
+
+<style type="text/css">
+    * {
+        margin:0px;
+        padding:0px;
+        overflow:hidden;
+    }
+</style>
+</head>
+
+
+<body>
+    <canvas id="c" style="border: none;" width="1000px" height="1000px"></canvas>
+</body>
+
+</html>
