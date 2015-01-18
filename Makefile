@@ -12,4 +12,5 @@ HAML_FILES=$(shell find *.haml)
 .html: $(HAML_FILES)
 	haml index.haml index.html
 	haml resume.haml resume.html
+	haml cs488project/index.haml cs488project/index.html
 	haml lab/background-bumps.haml lab/background-bumps.html
