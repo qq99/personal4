@@ -4,5 +4,6 @@
 .all
 .sass-cache
 *.html
+css/
 css/all.min.css
 .map
