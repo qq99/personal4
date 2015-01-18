@@ -1,14 +1,8 @@
 !!!
 %html
 	%head
-		%title Anthony Cameron
-		%link{:rel => "stylesheet", :href => "css/all.min.css", :type => "text/css"}
-		%link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel=>"stylesheet"}
-		%meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1"}
-		%meta{:name=>"description", :content=>"Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy."}
-		%meta{:name=>"author", :content=>"Anthony Cameron"}
+		=Haml::Engine.new(IO.read("head.haml")).render
 		:plain
-
 			<script id="perlin.frag" type="x-shader/x-fragment">
 					#ifdef GL_ES
 					precision highp float;
@@ -459,23 +453,8 @@
 			</script>
 	%body
 		.content
-			%header.top-header
-				.aligned-section
-					.padded
-						%ul
-							%li
-								%a.home{href: "#", title: "Home"}
-									%i.fa.fa-home
-							%li
-								%a{:href=>"#lab"} Lab
-							%li
-								%a{:href=>"#portfolio"} Portfolio
-							%li
-								%a{:href=>"#philosophy"} Philosophy
-							%li
-								%a{:href=>"/resume.html"} Resume
-							%li
-								%a{:href=>"https://blog.echoplex.us", :target => "_blank"} Blog
+			=Haml::Engine.new(IO.read("header.haml")).render
+
 			.splash-container.fixed
 				.splash
 					%canvas#c
@@ -530,36 +509,6 @@
 								%a.iconal{:href => "https://github.com/qq99/echoplexus",  :title => "External link to the echoplexus project on github", :target => "_blank"}
 									github!
 									%i.icon.icon-github
-					#radio.project
-						.images.images-right.images-50
-							.slide
-								%a{:href=>"img/radio.jpg", :target=>"_blank"}
-									%img{:src=>"img/radio.jpg"}
-								%div.annotation Not entirely practical, but it looks pretty :)
-						.project-description
-							%h3
-								%a{:href=>"#radio"} radio
-							%p.date 2 Feb, 2013
-							%h4 The Goods
-							%ul
-								%li
-									%a{:href=>"http://radio.anthonycameron.com", :title => "radio.anthonycameron.com", :target=>"_blank"} radio.anthonycameron.com
-							%h4 Why bother?
-							%p I had this idea to share my favourite songs to introduce others to my specific taste without having to rely on dozens of youtube/grooveshark links, so I created this in <1 day.  It's just a simple sinatra app that scrapes the /music/ directory and writes the paths into an array, which was preferable for speed of development.  It kinda sucks, especially when attempting to select a song with a tablet, but it gets the job done.
-							%p MP3 isn't widely supported and I sure wasn't about to convert my audio to different formats for this one-off project; unfortunately all my Radiohead is in FLAC format.
-							%p Featuring:
-							%ul
-								%li
-									Some sweet player icons from
-									%a.iconal{:href => "http://fortawesome.github.com/Font-Awesome/", :title => "External link to the fontawesome project", :target => "_blank"}
-										fontawesome
-										%i.icon.icon-external-link
-										%i.icon.icon-github
-								%li Mouse wheel controls
-								%li Some 3D CSS transformations
-								%li Some of my favourite songs (of those that exist in MP3 format)
-								%li HTML5 audio
-							%p So, if ever you asked, "What kind of music does this guy listen to?", now you know.
 					#webglBackgroundBumps.project
 						.images.images-left.images-40
 							.slide
@@ -814,22 +763,7 @@
 						%p Security is a huge focus of mine, and I try hard to ensure that the users of my software aren't entering into any malicious clauses nor are they compromising themselves under false pretenses of security.
 						%p How can data freedom coexist with privacy?  If we could eliminate greed as a motivator, and ensure peaceful acceptance of others, we wouldn't really have any need for privacy.  One would be able to air all kinds of embarassing and terrible moments and emotions if there were no fear of judgment or negative repercussions.  I don't think we can accomplish that.
 						%p I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. I think that biological definitions of "life" and "alive" are missing the mark.
-			%footer.bottom-footer
-				.aligned-section
-					.padded
-						%ul.icons
-							%li
-								%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
-									%i.fa.fa-github
-							%li
-								%a.iconal.external.different-context{:href=>"http://codepen.io/qq99", :title => "CodePen", :target => "_blank"}
-									%i.fa.fa-codepen
-							%li
-								%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
-									%i.fa.fa-twitter
-							%li
-								%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
-									%i.fa.fa-linkedin
+				=Haml::Engine.new(IO.read("footer.haml")).render
 		.scripts
 			:plain
 				<script type="text/javascript">

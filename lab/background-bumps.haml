@@ -1,77 +1,45 @@
 !!!
 %html
 	%head
-		%title Anthony Cameron &ndash; WebGL Background Bump Mapping
-		%link{:rel => "stylesheet", :href => "../css/all.min.css", :type => "text/css"}
-		%link{:href => "http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css", :rel=>"stylesheet"}
-		%meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1"}
-		%meta{:name=>"description", :content=>"Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy."}
-		%meta{:name=>"author", :content=>"Anthony Cameron"}	
+		=Haml::Engine.new(IO.read("head.haml")).render
 	%body
-		.content.pure-g-r
-			%header.top-header.pure-u-1
-				.pure-menu.pure-menu-open.pure-menu-fixed.pure-menu-horizontal
-					%a.pure-menu-heading{:href=>"#"} Anthony Cameron
-					%ul
-						%li
-							%a.lab{:href=>"../#lab"} Lab
-						%li
-							%a.portfolio{:href=>"../#portfolio"} Portfolio
-						%li
-							%a.philosophy{:href=>"../#philosophy"} Philosophy
-						%li
-							%a.resume.different-context{:href=>"/resume.pdf"} Resume
-						%li
-							%a.iconal.external.different-context{:href=>"https://plus.google.com/u/0/106853131316331612439/posts", :title => "Google+", :target => "_blank"}
-								%i.icon-google-plus-sign
-						%li
-							%a.iconal.external.different-context{:href=>"https://github.com/qq99", :title => "Github", :target => "_blank"}
-								%i.icon-github-sign
-						%li
-							%a.iconal.external.different-context{:href=>"https://twitter.com/dontqq", :title => "Twitter", :target => "_blank"}
-								%i.icon-twitter-sign
-						%li
-							%a.iconal.external.different-context{:href=>"http://ca.linkedin.com/in/anthonycameron/", :title => "LinkedIn", :target => "_blank"}
-								%i.icon-linkedin-sign
+		.content
+			=Haml::Engine.new(IO.read("header.haml")).render
 			%section#main
 				%canvas#c{:width => "256", :height => "256"}
-				#lab.readable-section{:style=>"padding:1em; background:rgba(255,255,255,0.8);"}
+				.backgrounded.readable-section
 					#background-bump.project
-						.pure-g-r
-							.pure-u-1-2
-								.wall-of-text
-									#texture_source
-										%h4 Source Image
-										%img#texture_example
-										%input#texture_src{:value => "texture_source"}
-									%h3 WebGL Background Bump Mapping
-									%p
-										%a#hide{:href=>"#"} Hide text
-									%h4 Overview
-									%p The website's background (0,0)x(viewportX,viewportY) is mapped to a square (-1,-1)x(1,1).  Right about where your face is, a virtual light is pointed towards the screen.  In practice, it seems that hanging this light from 0..2 units above the screen yields good results.  At 2 units, the light provides a fairly even coverage of the square.  Less than this, it seems to provide for an easy vignette effect.  You provide a background (diffuse) color, and your image is consulted for the texture of the surface.
-									%p I do not recommend rolling this out to a prodution site.  Furthermore, I have not made it easy to roll out, for 2 reasons: 1) I accomplished what I set out to do, and 2) On slow computers, it might make things unmanageable.  Perhaps some framerate detection and animation cancelling is in order?
-									%p 
-										Subtle tiling textures care of 
-										%a.iconal{:href=>"http://subtlepatterns.com/", :target=>"_blank"}
-											subtlepatterns.com
-											%i.icon.icon-external-link
-									%h4 Graphics Model
-									%p The image is represented in the XY plane.  The normal is simply (0,0,1).  This allows us to easily place the light somewhere in the (0,0,+z) area, and use the mouse to control the X and Y positions of the light.  The Phong reflection model is used for shading.  The specular component is messed up, as you'll see if you increase rho.  Since the viewport is defined to be between (-1,-1)x(1,1), we can easily reason about the position of the light in this space.  (-1,-1) being the bottom right, (1,1) being the top right.  An offset can be applied to the mouse's modifier, allowing us to position the light off-screen but still have the mouse affect the shading; this can make the effect subtler.
-									%h4 Bump mapping
-									%p Forward differencing (via 3 texture lookups) in X (1,0,0) and Y (0,1,0) is performed on the provided pattern, and a magnitude is obtained.  The stepsize can be controlled by delta_s and delta_t, and may need to be adjusted as the texture is scaled for better results.  Currently, only the blue channel is consulted.  This magnitude, modulated by a user specified scaling factor (bump_scale), is used to perturb the normals in the X and Y directions (or s and t).
-							.pure-u-1-2
-								.wall-of-text
-									%h4 Viewport Adjustments
-									%p It is very rare that a browser will have a viewport aspect ratio of 1:1.  The canvas is stretched to the browser viewport dimensions, but internally has a square of aspect 1:1.  As such, we'd notice stretching on any textures due to this aspect ratio difference.  So, on draw/resize, the texture coordinates are modulated by the browser's viewport aspect ratio.  This results in square textures displaying as they were intended.
-									%h4 WebGL and non-POT textures
-									%p As I was experimenting with the textures, I noticed that a lot of the tiling textures that exist in the wild are non-power-of-two (non-POT) in dimension.  Furthermore, almost none of the textures are perfectly square.
-									%p WebGL only currently supports power-of-two pixel dimensions, so the image is redrawn using a temporary 2D canvas if it isn't POT.  This is fine for getting the texture to simply display, but there are still rescaling problems (mapping an arbitrary rectangle into a perfect square squashes the texture).  Ultimately, this is due to a deficiency in the simplified model I constructed, but it is easily circumvented: the texture coordinates are further modulated by the texture's aspect ratio.  This results in textures of any aspect ratios rendering as the author intended.
-									%h4 Texture Coordinate Scaling
-									%p As the dimensions of the images used for textures vary, so must their scaling factor -- some of the patterns you may try might be outright invisible due to their scaling factor.  This is also performed with a straight-forward multiplication to the texture coordinates; gl.REPEAT in the texture wrap parameters handles the rest.
-									%p All texture coordinate modulations are done via vertex shader uniforms, rather than modulating and re-uploading the texture coordinates.  This was done to keep the implementation simple.  Since there are only two triangles, I don't anticipate this as being particularly inefficient.
-									%h4 Limitations & Concerns
-									%p The light is less circular the further away the window viewport is from 1:1.  Smart semi-automatic setting of texture coordinate scale and bump scale would be nice, but for now it is a manual tweaking process.
-									%p The code is a mess, and I couldn't figure out why the specular was failing in Linux.  The lighting model isn't terribly standard since there's no actual geometry, so I imagine this could be contributing to my frustrations.  Could be what I thought was working specular in Windows was actually just silently failing.  I've disabled specular and as far as I can see, it looks how it always looked in Windows.
+						#texture_source{style: "width: 25%; height: 25%; float: left; margin: 0 2em 2em 0;"}
+							%h4 Source Image
+							%img#texture_example
+							%input#texture_src{:value => "texture_source"}
+						%h3 WebGL Background Bump Mapping
+						%p
+							%a#hide{:href=>"#"} Hide text
+						%h4 Overview
+						%p The website's background (0,0)x(viewportX,viewportY) is mapped to a square (-1,-1)x(1,1).  Right about where your face is, a virtual light is pointed towards the screen.  In practice, it seems that hanging this light from 0..2 units above the screen yields good results.  At 2 units, the light provides a fairly even coverage of the square.  Less than this, it seems to provide for an easy vignette effect.  You provide a background (diffuse) color, and your image is consulted for the texture of the surface.
+						%p I do not recommend rolling this out to a prodution site.  Furthermore, I have not made it easy to roll out, for 2 reasons: 1) I accomplished what I set out to do, and 2) On slow computers, it might make things unmanageable.  Perhaps some framerate detection and animation cancelling is in order?
+						%p
+							Subtle tiling textures care of
+							%a.iconal{:href=>"http://subtlepatterns.com/", :target=>"_blank"}
+								subtlepatterns.com
+								%i.icon.icon-external-link
+						%h4 Graphics Model
+						%p The image is represented in the XY plane.  The normal is simply (0,0,1).  This allows us to easily place the light somewhere in the (0,0,+z) area, and use the mouse to control the X and Y positions of the light.  The Phong reflection model is used for shading.  The specular component is messed up, as you'll see if you increase rho.  Since the viewport is defined to be between (-1,-1)x(1,1), we can easily reason about the position of the light in this space.  (-1,-1) being the bottom right, (1,1) being the top right.  An offset can be applied to the mouse's modifier, allowing us to position the light off-screen but still have the mouse affect the shading; this can make the effect subtler.
+						%h4 Bump mapping
+						%p Forward differencing (via 3 texture lookups) in X (1,0,0) and Y (0,1,0) is performed on the provided pattern, and a magnitude is obtained.  The stepsize can be controlled by delta_s and delta_t, and may need to be adjusted as the texture is scaled for better results.  Currently, only the blue channel is consulted.  This magnitude, modulated by a user specified scaling factor (bump_scale), is used to perturb the normals in the X and Y directions (or s and t).
+						%h4 Viewport Adjustments
+						%p It is very rare that a browser will have a viewport aspect ratio of 1:1.  The canvas is stretched to the browser viewport dimensions, but internally has a square of aspect 1:1.  As such, we'd notice stretching on any textures due to this aspect ratio difference.  So, on draw/resize, the texture coordinates are modulated by the browser's viewport aspect ratio.  This results in square textures displaying as they were intended.
+						%h4 WebGL and non-POT textures
+						%p As I was experimenting with the textures, I noticed that a lot of the tiling textures that exist in the wild are non-power-of-two (non-POT) in dimension.  Furthermore, almost none of the textures are perfectly square.
+						%p WebGL only currently supports power-of-two pixel dimensions, so the image is redrawn using a temporary 2D canvas if it isn't POT.  This is fine for getting the texture to simply display, but there are still rescaling problems (mapping an arbitrary rectangle into a perfect square squashes the texture).  Ultimately, this is due to a deficiency in the simplified model I constructed, but it is easily circumvented: the texture coordinates are further modulated by the texture's aspect ratio.  This results in textures of any aspect ratios rendering as the author intended.
+						%h4 Texture Coordinate Scaling
+						%p As the dimensions of the images used for textures vary, so must their scaling factor -- some of the patterns you may try might be outright invisible due to their scaling factor.  This is also performed with a straight-forward multiplication to the texture coordinates; gl.REPEAT in the texture wrap parameters handles the rest.
+						%p All texture coordinate modulations are done via vertex shader uniforms, rather than modulating and re-uploading the texture coordinates.  This was done to keep the implementation simple.  Since there are only two triangles, I don't anticipate this as being particularly inefficient.
+						%h4 Limitations & Concerns
+						%p The light is less circular the further away the window viewport is from 1:1.  Smart semi-automatic setting of texture coordinate scale and bump scale would be nice, but for now it is a manual tweaking process.
+						%p The code is a mess, and I couldn't figure out why the specular was failing in Linux.  The lighting model isn't terribly standard since there's no actual geometry, so I imagine this could be contributing to my frustrations.  Could be what I thought was working specular in Windows was actually just silently failing.  I've disabled specular and as far as I can see, it looks how it always looked in Windows.
+				=Haml::Engine.new(IO.read("footer.haml")).render
 			%footer
 			.scripts
 				%script{:type => "text/javascript", :src => "../lib/js/jquery-1.9.1.min.js"}
@@ -163,7 +131,7 @@
 
 					        // Diffuse
 					        float Idiff = max(dot(N,L_m), 0.0);
-					        Idiff = clamp(Idiff, 0.0, 1.0); 
+					        Idiff = clamp(Idiff, 0.0, 1.0);
 					        // Specular:
 					        vec3 R_m = reflect(-L_m, N);
 					        float Ispec = dot(R_m,view);      // calculate Phong specular intensity, Ispec
@@ -178,7 +146,7 @@
 					<script id="bg.vert" type="x-shader/x-vertex">
 					    attribute vec3 aVertexPosition;
 					    attribute vec2 aTextureCoord;
-					    
+
 					    uniform float mouseX;
 					    uniform float mouseY;
 					    uniform float viewport_aspect;
@@ -237,7 +205,7 @@
 					                }
 					            }
 					        }*/
-					    });    
+					    });
 					    var gui_data = new Controls();
 					    //gui.remember(gui_data);
 					    gui.add(gui_data, "light_z", 0, 2);
@@ -287,11 +255,11 @@
 
 					    // shim layer with setTimeout fallback
 					    window.requestAnimFrame = (function(){
-					      return  window.requestAnimationFrame       || 
-					              window.webkitRequestAnimationFrame || 
-					              window.mozRequestAnimationFrame    || 
-					              window.oRequestAnimationFrame      || 
-					              window.msRequestAnimationFrame     || 
+					      return  window.requestAnimationFrame       ||
+					              window.webkitRequestAnimationFrame ||
+					              window.mozRequestAnimationFrame    ||
+					              window.oRequestAnimationFrame      ||
+					              window.msRequestAnimationFrame     ||
 					              function( callback ){
 					                window.setTimeout(callback, 1000 / 60);
 					              };
@@ -405,7 +373,7 @@
 					    function isPowerOfTwo(x) { // http://www.khronos.org/webgl/wiki/WebGL_and_OpenGL_Differences#Non-Power_of_Two_Texture_Support
 					        return (x & (x - 1)) == 0;
 					    }
-					     
+
 					    function nextHighestPowerOfTwo(x) { // http://www.khronos.org/webgl/wiki/WebGL_and_OpenGL_Differences#Non-Power_of_Two_Texture_Support
 					        --x;
 					        for (var i = 1; i < 32; i <<= 1) {
@@ -430,7 +398,7 @@
 						    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
 						    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 						    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);
-					        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);  
+					        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 					        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
 					        gl.generateMipmap(gl.TEXTURE_2D);
 					        gl.bindTexture(gl.TEXTURE_2D, null);
@@ -498,7 +466,7 @@
 					        $("#texture_src").val(src);
 					    }
 
-					    function webGLStart() {                
+					    function webGLStart() {
 					        canvas.width = window.innerWidth;
 					        canvas.height = window.innerHeight;
 					        initGL(canvas);
@@ -542,7 +510,7 @@
 					        }
 					    });
 					    $("#hide").on("click", function () {
-					    	$(".readable-section").fadeOut();
+					    	$(".readable-section, .bottom-footer").fadeOut();
 					    });
 					});
 
