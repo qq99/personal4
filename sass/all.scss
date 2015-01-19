@@ -178,6 +178,7 @@ $splash-height: 600px;
 	.images {
 		display: flex;
 		align-content: center;
+		justify-content: center;
 	}
 	.images-left, .images-right {
 		width: 100% !important;
@@ -187,7 +188,6 @@ $splash-height: 600px;
 	}
 	.slide {
 		margin: 0.25em;
-		justify-content: space-between;
 	}
 }
 @media (max-width: 600px) {
@@ -350,6 +350,7 @@ $image-section-padding: 2em;
 .images {
 	position: relative;
 	z-index: 10;
+	clear: both;
 }
 .images-right {
 	float: right;
