@@ -349,7 +349,8 @@ $splash-height: 600px;
 $image-section-padding: 2em;
 .images {
 	position: relative;
-	z-index: 10;
+}
+.images.below {
 	clear: both;
 }
 .images-right {
