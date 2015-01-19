@@ -175,6 +175,10 @@ $splash-height: 600px;
 	.splash, .splash-pusher {
 		display:none;
 	}
+	.images {
+		display: flex;
+		align-content: center;
+	}
 	.images-left, .images-right {
 		width: 100% !important;
 		float: none !important;
@@ -182,7 +186,13 @@ $splash-height: 600px;
 		margin: 0 !important;
 	}
 	.slide {
-		margin: 0.5em;
+		margin: 0.25em;
+		justify-content: space-between;
+	}
+}
+@media (max-width: 600px) {
+	.images {
+		display: block;
 	}
 }
 

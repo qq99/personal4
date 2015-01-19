@@ -1,6 +1,7 @@
 SASS_FILES=$(shell find sass/*.scss)
 HAML_FILES=$(shell find *.haml)
 # best done with watch make .css, watch make .html
+
 .all: .css .html
 	touch .all
 
