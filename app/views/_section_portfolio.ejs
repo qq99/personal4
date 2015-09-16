@@ -1,0 +1,36 @@
+<div class='readable-section' id='portfolio'>
+  <div class='flashy-header'>
+    <h1 class='readable-section-header'>Portolio</h1>
+  </div>
+  <p class='overview'>Some things I worked on while freelancing.</p>
+  <div>
+    <div class='images images-right images-30'>
+      <% images = ['ab', 'hannah', 'hklane', 'jerome', 'visum', 'shirtsbyme'] %>
+      <% for (var i = 0; i < images.length; i++) { %>
+        <div class="slide">
+          <img src="img/portfolio/tile_<%= images[i] %>.small.min.jpg" width='350' height='350'>
+        </div>
+      <% } %>
+    </div>
+    <div class='images images-right images-30'>
+      <% images = ['solage_mobile', 'solage', 'solhotel', 'apwan', 'jwilliams', 'pd', 'e52'] %>
+      <% for (var i = 0; i < images.length; i++) { %>
+        <div class="slide">
+          <img src="img/portfolio/tile_<%= images[i] %>.small.min.jpg" width='350' height='350'>
+        </div>
+      <% } %>
+    </div>
+    <div class='description'>
+      <h2>Front-end Work</h2>
+      <p>I specialize in front-end development, and I believe I can make any design a reality.  I'm not a designer by trade, but I like to dabble and design via CSS.</p>
+      <p>
+        For many of these projects, I was the sole developer.  For a few, I worked with my good friend and colleague
+        <a href='http://kaizhiwei.com' target='_blank'>Kaizhi Wei</a>
+      </p>
+      <p>Generally, the main focus was PSD2HTML.  Some were flat sites, others were driven by WordPress.  I used HAML and SASS were used for rapid prototyping, and image spritesheets whenever applicable.</p>
+      <p>Many sites had needed custom widgets.  I've coded dozens of custom slideshows in my time, interactive maps, and several full-spread responsive image-based landing pages.</p>
+      <p>I'm experienced with integration of external services &ndash; yelp, Facebook, iHomeFinder, and other 3rd party weather services.</p>
+      <p>These days, I've fleshed out more in terms of back-end development.  I'd still consider myself primarily a front-end developer, as I'd say that's where the majority of my talents lie.  There's just something so satisfying about seeing things come to life in front of your eyes!</p>
+    </div>
+  </div>
+</div>
