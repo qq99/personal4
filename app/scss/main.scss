@@ -264,6 +264,17 @@ $image-section-padding: 2em;
 	}
 }
 
+.gallery {
+	display: block;
+	.slide {
+		float: left;
+		margin: 0;
+		width: 25%;
+		height: 250px;
+		background-size: cover !important;
+	}
+}
+
 .echoplexus-frame {
 	width:100%;
 	height:400px;
