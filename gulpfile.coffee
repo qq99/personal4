@@ -16,7 +16,7 @@ gulp.task 'sass', ->
     .pipe( postcss([ autoprefixer(browsers: ['last 1 versions']) ]) )
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('app/css'))
+    .pipe(gulp.dest('dist/css'))
     .pipe(reload({ stream: true }))
 
 gulp.task 'coffee', ->
@@ -24,19 +24,26 @@ gulp.task 'coffee', ->
     .pipe(coffee({bare: true}))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('app/js'))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(reload({ stream: true }))
+
+gulp.task 'ejs', ->
+  return gulp.src(['app/views/**/*.ejs', '!app/views/**/_*.ejs'])
+    .pipe(ejs())
+    .pipe(gulp.dest("./dist"))
     .pipe(reload({ stream: true }))
 
 # watch files for changes and reload
 gulp.task 'serve', ['sass', 'coffee'], ->
   browserSync({
     server: {
-      baseDir: 'app'
+      baseDir: 'dist'
     },
     port: 3030,
     browser: 'chromium-browser'
   })
 
-  gulp.watch('app/scss/*.scss', ['sass'])
-  gulp.watch('app/coffee/*.coffee', ['coffee'])
-  gulp.watch(['*.html', 'js/**/*.js'], {cwd: 'app'}, reload)
+  gulp.watch('app/scss/**/*.scss', ['sass'])
+  gulp.watch('app/coffee/**/*.coffee', ['coffee'])
+  gulp.watch('app/views/**/*.ejs', ['ejs'])
+  gulp.watch(['*.html', 'js/**/*.js'], {cwd: 'dist'}, reload)

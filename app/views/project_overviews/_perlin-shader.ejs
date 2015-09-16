@@ -1,0 +1,156 @@
+<div class='project' id='perlinshader'>
+  <div class='images images-left images-40'>
+    <div class='slide'>
+      <a href='experiments/perlinshader/shader1.html' target='_blank'>
+        <img src='img/shader1.small.jpg'>
+      </a>
+      <div class='annotation'>
+        Multi-function scene
+      </div>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlinshader/oncube.html' target='_blank'>
+        <img src='img/shadercube.small.jpg'>
+      </a>
+      <div class='annotation'>
+        Mapped onto a spinning cube
+      </div>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlinshader/shader2.html' target='_blank'>
+        <img src='img/shader2.small.jpg'>
+      </a>
+      <div class='annotation'>
+        Perlin's standard turbulence
+      </div>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlinshader/shader3.html' target='_blank'>
+        <img src='img/shader3.small.jpg'>
+      </a>
+      <div class='annotation'>
+        Oscillator
+      </div>
+    </div>
+  </div>
+  <div class='images images-left images-40 below'>
+    <div class='slide'>
+      <a href='experiments/perlinshader/shader4.html' target='_blank'>
+        <img src='img/shader4.small.crushed.png'>
+      </a>
+      <div class='annotation'>
+        Toon shaded / ghetto heat map
+      </div>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlin/' target='_blank'>
+        <img src='img/perlin1.small.jpg'>
+      </a>
+      <div class='annotation'>
+        Version 1
+      </div>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlin/' target='_blank'>
+        <img src='img/perlin2.small.jpg'>
+      </a>
+    </div>
+    <div class='slide'>
+      <a href='experiments/perlin/' target='_blank'>
+        <img src='img/perlin3.small.jpg'>
+      </a>
+    </div>
+  </div>
+  <div class='project-description'>
+    <h3>
+      <a href='#perlinshader'>Animating Functions of Improved 3D Perlin noise</a>
+    </h3>
+    <p class='date'>27 Oct, 2011 &ndash; a sleepless night</p>
+    <h4>Demos</h4>
+    <ul>
+      <li>
+        <a href='experiments/perlinshader/shader1.html' target='_blank'>Multi-function</a>
+      </li>
+      <li>
+        <a href='experiments/perlinshader/oncube.html' target='_blank'>Mapped onto a cube</a>
+      </li>
+      <li>
+        <a href='experiments/perlinshader/shader2.html' target='_blank'>Perlin's standard turbulence</a>
+      </li>
+      <li>
+        <a href='experiments/perlinshader/shader3.html' target='_blank'>Oscillator</a>
+      </li>
+      <li>
+        <a href='experiments/perlinshader/shader4.html' target='_blank'>toon shaded / ghetto heat map</a>
+      </li>
+    </ul>
+    <h4>Overview</h4>
+    <p>
+      In this experiment, I made a quick port of Ken Perlin's <a href="http://mrl.nyu.edu/~perlin/noise/" target="_blank">classical noise</a> in 3 dimensions.
+      Due to its continuity properties, we can take a 2D cross-section and step through the 3<sup>rd</sup> dimension in time.  The end result is a continuous animation.
+    </p>
+    <h4>Technical Overview</h4>
+    <p>
+      After reading some of Perlin's work, namely some of his early SIGGRAPH slides, I became intrigued with the potential this has for both 3D texturing and the animation
+      of 2D textures.  Many of these 2D textures, when animated, can produce some very compelling effects.  In this <a href="experiments/perlin/" target="_blank"> early demo page</a>
+      I show one example of something that looks like the activity of the planet Jupiter.
+    </p>
+    <p>
+      I employ fragment shaders to calculate per-pixel Perlin noise.  Geometry is minimal, consisting of only 2 triangles that are un-transformed.  Texture co-ordinates are generated and used in some animations, but for others only Fragment.xy is used.  In all cases, time is used as an index to the Z plane of the 3D noise.
+    </p>
+    <h4>Benchmarks & Comparisons</h4>
+    <p>
+      All I can say is: Wow.  WebGL (or more accurately, GLSL) fragment shaders are a huge step up in terms of performance when we compare to
+      <a href='experiments/perlin/' target='_blank'>my old CPU implementation.</a>
+    </p>
+    <p>In the old implementation, on a 1GHz machine:</p>
+    <ul>
+      <li>
+        Firefox 7 would fail to achieve >30FPS on a 128x128 square.
+      </li>
+      <li>
+        Chrome 15 seemed to achieve >30FPS, or if not, the visual stutter wasn't too noticeable.
+      </li>
+    </ul>
+    <p>In the WebGL shader implementation, on a 1GHz machine:</p>
+    <ul>
+      <li>
+        Firefox 7 easily seems to acheive >30FPS on a 1680x945 rectangle.
+      </li>
+      <li>
+        As it did for the old implementation, Chrome 15 seems to outshine Firefox again.
+      </li>
+      <li>
+        Furthermore, both browsers can render arbitrary transforms (the texture mapped cube) of the noise, which is something that I would have considered impossible for real-time in the old implementation.
+      </li>
+    </ul>
+    <p>
+      How do we account for the speed improvements?  I would estimate that 99% of it is due to the change from CPU to GPU shaders; programming a highly parallelizable task on the GPU will naturally outperform its corresponding CPU-only implementation.  Moreover, the computation of Perlin noise is relatively simple, which makes it a good fit for approximation on the GPU.  I hypothesize that less JavaScript being employed might account for some of the speed improvement.
+    </p>
+    <h4>Musings</h4>
+    <p>
+      It was very tempting to use the "multi-function" noise as the background "image" for the Lab page.  However, after trying it out (and it looks beautiful) I deduced that I couldn't do this in complete faith, since WebGL is still somewhat sketchy; I experienced >4 Nvidia driver crashes, leading to complete browser failure.  Interestingly, it also crashed my Photoshop (and so assumably any other program using your GPU extensively).  It was either gamble with the value of my visitors' work or use a screenshot, and I think I made the better final choice.
+    </p>
+    <p>
+      So, where does this leave us?  I now have a useful tool that will allow me to explore various noise patterns from within the browser; no need to attempt compiling an application that will then compile the shaders.  No need for a ton of external dependencies; just download the page, edit the shaders at the top of the source, and run!  This should hopefully allow me to explore new types of noise with ease.
+    </p>
+    <p>
+      Additionally, WebGL would seem to be a fairly good reduced-power environment.  That is to say, we can expect the shaders to perform faster if they were used in a native C++ program, for example.
+    </p>
+    <p>
+      Finally, those who want to learn more about shaders or procedural art might find looking at my code to be of some use.  I've set up the sample pages in such a way that they should resize to fill your browser window completely.  As such, if you go to full-screen mode (F11 key in most browsers), you can take a screenshot or save a perfect-fit wallpaper quite easily!
+    </p>
+    <h4>Resources</h4>
+    <ul>
+      <li>
+        <a href='http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter26.html' target='_blank'>Implementing Improved Perlin Noise (GPU Gems, by S Green)</a>
+      </li>
+      <li>
+        <a href='http://http.developer.nvidia.com/GPUGems/gpugems_ch05.html' target='_blank'>Implementing Improved Perlin Noise (GPU Gems, by K Perlin)</a>
+      </li>
+      <li>
+        <a href='http://learningwebgl.com/blog/?p=507' target='_blank'>Learning WebGL &ndash; Lesson 5</a>
+      </li>
+    </ul>
+  </div>
+</div>

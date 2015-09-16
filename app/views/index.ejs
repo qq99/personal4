@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <% include _head %>
+  <body>
+    <div class='content'>
+      <% include _header %>
+      <div class='splash-container fixed'>
+        <div class='splash'>
+          <canvas id='c'></canvas>
+        </div>
+      </div>
+      <div class='splash-pusher'></div>
+      <section id='main'>
+        <div class='readable-section' id='lab'>
+          <div class='flashy-header'>
+            <h1 class='readable-section-header'>e-laboratory</h1>
+          </div>
+          <p class='overview'>I like to make digital things.</p>
+          <% include project_overviews/_echoplexus %>
+          <% include project_overviews/_background-bumps %>
+          <% include project_overviews/_webgl-srpg %>
+          <% include project_overviews/_perlin-shader %>
+          <% include project_overviews/_raytracer %>
+        </div>
+        <div class='readable-section' id='portfolio'>
+          <div class='flashy-header'>
+            <h1 class='readable-section-header'>Portolio</h1>
+          </div>
+          <p class='overview'>Some things I worked on while freelancing.</p>
+          <div>
+            <div class='images images-right images-30'>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_ab.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_hannah.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_hklane.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_jerome.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_visum.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_shirtsbyme.jpg' width='350'>
+              </div>
+            </div>
+            <div class='images images-right images-30'>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_solage_mobile.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_solage.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_solhotel.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_apwan.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_jwilliams.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_pd.jpg' width='350'>
+              </div>
+              <div class='slide'>
+                <img height='350' src='img/portfolio/tile_e52.jpg' width='350'>
+              </div>
+            </div>
+            <div class='description'>
+              <h2>Front-end Work</h2>
+              <p>I specialize in front-end development, and I believe I can make any design a reality.  I'm not a designer by trade, but I like to dabble and design via CSS.</p>
+              <p>
+                For many of these projects, I was the sole developer.  For a few, I worked with my good friend and colleague
+                <a href='http://kaizhiwei.com' target='_blank'>Kaizhi Wei</a>
+              </p>
+              <p>Generally, the main focus was PSD2HTML.  Some were flat sites, others were driven by WordPress.  I used HAML and SASS were used for rapid prototyping, and image spritesheets whenever applicable.</p>
+              <p>Many sites had needed custom widgets.  I've coded dozens of custom slideshows in my time, interactive maps, and several full-spread responsive image-based landing pages.</p>
+              <p>I'm experienced with integration of external services &ndash; yelp, Facebook, iHomeFinder, and other 3rd party weather services.</p>
+              <p>These days, I've fleshed out more in terms of back-end development.  I'd still consider myself primarily a front-end developer, as I'd say that's where the majority of my talents lie.  There's just something so satisfying about seeing things come to life in front of your eyes!</p>
+            </div>
+          </div>
+        </div>
+        <div class='readable-section' id='philosophy'>
+          <div class='flashy-header'>
+            <h1 class='readable-section-header'>Philosophy</h1>
+          </div>
+          <p class='overview'>Musings, really.</p>
+          <div class='wall-of-text'>
+            <p>I don't want to hear, "philosophy is useless".</p>
+            <p>I favour determinism, and that given the initial state and a set of rules, we could compute the entire state history of the universe. This is impossible from within the universe we wish to simulate. That is to say, I believe the universe can be described by a relatively compressed closed form system, whilst our everday happenings are just emergent phenomena of the decompression and computation of the system.  I believe this entails there is no such thing as free will, and this brings me peace.</p>
+            <p>My ultimate academic goal is to understand myself and my environment. This will be a never ending quest that I very much look forward to. My applied goal is to create a computational intelligence. By this, I think I mean hard Artificial Intelligence. I want to create a machine that actually thinks, rather than gives the appearance of thinking.  I think that the term "AI" in popular vernacular doesn't describe this concept well at all.</p>
+            <p>Ultimately, my ultimate academic goal is very likely impossible within my lifetime, barring future events drastically increasing my life expectancy.  I love the idea of a technological singularity, but fear that it's perhaps an egotistical creation of Humankind.  In a way, I look at it as the greatest romance we can bestow upon ourselves.  I want to live in a world where I don't feel like I'm constantly struggling in my interactions with computers.</p>
+            <p>I'd describe my moral outlook as, "If it isn't hurting anybody, let them do it". I'm a bit of a moral utilitarian in the sense that I'm all for breaking laws if we can accelerate technological progress.</p>
+            <h2>Data</h2>
+            <p>Data munging is perhaps the biggest waste of time in our field.  If we cannot accomplish real computational intelligence, it would at least be nice to have "knowledge engines" come into being.  By these, I mean systems that can store facts, types, and relations and make basic inferences and convey the probability of correctness of those inferences.  I'd love to work on an ontology based system.</p>
+            <p>I'm highly interested in compression and procedurally generated content. I feel like the two go hand-in-hand in a lot of respects. To me, there's something very elegant about being able to compress some information into it's minimum representation. We could store the contents of a signal in its "entirety" discretely (barring resolution issues), but I find it much more amazing to describe it succinctly with mathematics.</p>
+            <p>For example, we could list all the points of a line or curve on a certain interval (requiring storage proportional to the size of the interval), or we can use a closed form expression (requiring constant storage independent of the size of interval) to save space at the cost of future computational resources to decompress it. This ties in with procedurally generated content, with which I'm sure the universe is such a system.  In this sense, I feel like there's a vague time<->space tradeoff that can be made: a certain feeling of "equivalent exchange" with regards to computation.</p>
+            <h2>Distributed Systems</h2>
+            <p>I enjoy distributed systems and feel that they are the future of personal computing. I believe information of all kinds should be free (which is oddly at ends with my ideals of privacy), and the added redundancy of information that a global distributed system would add would ensure no government could ever completely censor its citizens. Ideally, web sites should not be stored by just one person but by all the users who visit them.</p>
+            <h2>Security and Privacy</h2>
+            <p>Security is a huge focus of mine, and I try hard to ensure that the users of my software aren't entering into any malicious clauses nor are they compromising themselves under false pretenses of security.</p>
+            <p>How can data freedom coexist with privacy?  If we could eliminate greed as a motivator, and ensure peaceful acceptance of others, we wouldn't really have any need for privacy.  One would be able to air all kinds of embarassing and terrible moments and emotions if there were no fear of judgment or negative repercussions.  I don't think we can accomplish that.</p>
+            <p>I feel anonymity will be necessary to further the evolution of our species. I don't think that we should consider only people as beings that holds rights, but instead extend these rights to information themselves. Ideas can certainly seem to come alive, replicate themselves, and infect the minds of others. I think that biological definitions of "life" and "alive" are missing the mark.</p>
+          </div>
+        </div>
+        <footer class='bottom-footer'>
+            <div class='aligned-section'>
+              <div class='padded'>
+                <ul class='icons'>
+                  <li>
+                    <a class='iconal external different-context' href='https://github.com/qq99' target='_blank' title='Github'>
+                      <i class='fa fa-github'></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class='iconal external different-context' href='http://codepen.io/qq99' target='_blank' title='CodePen'>
+                      <i class='fa fa-codepen'></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class='iconal external different-context' href='https://twitter.com/dontqq' target='_blank' title='Twitter'>
+                      <i class='fa fa-twitter'></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class='iconal external different-context' href='http://ca.linkedin.com/in/anthonycameron/' target='_blank' title='LinkedIn'>
+                      <i class='fa fa-linkedin'></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+      </section>
+    </div>
+  </body>
+</html>
