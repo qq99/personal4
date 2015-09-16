@@ -6,74 +6,49 @@
       <% include ../_header %>
       <section id='main'>
         <canvas height='256' id='c' width='256'></canvas>
-        <div class='backgrounded readable-section'>
-          <div class='project' id='background-bump'>
+        <article class='readable-section'>
+          <section>
             <div id='texture_source' style='width: 25%; height: 25%; float: left; margin: 0 2em 2em 0;'>
               <h4>Source Image</h4>
               <img id='texture_example'>
               <input id='texture_src' placeholder='Enter a URL for a background texture'>
             </div>
-            <h3>WebGL Background Bump Mapping</h3>
+            <h1>WebGL Background Bump Mapping</h1>
             <p>
               <a href='#' id='hide'>Hide text</a>
             </p>
-            <h4>Overview</h4>
-            <p>The website's background (0,0)x(viewportX,viewportY) is mapped to a square (-1,-1)x(1,1).  Right about where your face is, a virtual light is pointed towards the screen.  In practice, it seems that hanging this light from 0..2 units above the screen yields good results.  At 2 units, the light provides a fairly even coverage of the square.  Less than this, it seems to provide for an easy vignette effect.  You provide a background (diffuse) color, and your image is consulted for the texture of the surface.</p>
-            <p>I do not recommend rolling this out to a prodution site.  Furthermore, I have not made it easy to roll out, for 2 reasons: 1) I accomplished what I set out to do, and 2) On slow computers, it might make things unmanageable.  Perhaps some framerate detection and animation cancelling is in order?</p>
-            <p>
-              Subtle tiling textures care of
+            <h3>Overview</h3>
+            <p>The website's background <code>(0,0)x(viewportX,viewportY)</code> is mapped to a square <code>(-1,-1)x(1,1)</code>.  Right about where your face is, a virtual light is pointed towards the screen.  In practice, it seems that hanging this light from <code>0..2</code> units above the screen yields good results.  At 2 units, the light provides a fairly even coverage of the square.  Less than this, it seems to provide for an easy vignette effect.  You provide a background (diffuse) color, and your image is consulted for the texture of the surface.</p>
+            <p>I do not recommend rolling this out to a prodution site.  Furthermore, I have not made it easy to roll out, for 2 reasons:<p>
+            <ul>
+              <li>I accomplished what I set out to do, and</li>
+              <li>on slow computers, it might make things unmanageable. Perhaps some framerate detection and animation cancelling is in order?</li>
+            </ul>
+            <p>Subtle tiling textures care of
               <a class='iconal' href='http://subtlepatterns.com/' target='_blank'>
                 subtlepatterns.com
-                <i class='icon icon-external-link'></i>
+                <i class='fa fa-external-link'></i>
               </a>
             </p>
-            <h4>Graphics Model</h4>
+            <h3>Graphics Model</h3>
             <p>The image is represented in the XY plane.  The normal is simply (0,0,1).  This allows us to easily place the light somewhere in the (0,0,+z) area, and use the mouse to control the X and Y positions of the light.  The Phong reflection model is used for shading.  The specular component is messed up, as you'll see if you increase rho.  Since the viewport is defined to be between (-1,-1)x(1,1), we can easily reason about the position of the light in this space.  (-1,-1) being the bottom right, (1,1) being the top right.  An offset can be applied to the mouse's modifier, allowing us to position the light off-screen but still have the mouse affect the shading; this can make the effect subtler.</p>
-            <h4>Bump mapping</h4>
+            <h3>Bump mapping</h3>
             <p>Forward differencing (via 3 texture lookups) in X (1,0,0) and Y (0,1,0) is performed on the provided pattern, and a magnitude is obtained.  The stepsize can be controlled by delta_s and delta_t, and may need to be adjusted as the texture is scaled for better results.  Currently, only the blue channel is consulted.  This magnitude, modulated by a user specified scaling factor (bump_scale), is used to perturb the normals in the X and Y directions (or s and t).</p>
-            <h4>Viewport Adjustments</h4>
+            <h3>Viewport Adjustments</h3>
             <p>It is very rare that a browser will have a viewport aspect ratio of 1:1.  The canvas is stretched to the browser viewport dimensions, but internally has a square of aspect 1:1.  As such, we'd notice stretching on any textures due to this aspect ratio difference.  So, on draw/resize, the texture coordinates are modulated by the browser's viewport aspect ratio.  This results in square textures displaying as they were intended.</p>
-            <h4>WebGL and non-POT textures</h4>
+            <h3>WebGL and non-POT textures</h3>
             <p>As I was experimenting with the textures, I noticed that a lot of the tiling textures that exist in the wild are non-power-of-two (non-POT) in dimension.  Furthermore, almost none of the textures are perfectly square.</p>
             <p>WebGL only currently supports power-of-two pixel dimensions, so the image is redrawn using a temporary 2D canvas if it isn't POT.  This is fine for getting the texture to simply display, but there are still rescaling problems (mapping an arbitrary rectangle into a perfect square squashes the texture).  Ultimately, this is due to a deficiency in the simplified model I constructed, but it is easily circumvented: the texture coordinates are further modulated by the texture's aspect ratio.  This results in textures of any aspect ratios rendering as the author intended.</p>
-            <h4>Texture Coordinate Scaling</h4>
+            <h3>Texture Coordinate Scaling</h3>
             <p>As the dimensions of the images used for textures vary, so must their scaling factor -- some of the patterns you may try might be outright invisible due to their scaling factor.  This is also performed with a straight-forward multiplication to the texture coordinates; gl.REPEAT in the texture wrap parameters handles the rest.</p>
             <p>All texture coordinate modulations are done via vertex shader uniforms, rather than modulating and re-uploading the texture coordinates.  This was done to keep the implementation simple.  Since there are only two triangles, I don't anticipate this as being particularly inefficient.</p>
-            <h4>Limitations & Concerns</h4>
+            <h3>Limitations & Concerns</h3>
             <p>The light is less circular the further away the window viewport is from 1:1.  Smart semi-automatic setting of texture coordinate scale and bump scale would be nice, but for now it is a manual tweaking process.</p>
             <p>The code is a mess, and I couldn't figure out why the specular was failing in Linux.  The lighting model isn't terribly standard since there's no actual geometry, so I imagine this could be contributing to my frustrations.  Could be what I thought was working specular in Windows was actually just silently failing.  I've disabled specular and as far as I can see, it looks how it always looked in Windows.</p>
-          </div>
-        </div>
-        <footer class='bottom-footer'>
-          <div class='aligned-section'>
-            <div class='padded'>
-              <ul class='icons'>
-                <li>
-                  <a class='iconal external different-context' href='https://github.com/qq99' target='_blank' title='Github'>
-                    <i class='fa fa-github'></i>
-                  </a>
-                </li>
-                <li>
-                  <a class='iconal external different-context' href='http://codepen.io/qq99' target='_blank' title='CodePen'>
-                    <i class='fa fa-codepen'></i>
-                  </a>
-                </li>
-                <li>
-                  <a class='iconal external different-context' href='https://twitter.com/dontqq' target='_blank' title='Twitter'>
-                    <i class='fa fa-twitter'></i>
-                  </a>
-                </li>
-                <li>
-                  <a class='iconal external different-context' href='http://ca.linkedin.com/in/anthonycameron/' target='_blank' title='LinkedIn'>
-                    <i class='fa fa-linkedin'></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </footer>
+          </section>
+        </article>
+        <% include ../_footer %>
       </section>
-      <footer></footer>
       <div class='scripts'>
         <script src='https://code.jquery.com/jquery-2.1.4.min.js' type='text/javascript'></script>
         <style type="text/css">

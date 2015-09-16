@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <% include ../_head %>
+  <body>
+    <div class='content'>
+      <% include ../_header %>
+      <section id='main'>
+        <article class='readable-section'>
+          <section>
+            <h1>CS488 A5 &ndash; A ray-tracer with a focus on various material properties</h1>
+            <p>Originally published July 26, 2011. Last edited September 16, 2015 (adapted for this website's layout).</p>
+
+            <h4>Topics/Keywords</h4>
+            <ul class='keywords'>
+              <li>Backward ray-tracing</li>
+              <li>Texture, specular, opacity maps</li>
+              <li>Simple (naive) reflection and refraction</li>
+              <li>Bump mapping</li>
+              <li>Real-time user interaction considerations</li>
+              <li>Primitive intersection</li>
+              <li>Naive lighting (point lighting) and an examination of area lighting techniques</li>
+              <li class='last'>Glossy reflections</li>
+            </ul>
+
+            <h4>Contents</h4>
+            <ul class='contents'>
+              <li>
+                <a href='#introduction'>Introduction</a>
+              </li>
+              <li>
+                <a href='#vision'>Initial Vision</a>
+              </li>
+              <li>
+                <a href='#objectives'>Objectives</a>
+              </li>
+              <li>
+                <a href='#techoutline'>Technical Outline</a>
+              </li>
+              <li>
+                <a href='#gallery'>Gallery</a>
+              </li>
+              <li>
+                <a href='#codemap'>Code Map</a>
+              </li>
+              <li>
+                <a href='#references'>References</a>
+              </li>
+            </ul>
+          </section>
+          <% include cs488-raytracer/_introduction %>
+          <% include cs488-raytracer/_vision %>
+          <% include cs488-raytracer/_objectives %>
+          <% include cs488-raytracer/_technical_outline %>
+          <% include cs488-raytracer/_gallery %>
+          <% include cs488-raytracer/_codemap %>
+          <% include cs488-raytracer/_references %>
+        </article>
+      </section>
+      <% include ../_footer %>
+    </div>
+  </body>
+</html>

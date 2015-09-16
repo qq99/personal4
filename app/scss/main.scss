@@ -1,18 +1,4 @@
-* {
-	font-family: 'Roboto','Helvetica Neue',Helvetica,arial,freesans,clean,sans-serif;
-	box-sizing: border-box;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	color: #222;
-}
-
-.backgrounded {
-	padding: 4em 2em 2em 2em !important;
-	background: rgba(255, 255, 255, 0.9);
-}
+@import 'base';
 
 .top-header {
 	position: fixed;
@@ -69,42 +55,10 @@ ul.icons {
 	}
 }
 
-a {
-	transition:all 0.25s ease-in-out;
-	text-decoration: none;
-	color: rgba(41, 157, 221, 1);
-	&:hover {
-		color: hotpink;
-	}
-}
-
-.clearfix {
-	&:after {
-		content: ".";
-		visibility: hidden;
-		display: block;
-		height: 0;
-		clear: both;
-	}
-}
-
-h1,h2,h3,h4,h5 {
-	color:#222;
-}
-h4 {
-	text-transform: uppercase;
-	font-size:0.8em;
-	font-weight:normal;
-	color:#555;
-}
-
-ul {
-	margin: 0;
-	padding: 0;
-}
-
 $li-padding: 2em;
 .readable-section {
+	padding: 4em 2em 2em 2em !important;
+	background: rgba(255, 255, 255, 0.9);
 	ul {
 		margin: 0;
 		padding: 0;
@@ -250,53 +204,9 @@ $splash-height: 600px;
 	.wall-of-text {
 		padding:1em;
 	}
-
-	h2 {
-		text-transform: uppercase;
-		color: #222;
-		display: inline-block;
-		margin: 0;
-		font-size: 1.4em;
-	}
 }
 
-#lab {
-	.project {
-		@extend .clearfix;
-		padding:30px 1em;
-		border-bottom:1px solid #cecece;
-	}
-	.project-description {
-		h3 {
-			margin-bottom:0;
-		}
-		position:relative;
-		p.date {
-			margin-top:0;
-			font-size:0.9em;
-			color:#777;
-		}
-	}
-	h3 a {
-		text-decoration: none;
-		color:inherit;
-	}
-	i.icon {
-		transition:all 0.25s ease-in-out;
-		font-size: 1.5em;
-		color:#333;
-		display: inline-block;
-	}
-	p i.icon {
-		font-size:1em;
-	}
-	a.iconal:hover {
-		color:hotpink;
-		i.icon {
-			color:#C44786;
-		}
-	}
-}
+@import 'lab';
 
 #portfolio {
 	@extend .clearfix;
@@ -359,112 +269,4 @@ $image-section-padding: 2em;
 	height:400px;
 }
 
-#resume {
-	section {
-		position: relative;
-		@extend .clearfix;
-		border-top: 1px solid #ccc;
-		margin: 1em 0;
-		padding: 1em 2em;
-	}
-	.meta {
-		position: absolute;
-		top: 1em;
-		right: 1em;
-		text-align: right;
-		font-size: 0.8em;
-	}
-	h2 {
-		font-size: 1.5em;
-		text-transform: none;
-		font-weight: normal;
-		font-style: italic;
-	}
-	h3 {
-		font-size: 1.5em;
-		font-weight: 200;
-	}
-	$subtle-grey: #ebebef;
-	.position {
-		padding: 1em;
-		margin: 0 1em 1em 0;
-		float: left;
-		text-align: center;
-		background: $subtle-grey;
-		width: 10em;
-	}
-	$duration-width: 8rem;
-	.job-title {
-		font-weight: bold;
-	}
-	.job {
-		padding-right: $duration-width;
-		position: relative;
-		margin-bottom: 1em;
-		padding-bottom: 1em;
-		border-bottom: 1px solid $subtle-grey;
-	}
-	.timeline-title {
-		float: right;
-		width: $duration-width;
-		text-align: center;
-	}
-	.duration {
-		position: absolute;
-		right: 0;
-		top: 0;
-		height: 100%;
-		width: $duration-width;
-		text-align: center;
-		.from, .to {
-			position: absolute;
-			width: 100%;
-			color: #777;
-			font-size: 0.8em;
-			text-transform: uppercase;
-		}
-		.to {
-			top: 0;
-		}
-		.from {
-			bottom: 2em;
-		}
-	}
-	@media (max-width: 700px) {
-		.duration {
-			position: static;
-			display: inline;
-			.from, .to {
-				position: static;
-				display: inline;
-				width: auto;
-			}
-			.from:before {
-				content: "From ";
-				display: inline;
-			}
-			.to:before {
-				content: " to ";
-				display: inline;
-			}
-		}
-		.meta {
-			position: static;
-			text-align: left;
-			margin-top: 1em;
-		}
-		.job {
-			padding-right: 0;
-		}
-		.timeline-title {
-			display: none;
-		}
-	}
-	@media (max-width: 456px) {
-		.position {
-			float: none;
-			width: 100%;
-			padding: 1em 0;
-		}
-	}
-}
+@import 'resume'

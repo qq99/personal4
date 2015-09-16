@@ -1,0 +1,34 @@
+<section id='codemap' class='anchored'>
+  <h1><a href="#codemap">Code Map</a></h1>
+  <p>
+    <strong>a4.cpp:</strong>
+    Stores the main recursive ray-tracing functions, code to determine the closest intersection between a primitive and a ray, super sampling anti-aliasing code, final image generation, as well as eye-pixel projection and its equivalent scanline efficiency enhancement.
+  </p>
+  <p>
+    <strong>material.cpp:</strong>
+    Returns Colour values for 2D and 3D materials with respect to a point, consulting perlin.c (stolen from
+    <a href='http://www.codermind.com/articles/Raytracer-in-C++-Part-III-Textures.html'>here</a>
+    which, as far as I can tell, is just a cleaned up version of Perlin's original noise code).  The Material returns values to the ray-tracer at its request by consulting specularity maps and transparency maps, and contains the code that determines the perturbation of surface normals in bump mapping.
+  </p>
+  <p>
+    <strong>scene.cpp:</strong>
+    A largely useless file, I must admit, as I don't support hierarchical object modeling with this ray-tracer.  It does, however, handle the polymorphism of the various objects that implement the Primitive class and their intersection, associates useful properties to Intersections (such as the material, the primitive, and the name of the hit object involved), and perturbs the normal if the material defines a height map.
+  </p>
+  <p>
+    <strong>algebra.hpp:</strong>
+    Contains useful 2D and 3D classes and functions for vectors, points, and matrices.  The Ray class is defined here, as well as the randomized vector perturbation function I initially tested glossy reflections with.
+  </p>
+  <p>
+    <strong>scene.lua:</strong>
+    Defines a sample scene, please consult this file for instruction on how to use the extended scripting language given to us in A4.
+  </p>
+  <p>
+    <strong>primitive.cpp:</strong>
+    Defines ray-object intersection tests for various primitives, and methods for determining UV and UVW points (the 3D equivalent of the UV map) given an point on the object.
+  </p>
+  <p>
+    <strong>perlin.c:</strong>
+    A simplified port of Perlin's original C code, taken from
+    <a href='http://www.codermind.com/articles/Raytracer-in-C++-Part-III-Textures.html'>here.</a>
+  </p>
+</section>

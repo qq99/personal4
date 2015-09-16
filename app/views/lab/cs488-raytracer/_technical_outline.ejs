@@ -1,0 +1,175 @@
+<section id="techoutline" class='anchored'>
+  <h1><a href="#techoutline">Technical Outline</a></h1>
+  <h2>Shadows</h2>
+  <p>Shadows are one of the first extensions someone creating a ray-tracer might implement.  On their basic level, shadows are very simple and highly intuitive, and can be explained with an oft-used concept in CG called a "shadow ray": We wish to know the contribution of shadows to the shading of a certain point of an object. So, we cast a ray from said point towards the light(s) in the scene.  If there are multiple lights, there are multiple shadow rays.  If a shadow ray intersects with an object that is not the light, then we know that the effect of that light is being modulated by this object.</p>
+  <h3>Hard Shadows</h3>
+  <p>The following are hard shadow schemes.  They are characterized by discrete lines which look very much like dark flat projections of the occluding object onto the occluded object.  This is because, essentially, that's exactly what they are &ndash; projections.</p>
+  <ul>
+    <li>
+      <p>Binary modulation: If there is a hit in the intersection test, then we simply say that the contribution from that light is shadowed; the point in question cannot see the light on this direct path, and its diffuse and specular contributions are nullified.  To avoid complete darkness, we might add a naive ambient term or use a more sophisticated global illumination technique.  This produces the effect of hard shadows &ndash; there is no penumbra, it yields only a solid umbra with a very obvious and sharp line.</p>
+    </li>
+    <li>
+      <p>Naive opacity modulation: What if the blocking material is transparent or translucent?  The binary modulation does not suffice as it would yield thick dark shadows, even if the occluding object is 100% transparent!  A naive fix would be to modulate the effect of the shadow depending on the material properties of the occluding object.  In the binary scheme, no hit was essentially a "do nothing" operation to the contribution of the light, whereas a hit was equivalently a "multiple by 0" the contribution of the light.  In the naive opacity modulation scheme, we can look up the opacity (we'll call this alpha) of the occluder by examining its material, and vary the contribution of the light accordingly.</p>
+      <p>Opacity ranges from <code>[0..1]</code>, <code>0</code> being completely opaque, <code>1</code> being completely transparent.</p>
+      <p>We can define the light contribution as follows:</p>
+      <pre>light_coeff = light_coeff * alpha_of_occluder</pre>
+      <p>
+        Where
+        <code>light_coeff</code>
+        represents the intensity of the light (after falloff / attenuation).  Thus, the contribution of light occluded by a completely opaque object is 0, and the contribution occluded by a completely transparent object is
+        <code>1*light_coeff</code>
+        (unchanged).
+      </p>
+      <p>This still yields hard shadows, but it alleviates the problem of glassy, mostly transparent objects leaving behind thick dark shadows, which is highly unrealistic.  For its highly easy implementation, this modulation scheme produces a very good effect.  I employed this scheme when creating my final scenes, applying the modulation to the diffuse Phong coefficient.</p>
+    </li>
+    <li>
+      <p>Recursive opacity modulation: What happens when an object is transparent in only certain parts, but opaque in others? An example of this in reality would be an etched glass object. Under most lighting conditions, the etched (opaque) sections of the glass will leave a shadow on an object, whilst the clear glass will leave a much lighter shadow. A step in the right direction would be to consult the opacity map of the object at the point in question (rather than querying it's global object opacity, as in the previous scheme).</p>
+      <p>However, we must also consider the exiting side of the shadow ray: we would only cast shadows properly if we considered the light transmitted through the occluding object as well.  The contribution of shadows from the light-facing side of the shadow ray would be ignored without a recursive step.  Additionally, this recursive approach lends itself nicely to the generation of shadows where many transparent objects are between the light source and the point in question.</p>
+      <p>How do we combine the modulating effects of this recursive shadow ray?  There are some considerations we must take into account:</p>
+      <ol>
+        <li>If, after passing through multiple transparent objects, the shadow ray hits a completely opaque object, the modulation factor should be 0 (as in the binary scheme above).  We can stop the recursion after this point.</li>
+        <li>Passing through multiple transparent materials should be additive with respect to the darkness of the shadow.  Example: 2 identical transparent objects will contribute a darker shadow to a surface than light passing through just 1 of these transparent object.  I propose that we might simply multiply their alphas recursively as we go about.</li>
+      </ol>
+      <p class='more_technical'>We can satisfy these considerations with the simple recursive formulation:</p>
+<pre class='more_technical'>
+shadowTest(Ray r, double alpha):
+if (r.hits(any_object)) then
+{
+beta := consult opacity map of the closest hit object at the intersection point
+alpha = alpha * beta * shadowTest(Ray towardsLight, alpha)
+}
+return alpha
+</pre>
+      <p class='more_technical'>and should be called with an initial alpha value of 1.0.  After passing through 3 objects of 0.9 opacity, the final alpha value would be 0.9^3 == 0.729, which is still mostly transparent as we would expect and desire.</p>
+      <p class='more_technical'>In this recursive calculation (as in the ray tracer), I consult first the closest hit object – this is important!  This is to prevent considering the negative intersections in the hit testing code (negative t, if you're using the parametric equation of the line), and allows us to consider each transparent object contribution to the final alpha only once.  Are the performance optimizations possible?  As we scan intersections to find the closest one, we can check to see if any of them have a material with alpha==0 (totally opaque), and return 0 immediately.  If we don't refract the shadow rays, maybe unrolling the recursion and doing it iteratively would be a better equivalent idea.</p>
+      <p>This method does NOT take into account the distance throughout the medium travelled.  This is important for at least the following reason: ten glass planes, each 1 cm thick, yield 2 contributions each to the recursive alpha formulation above.  If each were 0.9 in opacity, the final alpha value returned would be <code>(0.9^2)^10 == 0.121577</code>.  Realistically, we might think (and rightfully so?) that one glass plane, 10 cm thick and 0.9 in opacity should have roughly the same, or at least visually undifferentialiable, as the ten 1 cm plates.  However, in this latter case, the alpha would be <code>0.9^2 == 0.81</code>.  This is quite a difference in alpha contribution!</p>
+      <p>If we are to approximate the opacity of objects with a surface function, it is clear we must take into account the distance through the medium.  The extent of the difference in value in this hypothetical situation might be alleviated by scaling our multiplication by the distance between the previous and current hit point in our recursive formulation.</p>
+      <p>The will yield a fairly good approximation to shadows of objects with different levels of transparency on their surfaces (a 2D transparency map), but will not work, for example, on an object with an opaque core (this would be in implementation a 3D transparency map), for example.  You might be able to derive a formulation for your 3D transparency function that takes a ray as a parameter (perhaps some kind of sequential multiplier).  For example, if you used a deterministic noise function  Additionally, the effects of transparency with respect to the distance through the medium should be considered, as well as varying indices of refraction (internal to each object).  This is definitely an area for future research, and is perhaps leading us towards more complicated models such as sub-surface scattering, and to an extent, BRDF (which I acknowledge I don't know nearly enough about to discuss here).</p>
+      <p>This transparency handling schemes for hard shadows I have discussed above should be taken only as a crude approximation to transparent objects, useful in rendering only very simple scenes.  They might be useful in creating images that are visually appealing but I must stress it is hardly physically based!</p>
+      <p>I think if we were to also perform refraction calculations on the shadow rays in the recursive scheme, and we were to sample the surfaces many times when shading, it might lead to the generation of caustics in the images.  This seems prohibitive with respect to time, so I'll point the reader to the keywords “photon maps” and “global illumination” for this purpose.</p>
+    </li>
+  </ul>
+  <h3>Soft shadows</h3>
+  <p>A beginner technique is to jitter the shadow ray's direction by a random amount.  If we sample this many times, and average it, we have an alright approximation of the umbra and penumbra and an overall softer shadow.  For objects that are highly occluded (deep in the umbra), all these jittered rays will still hit the occluding object, and the average alpha will be 0.  For those in the penumbra, some of the jittered rays will hit the occluding object, whilst others will not, and as such its average will vary, producing a smoother gradient of alpha values near the extents of the penumbra.  Thus, even with a point light, with this technique we can still simulate an area light and soft shadows.  I believe, however, that point lights should always return hard shadows.</p>
+  <p>Better yet, instead of totally random jittering, we might produce a random jitter that adheres to a 3D cosine distribution.  We could estimate this effective cone by using trigonometry and taking the half angle of the triangle formed with the area light source and the point in question</p>
+  <p>I thought this method was pretty hackish, and chose not to implement it for presentation time.  I wanted to examine radiosity methods or other global illumination methods, but found their respective complexity levels were too high for me at my current understanding of physics, optics, and mathematics.</p>
+  <h2>Textures</h2>
+  <p>For every primitive, a UV map is consulted.  This converts the 3D surface in question to a rectangular 2D representation in the range <code>[0..1]x[0..1]</code>.  For this project, I only considered spheres as their 3D point > UV conversion is fairly straightforward.</p>
+<pre class='more_technical'>
+Point2D Sphere::get_UV(Point3D point_in_space_on_sphere)
+{
+Vector3D wrtSphere = (point_in_space_on_sphere - sphere_origin); // get the point wrt the sphere
+wrtSphere.normalize(); // consider the unit sphere for simplicity, it is equivalent
+u = atan2(wrtSphere.x, wrtSphere.z) / (PI * 2.0);
+v = acos(wrtSphere.y) / PI;
+u += 1.0; // since u is -0.5..0.5 after atan2 and scale by 2PI
+return Point2D(u,v);
+}
+</pre>
+  <p class='more_technical'>The above is pseudocode for purely illustrative purposes; I have no Point2D class in my code.  Also to note, is that the C functions atan2 and acos work in radians.</p>
+  <p>After UV co-ordinates are obtained, we can shade by performing a look-up.  Bilinear interpolation might be used in the texture map to reduce the aliasing due to lower textures, but this yields a blurrier look.  I chose to instead zoom out to sufficient distances for texture considerations.  Notably, I encountered a very noisy looking moon when zoomed out very far, which I presume to be aliasing due to lack of level-of-detail code.  In the future, mip-maps might be used for the various texture maps.</p>
+  <p>We can use the U and V to index into the texture map's X and Y co-ordinates respectively.  Small consideration needs to be taken to avoid under/overflowing the boundaries of the image.</p>
+  <p>I used the Image class provided in A4 to implement the various maps for this project.  Oddly, I needed to use the indices {0,2,3} when indexing the pixels RGB channels, instead of using the intuitive and correct indices {0,1,2}.  It would seem this would use the colour channel of a different pixel!  However, {0,1,2} while correct, looked terribly wrong, so I went with the empirical approach.  Perhaps this is an artifact of converting a JPG to a PNG, or some kind of sRGB vs. RGB colour profile, or another unknown colour setting that I'm not aware of.</p>
+    <h3>2D Procedural Textures</h3>
+    <p>The UV co-ordinates can be used for more than just consulting a map of pixels!  Here's a simple code that draws a checkerboard on the object in question:</p>
+<pre>
+// checkerboard
+if (((int)(u * 20) + (int)(v * 10)) % 2 == 0)
+{
+return Colour(0,0,0);
+}
+else {
+return Colour(1,1,1);
+}
+</pre>
+    <p>
+      Alternatively, we can use some noise to spice things up.  Here's the code that generates the red swirly ball seen in the <a href="#gallery">Gallery</a>
+    </p>
+<pre>
+double noiseCoef;
+for (int level = 1; level < 10; level ++)
+{
+noiseCoef +=  (1.0f / level)
+  * fabsf(double(noise(u*10*level,
+                        v*10*level,
+                        v)));
+}
+// noiseCoef = 0.5f * sinf( (u + v) * 0.05f + noiseCoef) + 0.5f; // optional for spiciness
+return noiseCoef * m_kd;
+</pre>
+    <p>
+      It's highly based off of the code seen
+      <a href='http://www.codermind.com/articles/Raytracer-in-C++-Part-III-Textures.html'>here.</a>
+    </p>
+    <h3>3D Procedural Textures</h3>
+    <p>If we aren't especially careful, or if we don't use some kind of mirrored texture, we might run into discontinuities in our 2D texture.  Additionally, should we ever want to render Constructive Solid Geometry (CSG), when we begin slicing away a cube using another cube, our final textue won't look right, let alone the difficulties we'd have trying to get the UV co-ordinates of such complicated objects.  Instead, we might use UVW co-ordinates (which is basically the same 3D point, but object agnostic in that a certain point on the object will be the same UVW point regardless of the object's orientation, scale, or position).  Unfortunately, my UVW generating code isn't the greatest, but it is a useful concept.</p>
+    <p>Getting the UVW is useful because it allows us to refer to the same portion of 3D space when we're addressing our 3D texture generation function.  For example, instead of using random points in world-coordinate system space (WCS), we're always using object-local points.  Thus, if we're using a pseudo-noisy function to model turbulence, swirls, or any other manner of thing (see Ken Perlin's early SIGGRAPH slides, or Demystifying perlin noise), we can be sure to get that same texture, even if it were to animate through space.</p>
+    <p>After this, it's just a matter of consulting our procedural 3D texture generator.  Care should be taken with the pseudo-noisy functions to remember your seed per texture.</p>
+    <p>Here's the code for the line-y marble texture seen in the gallery:</p>
+<pre>
+Colour PhongMaterial::getColour(Point3D at, Primitive* p)
+{
+if (m_proc_texture == "marble"){
+double noiseCoef;
+//at = p->get_UVW(at); // temporarily disabled pending investigation
+for (int level = 1; level < 10; level ++)
+{
+noiseCoef +=  (1.0f / level)
+      * fabsf(float(noise(level * 0.05 * at[0],
+                          level * 0.05 * at[1],
+                          level * 0.05 * at[2])));
+};
+noiseCoef = 0.5f * sinf( (at[0] + at[1]) * 0.05f + noiseCoef) + 0.5f;
+// noiseCoef = 0.5f * sinf( (at[1]) * 0.05f + noiseCoef) + 0.5f; // alternative line to the above line, also pretty
+return noiseCoef * m_kd;
+}
+...
+</pre>
+    <p>
+      It's highly based off of the code seen
+      <a href='http://www.codermind.com/articles/Raytracer-in-C++-Part-III-Textures.html'>here.</a>
+    </p>
+  <h2>Specular Maps</h2>
+  <p>In the same vein as a standard texture map, we can alter the Phong specularity coefficient by a multiplier of [0..1] in a specular map to achieve certain effects.  For example, in modeling the earth we might want to make it so the water is more reflective than the land.  In the ray-tracing step, before applying the Phong specularity term to the final colour, I first modulate the Phong specularity coefficient by the value returned by the specularity map (if it exists).  A bilinear or greater interpolation might be needed here; we see some noise with regards to the small islands on the earth.  This might also be alleviated by using a specularity map with a smoother gradient of colour (rather than binary).  Additionally, since it's a black and white image, I simply use the pixel's red channel, ignoring the other channels.</p>
+  <h2>Opacity and Refraction</h2>
+  <p>I moved onto implementing simple opacity.  An object has an opacity value, [0..1], where 0 represents perfect opaque and 1 represent perfect transparency.  In calculating the shading at a certain point, after we've done our Phong diffuse & specular, after we've calculated shadow contribution, we then consider opacity.  The colour at that point will be:</p>
+  <pre>final = ((1 - opacity) * final) + (opacity * rayColor(transmittedRay));</pre>
+  <p>This is a naive scheme, but it works well as first-approximation to transparent objects.</p>
+  <p>The transmittedRay will be along the same ray as the original ray, only shifted along, provided there is no refraction.  If there is refraction, a few more preliminary steps must be taken to calculate the direction of the transmittedRay before shading.</p>
+  <h2>Opacity Maps</h2>
+  <p>The next logical step would be to implement opacity/transparency maps.  I tend to throw around both terms, but I'm always referring to the same thing.  Opacity maps modulate the global opacity term of an object.  For instance, if the global opacity of an object is 0.8, it may never become fully opaque with an opacity map.  In this situation, the object would be locked between [0 .. 0.8].  Since opacity maps are grayscale, I just used the image's red channel, ignoring blue and green.</p>
+  <h2>Bump Maps</h2>
+  <p>Height maps are used to implement bump maps.  An image, where white is high, and black is low, is used.  Again, as it was grayscale, only the red channel was used.</p>
+  <p>A differential in both the U and V directions is obtained, which is to be used in perturbing the normals.  Intuitively, we perturb the normal by 2 vectors bitangent to the surface at the normal's point.  material.cpp demonstrates this calculation.</p>
+  <p>The good pseudocode might be something like,</p>
+  <pre>Vector3D applyBumpMap(Point2D uv, Vector3D normal)&#x000A;{&#x000A;  // values used for indexing heightmap&#x000A;  maxX = heightmap.width()&#x000A;  maxY = heightmap.height()&#x000A;  // calulate differential&#x000A;  Fu = heightmap(((int)u*maxX) + 1) - heightmap((int)u*maxX)&#x000A;  Fv = heightmap(((int)v*maxX) + 1) - heightmap((int)v*maxY)&#x000A;  // calculate tangent vector, ellided, see material.cpp&#x000A;  // calculate other tangent vector by cross product of first with current normal&#x000A;  // call them vv, vu&#x000A;  normal = normal &#x000A;            + (scale * Fu * vu)&#x000A;            + (scale * Fv * vv)&#x000A;  return normal&#x000A;}</pre>
+  <p>Interesting to note, I have no guarantee that these two vectors are always pointing in the same direction.  However, it doesn't seem to make a difference for the appearance of bumps in the final image.</p>
+  <h2>Glossy Surfaces</h2>
+  <p>Perturb the surface normal by a small random amount, super-sampling all the while.  I also thought this was insufficient, and didn't really desire to implement (for the same reason as naive soft shadows).  I would rather implement a BRDF model, however, that is beyond the project's scope, and I'm not convinced BRDF is the best way to go about these things.  Examining them in greater depth, however, should bring about enlightenment.</p>
+  <h2>Uniform Spatial Subdivision</h2>
+  <p>I deemed this unnecessary as I got caught up in rendering material properties.  I was less and less interested in rendering many objects and more interested in rendering just a few well.  This is definitely something to pursue in the future if my object count > #subdivisions^2.</p>
+  <h2>Pixel-plane scanline algo for efficiency</h2>
+  <p>
+    A series of 4 matrix multiplications, a trig function, at least 4 double multiplications, and a few vector normalizations were required to generate each eye>pixel ray in A4.  I was able to speed things up dramatically when I realized that I could just calculate 3 eye>pixels (2 vectors), and use these in a scanline fashion to calculate all the others (as each pixel is equally spaced as well as coplanar).  It was found that the distance between both methods was approximately < 1e-6
+  </p>
+  <p>
+    In practice, without the optimization, the final scene rendered 1024x1024 supersampling took
+    <code>real 1m57.595s</code>
+    as opposed to
+    <code>real 1m14.619s</code>
+    with the optimization.
+  </p>
+  <p>To note: The scanline algorithm is always used if supersampling is enabled.  Imagine how slow it would be had I not hard-coded that in!  Supersampling represents an additional 4 sub-pixel points being generated with the classic method.</p>
+  <p>Turning this function on and off be done in the lua script, and is documented in scene.lua.</p>
+  <h2>Radiosity, and using it for progressive refinement</h2>
+  <p>Way too hard for the time-frame and scope of project; read some of the papers!  Very difficult for me to implement, let alone write about.  I'd attempt to do both caustics and radiosity-based in the same global illumination pass, though.  I tried hard to understand it, but I couldn't figure out a good implementation strategy.</p>
+  <h2>Real-time concerns</h2>
+  <p>I wanted to, but found it prohibitive to implement my real-time user interactivity objective.  Many questions arose, namely, would I still use my ray-tracer for the real-time stage?  Coding a faster and simple OpenGL shader for interactivity, then switching to my ray-tracer when the user is done moving things around seemed like one possible approach, but there are many hazards with that approach (visual synchronization mainly, as I predict that it'd be hard to get both to attain the equivalent projection).</p>
+  <p>
+    The other option was to render the image at a very low resolution, upscale that to the viewer program's resolution, then progressively refine the same image as the user doesn't interact with the program.  A 128x128 resolution image of the same final scene can be rendered at
+    <code>real 0m1.131s</code>
+    which yields an image at a somewhat acceptable resolution to discern some details.  We can achieve 1FPS at 64x64 with times like
+    <code>real 0m0.861s.</code>
+    Clearly, further optimization is required!  It is a naive estimate that 2FPS would be possible simply disabling reflections &amp; bump mapping from the ray-tracing step, then adding them back later.  A stochastic importance sampling might yield results that converge faster, so that is one area to look to.
+  </p>
+</section>
