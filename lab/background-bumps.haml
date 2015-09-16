@@ -6,22 +6,22 @@
 		.content
 			=Haml::Engine.new(IO.read("header.haml")).render
 			%section#main
-				%canvas#c{:width => "256", :height => "256"}
+				%canvas#c{width: "256", height: "256"}
 				.backgrounded.readable-section
 					#background-bump.project
 						#texture_source{style: "width: 25%; height: 25%; float: left; margin: 0 2em 2em 0;"}
 							%h4 Source Image
 							%img#texture_example
-							%input#texture_src{:value => "texture_source"}
+							%input#texture_src{value: "texture_source"}
 						%h3 WebGL Background Bump Mapping
 						%p
-							%a#hide{:href=>"#"} Hide text
+							%a#hide{href: "#"} Hide text
 						%h4 Overview
 						%p The website's background (0,0)x(viewportX,viewportY) is mapped to a square (-1,-1)x(1,1).  Right about where your face is, a virtual light is pointed towards the screen.  In practice, it seems that hanging this light from 0..2 units above the screen yields good results.  At 2 units, the light provides a fairly even coverage of the square.  Less than this, it seems to provide for an easy vignette effect.  You provide a background (diffuse) color, and your image is consulted for the texture of the surface.
 						%p I do not recommend rolling this out to a prodution site.  Furthermore, I have not made it easy to roll out, for 2 reasons: 1) I accomplished what I set out to do, and 2) On slow computers, it might make things unmanageable.  Perhaps some framerate detection and animation cancelling is in order?
 						%p
 							Subtle tiling textures care of
-							%a.iconal{:href=>"http://subtlepatterns.com/", :target=>"_blank"}
+							%a.iconal{href: "http://subtlepatterns.com/", target: "_blank"}
 								subtlepatterns.com
 								%i.icon.icon-external-link
 						%h4 Graphics Model
@@ -42,7 +42,7 @@
 				=Haml::Engine.new(IO.read("footer.haml")).render
 			%footer
 			.scripts
-				%script{:type => "text/javascript", :src => "../lib/js/jquery-1.9.1.min.js"}
+				%script{type: "text/javascript", src: "../lib/js/jquery-1.9.1.min.js"}
 				:plain
 					<script type="text/javascript">
 
