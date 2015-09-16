@@ -13,10 +13,10 @@ ejs = require("gulp-ejs")
 gm = require('gulp-gm')
 imagemin = require('gulp-imagemin')
 
-gulp.task 'images', ['png', 'smallpng']
+gulp.task 'images', ['small-images', 'compress-images']
 
-gulp.task 'png', ->
-  return gulp.src('app/img/**/*')
+gulp.task 'compress-images', ->
+  return gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
     .pipe(imagemin({
       progressive: true
     }))
@@ -24,8 +24,8 @@ gulp.task 'png', ->
     .pipe(gulp.dest('dist/img'))
     .pipe(reload({ stream: true }))
 
-gulp.task 'smallpng', ->
-  return gulp.src('app/img/**/*')
+gulp.task 'small-images', ->
+  return gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
     .pipe(gm (gmfile) ->
       gmfile.resize(340)
     )
@@ -52,6 +52,10 @@ gulp.task 'coffee', ->
     .pipe(gulp.dest('dist/js'))
     .pipe(reload({ stream: true }))
 
+gulp.task 'js', ->
+  return gulp.src('app/js/*.min.js')
+    .pipe(gulp.dest('dist/js'))
+
 gulp.task 'ejs', ->
   return gulp.src(['app/views/**/*.ejs', '!app/views/**/_*.ejs'])
     .pipe(ejs())
@@ -59,7 +63,7 @@ gulp.task 'ejs', ->
     .pipe(reload({ stream: true }))
 
 # watch files for changes and reload
-gulp.task 'serve', ['sass', 'coffee'], ->
+gulp.task 'serve', ['sass', 'coffee', 'js', 'ejs'], ->
   browserSync({
     server: {
       baseDir: 'dist'
