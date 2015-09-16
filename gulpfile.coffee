@@ -10,6 +10,31 @@ coffee = require('gulp-coffee')
 cssmin = require('gulp-cssmin')
 rename = require('gulp-rename')
 ejs = require("gulp-ejs")
+gm = require('gulp-gm')
+imagemin = require('gulp-imagemin')
+
+gulp.task 'images', ['png', 'smallpng']
+
+gulp.task 'png', ->
+  return gulp.src('app/img/**/*')
+    .pipe(imagemin({
+      progressive: true
+    }))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('dist/img'))
+    .pipe(reload({ stream: true }))
+
+gulp.task 'smallpng', ->
+  return gulp.src('app/img/**/*')
+    .pipe(gm (gmfile) ->
+      gmfile.resize(340)
+    )
+    .pipe(imagemin({
+      progressive: true
+    }))
+    .pipe(rename({suffix: '.small.min'}))
+    .pipe(gulp.dest('dist/img'))
+    .pipe(reload({ stream: true }))
 
 gulp.task 'sass', ->
   return sass('app/scss/main.scss')
@@ -46,4 +71,5 @@ gulp.task 'serve', ['sass', 'coffee'], ->
   gulp.watch('app/scss/**/*.scss', ['sass'])
   gulp.watch('app/coffee/**/*.coffee', ['coffee'])
   gulp.watch('app/views/**/*.ejs', ['ejs'])
-  gulp.watch(['*.html', 'js/**/*.js'], {cwd: 'dist'}, reload)
+  gulp.watch('app/img/**/*', ['images'])
+  gulp.watch(['*.html', 'js/**/*.js', 'img/*'], {cwd: 'dist'}, reload)

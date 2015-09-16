@@ -24,47 +24,20 @@
           <p class='overview'>Some things I worked on while freelancing.</p>
           <div>
             <div class='images images-right images-30'>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_ab.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_hannah.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_hklane.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_jerome.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_visum.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_shirtsbyme.jpg' width='350'>
-              </div>
+              <% images = ['ab', 'hannah', 'hklane', 'jerome', 'visum', 'shirtsbyme'] %>
+              <% for (var i = 0; i < images.length; i++) { %>
+                <div class="slide">
+                  <img src="img/portfolio/tile_<%= images[i] %>.small.min.jpg" width='350' height='350'>
+                </div>
+              <% } %>
             </div>
             <div class='images images-right images-30'>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_solage_mobile.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_solage.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_solhotel.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_apwan.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_jwilliams.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_pd.jpg' width='350'>
-              </div>
-              <div class='slide'>
-                <img height='350' src='img/portfolio/tile_e52.jpg' width='350'>
-              </div>
+              <% images = ['solage_mobile', 'solage', 'solhotel', 'apwan', 'jwilliams', 'pd', 'e52'] %>
+              <% for (var i = 0; i < images.length; i++) { %>
+                <div class="slide">
+                  <img src="img/portfolio/tile_<%= images[i] %>.small.min.jpg" width='350' height='350'>
+                </div>
+              <% } %>
             </div>
             <div class='description'>
               <h2>Front-end Work</h2>
