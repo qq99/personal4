@@ -4,7 +4,7 @@
 <title>CS488 Project</title>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 <!-- 3rd Party Libraries: -->
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
 <script type="text/javascript" src='jquery.mousewheel.min.js'></script>
 <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
@@ -81,9 +81,9 @@
         float noiseCoef = 0.0;
         for (float level = 1.0; level < 3.0; level ++)
         {
-            noiseCoef = noiseCoef + (0.3 * level) 
+            noiseCoef = noiseCoef + (0.3 * level)
                 * abs(inoise(
-                    vec3(level * u * 1.0, 
+                    vec3(level * u * 1.0,
                          level * v * 1.0,
                          time)));
         }
@@ -119,10 +119,10 @@
         // DIFFUSE:
         // calculate Phong diffuse intensity, Idiff
         float Idiff = max(dot(N,L_m), 0.0);
-        Idiff = clamp(Idiff, 0.0, 1.0); 
-        
+        Idiff = clamp(Idiff, 0.0, 1.0);
+
         vec4 combination = (Idiff * light_diffuse * md) + (Ispec * light_spec * ms) + ambient;
-        
+
         gl_FragColor = vec4(combination.rgb, 0.7);
     }
 </script>
@@ -138,7 +138,7 @@
 
     void main(void) {
         vec3 N = vNormal;
-        
+
         // some testing stuff:
         vec4 water = vec4(0.498, 0.894, 0.898, 1.0);
 
@@ -162,10 +162,10 @@
         // DIFFUSE:
         // calculate Phong diffuse intensity, Idiff
         float Idiff = max(dot(N,L_m), 0.0);
-        Idiff = clamp(Idiff, 0.0, 1.0); 
-        
+        Idiff = clamp(Idiff, 0.0, 1.0);
+
         vec4 combination = (Idiff * light_diffuse * md) + (Ispec * light_spec * ms) + ambient;
-        
+
         gl_FragColor = combination;
     }
 </script>
@@ -189,7 +189,7 @@
         gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
 
         gl_Position.y += sin(uTime) * 0.1; // up and down motion
-        gl_Position.y += sin((aVertexPosition.x + aVertexPosition.z * 2.0) + uTime) * 0.8; 
+        gl_Position.y += sin((aVertexPosition.x + aVertexPosition.z * 2.0) + uTime) * 0.8;
 
 
 
@@ -198,7 +198,7 @@
         vec3 vPosition3 = vPosition4.xyz / vPosition4.w;
         view = normalize(test_light - vPosition3);
         //view = normalize(vec3(uMVMatrix * vec4(aVertexPosition, 1.0)));
-        
+
 
         float scaleF = 0.3;
         float xOff = cos(aVertexPosition.x + aVertexPosition.z * 2.0 + uTime);
@@ -220,9 +220,9 @@
         */
         vTangent = vec3(1.0, 0.0, 0.0);
         vBitangent = vec3(0.0, 0.0, 1.0);
-        
+
         vPosition = aVertexPosition.xyz;
-        
+
     }
 </script>
 
@@ -288,7 +288,7 @@
 
 
     }
-	
+
 	vec3 bump_map(vec3 normal)
 	{
         float s = vTextureCoord.s;
@@ -303,7 +303,7 @@
         normal = normalize(normal);
 		return normal;
 	}
-	
+
     void main(void) {
 		float s = vTextureCoord.s;
 		float t = vTextureCoord.t;
@@ -332,13 +332,13 @@
 		// DIFFUSE:
 		// calculate Phong diffuse intensity, Idiff
         float Idiff = max(dot(N,L_m), 0.0);
-        Idiff = clamp(Idiff, 0.0, 1.0); 
-		
-		//vec3 R = 
+        Idiff = clamp(Idiff, 0.0, 1.0);
+
+		//vec3 R =
 		//vec4 Is = light_spec * md * pow( max(dot(R,view), 0.0), 2.0);
-		
+
 		vec4 combination = (Idiff * light_diffuse * md) + (Ispec * light_spec * ms) + ambient;
-		
+
         gl_FragColor = combination * texture2D(texture_sampler, vec2(s, t));
     }
 </script>
@@ -382,8 +382,8 @@
 			vTextureCoord = vec2(offset * aTextureCoord.s, aTextureCoord.t);
 		}
 		else {
-			vTextureCoord = vec2(offset * aTextureCoord.s + offset, aTextureCoord.t);		
-		}		
+			vTextureCoord = vec2(offset * aTextureCoord.s + offset, aTextureCoord.t);
+		}
 		vAtlasIndex = aTextureAtlasIndex;
     }
 
@@ -428,9 +428,9 @@
 			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
 		}
 		else {
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);  
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);  
-			gl.generateMipmap(gl.TEXTURE_2D);  
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+			gl.generateMipmap(gl.TEXTURE_2D);
 		}
         gl.bindTexture(gl.TEXTURE_2D, null);
     }
@@ -450,7 +450,7 @@
         }
         neheTexture.image.src = "test_atlas.png";
         checker = gl.createTexture();
-		
+
         normalTexture = gl.createTexture();
         normalTexture.image = new Image();
         normalTexture.image.onload = function () {
@@ -458,8 +458,8 @@
         }
         normalTexture.image.src = "normal_atlas.png";
         checker = gl.createTexture();
-		
-		
+
+
         gl.bindTexture(gl.TEXTURE_2D, checker);
         var pixels = new Uint8Array([255,0,0,
                                         0,255,0,
@@ -531,7 +531,7 @@
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 1, 1000.0, pMatrix);
 
         mat4.identity(mvMatrix);
-        
+
         mat4.translate(mvMatrix, [CAMERA.x(), CAMERA.y(), CAMERA.zoom()]);
         mat4.rotate(mvMatrix, degToRad(xRot), [1, 0, 0]);
         mat4.rotate(mvMatrix, degToRad(yRot), [0, 1, 0]);
@@ -589,9 +589,9 @@
 
     $(document).ready(function(){
         game_canvas = document.getElementById("c");
-        maximize(); 
+        maximize();
         initGL(game_canvas);
-        
+
         var terrain_shader = new SHADER_PROGRAM("terrain.vert", "terrain.frag");
         var water_shader = new SHADER_PROGRAM("flat.vert", "water.frag");
         terrain_shader.init();
@@ -612,10 +612,10 @@
         //initBuffers();
 
         webGLStart();
-        CAMERA.init(game_canvas, [-RES, -RES, -5*RES]);	
-		
+        CAMERA.init(game_canvas, [-RES, -RES, -5*RES]);
+
         $("#c").mousemove(function(e){
-            mouseX = e.pageX / $(window).width(); 
+            mouseX = e.pageX / $(window).width();
         });
         $(window).resize(function(){
             var canvas = document.getElementById("c");
