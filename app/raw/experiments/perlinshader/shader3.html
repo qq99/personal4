@@ -3,7 +3,7 @@
 <head>
 <title>SHADERS</title>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
             <script type="text/javascript">
 
               var _gaq = _gaq || [];
@@ -16,7 +16,7 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
               })();
 
-            </script>   
+            </script>
 <script type="text/javascript" src="webgl-utils.js"></script>
 <script id="perlin.frag" type="x-shader/x-fragment">
     #ifdef GL_ES
@@ -90,12 +90,12 @@
         float noiseCoef = 0.0;
         for (float level = 1.0; level < 5.0; level ++)
         {
-            noiseCoef += (1.0 / level) 
-                * abs(inoise(vec3((sin(time) + 4.5) * 5.0 * u, 
+            noiseCoef += (1.0 / level)
+                * abs(inoise(vec3((sin(time) + 4.5) * 5.0 * u,
                                 (sin(time) + 4.5) * 5.0 * v,
                                 time)));
         }
-        
+
         //noiseCoef = 0.5 * cos((u) * 2.0 + noiseCoef) + 0.25;
         //float noise = inoise(gl_FragCoord.xyz * 0.10);
         gl_FragColor = vec4(noiseCoef, noiseCoef, 0, 1);
