@@ -1,0 +1,21 @@
+<section id='vision'>
+  <h1><a href="#vision">Initial Vision</a></h1>
+  <p>
+    You can view my proposal
+    <a href='/cs488f2011project/img/proposal2.pdf'>here.</a>
+    For purposes of this report, I'll focus on those objectives I did accomplish, as well as provide some discussion as to how those I did not implement might be attained.
+  </p>
+  <p>
+    The inspiration for this style of game were others like
+    <em>Final Fantasy Tactics,</em>
+    <em>Ogre Tactics,</em>
+    and
+    <em>Disgaea.</em>
+    Please see those games for the type of gameplay I anticipated this engine being useful for.
+  </p>
+  <p>However, I wanted to somehow bring something of my own to this genre.  Many of these games would seem to suffer from needing to have maps completely designed by humans.  I figured that it would be nice to allow the developer to perhaps offload some of this work to random noise, perhaps tweaking the random terrain.  It was my hope that intriguing and believable landscapes could be created with very little or no modeling hours.</p>
+  <p>I also wanted this engine to be playable on just about any computer without the need to install or update.  To me, WebGL seemed perfect for this: as long as the user has a browser that supports the technology, and adoption of such browsers will only increase going into the future, then it should be very easy to extend this project to be a playable game.</p>
+  <p>I also wanted to explore real-time rendering techniques and interactive modes by making an entirely GPU shader driven project.  I had heard great things about what they could be used to accomplish and have definitely come to respect their</p>
+  <p>Since the environment is WebGL, the focus then is (hopefully) doing things in a smart way to provide interactive framerates in this reduced environment.  There is a constant struggle, as many allowed OpenGL features are not available in the current WebGL context.  Of note, Texture Arrays, and even GL_QUADS were unavailable to me.</p>
+  <p>Finally, I initially started this in C++.  I quickly became frustrated with the lack of easy anonymous functions and re-compiling.  JavaScript, while perhaps hundreds of times slower, allowed me to develop this prototype as quickly as I did.</p>
+</section>

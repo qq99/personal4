@@ -15,6 +15,11 @@ imagemin = require('gulp-imagemin')
 
 gulp.task 'images', ['small-images', 'compress-images']
 
+gulp.task 'raw', ->
+  return gulp.src('app/raw/**/*')
+    .pipe(gulp.dest('dist'))
+    .pipe(reload({ stream: true }))
+
 gulp.task 'compress-images', ->
   return gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
     .pipe(imagemin({
@@ -63,7 +68,7 @@ gulp.task 'ejs', ->
     .pipe(reload({ stream: true }))
 
 # watch files for changes and reload
-gulp.task 'serve', ['sass', 'coffee', 'js', 'ejs'], ->
+gulp.task 'serve', ['sass', 'coffee', 'js', 'ejs', 'raw'], ->
   browserSync({
     server: {
       baseDir: 'dist'
