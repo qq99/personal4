@@ -1,0 +1,55 @@
+<section id='gallery' class='anchored'>
+  <h1><a href="#gallery">Gallery</a></h1>
+
+  <% images = [
+    '7Gnp3',
+    'bumps_sidelight_noatmosphere',
+    'scene_105',
+    '7OiQi',
+    'bumps_sidelight',
+    'scene_glass',
+    'bumps_0',
+    'bumps_sidelight_smallbumps_nospecularmap',
+    'scene_multilights',
+    'bumps_0s',
+    'bumps_sidelight_smallbumps',
+    'scene_multishadows',
+    'bumps_1',
+    'bumps_sky0',
+    'scene_sidelight2',
+    'bumps_1s',
+    'bumps_sky1',
+    'scene_sidelight',
+    'bumps_2',
+    'earthbump1k',
+    'scene_water',
+    'bumps_2s',
+    'earthcloudmap',
+    'textured_3d_back',
+    'bumps_3',
+    'earthcloudmaptrans',
+    'textured_3d_front',
+    'bumps_3s',
+    'earthmap1k',
+    'textured_back',
+    'bumps_overbumped',
+    'earthspec1k',
+    'textured_front',
+    'bumps_sidelight2',
+    'moonbump1k',
+    'transparent_textured0',
+    'bumps_sidelight3',
+    'moonmap1k',
+    'transparent_textured1',
+    'bumps_sidelight4',
+    'nonhier'
+  ] %>
+
+  <div class="gallery clearfix">
+    <% for (var i = 0; i < images.length; i++) { %>
+      <a href="/img/lab/cs488-raytracer/<%= images[i] %>.min.png" target="_blank">
+        <div class="slide" style='background: url(/img/lab/cs488-raytracer/<%= images[i] %>.small.min.png)'></div>
+      </a>
+    <% } %>
+  </div>
+</section>

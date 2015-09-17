@@ -1,0 +1,40 @@
+#lab {
+	.project {
+		@extend .clearfix;
+		padding:3em 1em;
+		border-bottom:1px solid #cecece;
+	}
+	.project-description {
+		h1 {
+			margin: 0;
+		}
+		h3 {
+			margin-bottom:0;
+		}
+		position:relative;
+		p.date {
+			margin-top:0;
+			font-size:0.9em;
+			color:#777;
+		}
+	}
+	h3 a {
+		text-decoration: none;
+		color:inherit;
+	}
+	i.icon {
+		transition:all 0.25s ease-in-out;
+		font-size: 1.5em;
+		color:#333;
+		display: inline-block;
+	}
+	p i.icon {
+		font-size:1em;
+	}
+	a.iconal:hover {
+		color:hotpink;
+		i.icon {
+			color:#C44786;
+		}
+	}
+}

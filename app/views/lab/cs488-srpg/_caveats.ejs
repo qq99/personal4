@@ -1,0 +1,8 @@
+<section id='caveats'>
+  <h1><a href="#caveats">Bugs / Caveats / Cautions</a></h1>
+  <p>If anything breaks or stops working, just try to refresh (F5) the page.</p>
+  <p>I'd give the program some time to appear to finish "working" after the execution of the significant animations.  Namely, these are the Q,E keys (rotation about spline) and the character MOVE option.  This is because JavaScript doesn't really support any kind of threaded model, and instead events are queued in what I would call a ridiculous way: they're all queued at once, but with different timeouts.  Queueing up more before the first queue has finished is probably what breaks it.</p>
+  <p>Moving with W,A,S,D and then attempting to rotate (in any capacity) will seem to be / is buggy.  I'm not happy with the behaviour.</p>
+  <p>Point sprite characters:  If you zoom in too much, they will become very small.  They should be a constant size, but this is surprisingly harder than I thought it'd be.  At least they stop growing after a certain point when zooming out!</p>
+  <p>Texture atlasing with OpenGL2.0 is a pain.  If I used the nearest neighbour texture filtering, you would not see those lines that appear on the terrain where one texture bleeds into the next.  However, it also looks more like crap.  Texture Arrays are not supported, and texture atlasing, I have concluded, is the work of a demon.</p>
+</section>

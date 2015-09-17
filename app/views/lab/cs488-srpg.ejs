@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <% include ../_head %>
+  <body>
+    <div class='content'>
+      <% include ../_header %>
+      <section id='main'>
+        <article class='readable-section'>
+
+          <section id='project'>
+            <a href='/cs488f2011project/app/index.html'>
+              <img src='/img/lab/cs488-srpg/screenshot.min.png' style='max-width:100%;' />
+              Launch!
+            </a>
+          </section>
+
+          <section>
+            <h1>CS488 F2011 A5 &ndash; WebGL Strategy RPG Engine</h1>
+            <p>Originally published December 5, 2011. Last edited September 16, 2015 (adapted for this website's layout).</p>
+
+            <h4>Topics/Keywords</h4>
+            <ul class='keywords'>
+              <li>Texture mapping</li>
+              <li>Texture atlas</li>
+              <li>Bump mapping</li>
+              <li>Procedural terrain</li>
+              <li>Water reflections</li>
+              <li>Camera on spline</li>
+              <li>Phong shading/lighting model</li>
+              <li>WebGL</li>
+              <li>OpenGL ES 2.0</li>
+              <li>Pathfinding</li>
+              <li>Perlin noise</li>
+              <li>Procedural content</li>
+              <li>Context-free trees</li>
+            </ul>
+
+            <h4>Contents</h4>
+            <ul class='contents'>
+              <li>
+                <a href='#introduction'>Introduction</a>
+              </li>
+              <li>
+                <a href='#vision'>Initial Vision</a>
+              </li>
+              <li>
+                <a href='#objectives'>Objectives</a>
+              </li>
+              <li>
+                <a href='#techoutline'>Technical Outline</a>
+              </li>
+              <li>
+                <a href='#caveats'>
+                  Bugs, Caveats, Cautions
+                </a>
+              </li>
+              <li>
+                <a href='#codemap'>Code Map</a>
+              </li>
+              <li>
+                <a href='#references'>References</a>
+              </li>
+            </ul>
+          </section>
+
+          <% include cs488-srpg/_introduction %>
+          <% include cs488-srpg/_vision %>
+          <% include cs488-srpg/_manual %>
+          <% include cs488-srpg/_technical_outline %>
+          <% include cs488-srpg/_caveats %>
+          <% include cs488-srpg/_future_work %>
+          <% include cs488-srpg/_codemap %>
+          <% include cs488-srpg/_references %>
+        </article>
+      </section>
+      <% include ../_footer %>
+    </div>
+  </body>
+</html>

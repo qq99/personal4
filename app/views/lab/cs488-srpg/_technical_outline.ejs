@@ -1,0 +1,38 @@
+<section id='techoutline'>
+  <h1><a href="#techoutline">Technical Outline</a></h1>
+  <h2 id='obj1'>Bump Mapping</h2>
+  <p>Terrain bump mapping is accomplished by consulting 2 near neighbours for the corresponding fragment.  These differentials are then used, with a scaling factor, to perturb the surface normal in tangent-bitangent space.  This process occurs in the fragment program.</p>
+  <p>Water bump mapping is accomplished via Phong normal interpolation.  This process occurs in the vertex program.  The tangent-bitangent space is not necessary as the water is planar, so the normal is purely modified and then interpolated for fragment processing.</p>
+  <h2 id='obj2'>Texturing</h2>
+  <p>Terrain texture is consulted by means of a texture atlas.  I would have liked to use a Texture Array or even a 3D Texture, but these features were unavailable in this GL context.  Depending on an attribute signaling which type of block it is, the texture UV coordinates are altered to index into the correct texture.  Texture atlasing was a major pain for me, so you can still see some colour bleeding due to the texture interpolation mode.</p>
+  <p>Sprite texturing is a straight-forward case of consulting a texture.  Nothing special is happening here, except alpha blending to hide the rectangularity of the sprite.  I would have also liked to use atlases here and animate the sprites, but there was not enough time.</p>
+  <p>
+    To perform water displacement, I consult 2 textures, the gradients and the permutations of Perlin's improved noise in the vertex program.  This is a parallel-processing port of his normal algorithm that allows me to calculate the noise in real-time.  I've ripped the basic technology from my earlier work at
+    <a href='http://anthonycameron.com/lab#perlinshader'>http://anthonycameron.com/lab#perlinshader</a>
+  </p>
+  <p>These same gradient/permutation textures may be used in other places, for example, to add some more fine detail in the texture/normals of the waves.  Or, it could be used as a basis for more procedural textures.</p>
+  <h2 id='obj5'>Procedural terrain modeling via combinations of noise and blending functions</h2>
+  <p>3D improved Perlin noise and a blending function are combined to produce what resembles a terrain.  The noise is continuous, so it must be discretized.  The discretized results are stored in a look-up table (LUT), of resolution^3 size, where resolution is developer specifiable.  This LUT is consulted for tessellation of terrain.  A clever algorithm is employed to minimize the hidden surfaces that effectively result as we carve out the landscape in discretized chunks.</p>
+  <h2 id='obj7'>Camera animation on splines</h2>
+  <p>2 Catmull-Rom splines are created.  The first, position, is just simply a linear interpolator, so I'm not sure why I even used a spline.  I suppose the motivation is to allow for changing it to something else in the future.  The second spline, velocity, modulates the evaluation of the first, and the end result is a camera that moves somewhat more fluidly than pure linear interpolation.  To note: my splines are limited to just 4 control points.</p>
+  <h2 id='obj8'>AI pathing</h2>
+  <p>You can see the pathing system at work with the 2 characters on the game board when you select the MOVE option.</p>
+  <p>When the game starts, it consults the LUT of the terrain to determine which positions are "standable".  A position is standable if it is air and below it is ground.  More complex rules would allow for checks to character height &ndash; perhaps another constraint would be to make sure there is n blocks of headroom for the character to occupy.</p>
+  <p>The result is a map in [x,z] of same dimensions as the [x,y,z] LUT of the terrain.  In each square is an array of >=0 possible y-values that a character might occupy.  I call this map the pseudo-heightmap.</p>
+  <p>To path find, a feeler is sent out from character position [a,b,c] to the 4 immediately adjacent game tiles.  Each feeler might add >1 path segment to the currently generated path, for example, if there are >1 possible standable spots for that particular [x,z] point.  The process repeats recursively from the newly added segments.</p>
+  <p>A segment is only added to the path under some specific stipulations.  First, it must not already exist in the path as a shorter path.  Secondly, it must be within the character's jump height.  There are some other stipulations, but please refer to game.js if you're curious.</p>
+  <p>The recursion halts after a maximum number of "steps" has occurred, here referred to as the character.MOVE_DISTANCE.</p>
+  <p>This pathing system guarantees that, between 2 squares that are game-legal for a character, the character will generate the shortest path.</p>
+  <p>I've used the splines I created for the camera system to animate the position of the moving character.  I put a slight bias on the first and last control point, depending on the relative heights of where he is going to and coming from, so as to give the appearance of him jumping.</p>
+  <h2 id='obj9'>Reflections on water surfaces</h2>
+  <p>The terrain is flipped about the plane that represents the water.  Then, it is translated by the world-height of the water plane.  It is rendered to an off-screen render buffer of 512x512.  The same viewport dimensions are used.</p>
+  <p>This off-screen render buffer is then consulted as a texture in the water fragment shader.  The texture coordinates are calculated in screenspace: as gl_FragCoord.x / 1024.0 and gl_FragCoord.y / 1024.0.  I'm not certain why 1024 seemed to provide the best results, because I would have thought dividing by the context viewport dimensions would yield UV in [0..1].  I have a hypothesis that it may be related to 1024 being a factor of 2 more than the render target resolution, namely 512x512.</p>
+  <p>The texture coordinates are then altered by the interpolated water normal.  This allows the reflected scene to appear to warp and bend, which we expect to see when we look at turbulent water.  The water is then shaded as per Phong shading.</p>
+  <p>I'm pretty sure the water reflections are highly hackish, but they produced somewhat compelling results.</p>
+  <h2 id='obj10'>Trees</h2>
+  <p>I wanted to create some kind of context-free tree.  I didn't actually go about created a grammar or anything of the sort.  I just defined a few simple rules.  I will now describe these rules to you, because I feel that is the best way to explain these trees.</p>
+  <p>A root segment is created with a defined number of iterations.  Some simple rules are used to recursively generate the rest of the segments.  In my demonstration, all segments are the same length.</p>
+  <p>The branching recursion terminates if the max iterations has been reached.  N branches are added.  N is calculated randomly, but is biased by the lifetime of the tree.  For instance, as the iteration count increases, the maximum possible value of N decreases.  For each new branch, 2 random rotations are applied to the up vector [0,1,0] to produce something like a conical distribution.  The extent of these rotations can be controlled on a per-axis basis.  The new segment is produced, with starting point equal to the ending point of the previous segment.  The new segment's ending point is determined by this randomly rotated vector.</p>
+  <p>If you remove the randomness, it easily creates a fractal tree.  If you remove the conical distribution and reduce the extent of the rotation, it easily creates a fractal fern.</p>
+  <p>The tree branches are rendered with colours determined by their segment iteration.  The higher the iteration, the more the channel green contributes to the colour.</p>
+</section>
