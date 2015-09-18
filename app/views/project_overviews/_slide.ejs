@@ -1,0 +1,9 @@
+<% extPos = src.lastIndexOf('.') %>
+<% compressed_image = [src.slice(0, extPos), '.min', src.slice(extPos)].join('') %>
+<% small_image = [src.slice(0, extPos), '.small.min', src.slice(extPos)].join('') %>
+<div class='slide'>
+  <a href='<%= compressed_image %>' target='_blank' title="<%= caption %>">
+    <img alt='chat' src='<%= small_image %>'>
+  </a>
+  <div class='annotation'><%= caption %></div>
+</div>

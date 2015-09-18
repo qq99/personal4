@@ -20,8 +20,10 @@ gulp.task 'raw', ->
     .pipe(gulp.dest('dist'))
     .pipe(reload({ stream: true }))
 
+imagesSrcs = ['app/img/**/*.jpg', 'app/img/**/*.png', 'app/img/**/*.jpeg', '!app/img/subtlepatterns/*']
+
 gulp.task 'compress-images', ->
-  return gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
+  return gulp.src(imagesSrcs)
     .pipe(imagemin({
       progressive: true
     }))
@@ -30,7 +32,7 @@ gulp.task 'compress-images', ->
     .pipe(reload({ stream: true }))
 
 gulp.task 'small-images', ->
-  return gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
+  return gulp.src(imagesSrcs)
     .pipe(gm (gmfile) ->
       gmfile.resize(340)
     )
