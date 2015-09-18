@@ -115,7 +115,7 @@
     <p>In the WebGL shader implementation, on a 1GHz machine:</p>
     <ul>
       <li>
-        Firefox 7 easily seems to acheive >30FPS on a 1680x945 rectangle.
+        Firefox 7 easily seems to achieve >30FPS on a 1680x945 rectangle.
       </li>
       <li>
         As it did for the old implementation, Chrome 15 seems to outshine Firefox again.
@@ -129,7 +129,7 @@
     </p>
     <h4>Musings</h4>
     <p>
-      It was very tempting to use the "multi-function" noise as the background "image" for the Lab page.  However, after trying it out (and it looks beautiful) I deduced that I couldn't do this in complete faith, since WebGL is still somewhat sketchy; I experienced >4 Nvidia driver crashes, leading to complete browser failure.  Interestingly, it also crashed my Photoshop (and so assumably any other program using your GPU extensively).  It was either gamble with the value of my visitors' work or use a screenshot, and I think I made the better final choice.
+      It was very tempting to use the "multi-function" noise as the background "image" for the Lab page.  However, after trying it out (and it looks beautiful) I deduced that I couldn't do this in complete faith, since WebGL is still somewhat sketchy; I experienced >4 NVIDIA driver crashes, leading to complete browser failure.  Interestingly, it also crashed my Photoshop (and so probably any other program using your GPU extensively).  It was either gamble with the value of my visitors' work or use a screenshot, and I think I made the better final choice.
     </p>
     <p>
       So, where does this leave us?  I now have a useful tool that will allow me to explore various noise patterns from within the browser; no need to attempt compiling an application that will then compile the shaders.  No need for a ton of external dependencies; just download the page, edit the shaders at the top of the source, and run!  This should hopefully allow me to explore new types of noise with ease.
