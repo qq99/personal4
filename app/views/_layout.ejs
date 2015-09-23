@@ -1,0 +1,11 @@
+<%- include('_head', {
+  section: section,
+  title: title
+}) %>
+<body id='<%= section %>'>
+  <%- include('_header', {
+    section: section
+  }) %>
+  <%- include(yield) %>
+  <% include _footer %>
+</body>

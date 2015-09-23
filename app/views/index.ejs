@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <% include _head %>
+  <%- include('_head', {
+    section: 'main',
+    title: 'Home'
+  }) %>
   <body>
-    <div class='content'>
-      <% include _header %>
-      <% include _crazyeye %>
-      <section id='main'>
-        <% include _section_lab %>
-        <% include _section_portfolio %>
-        <% include _section_philosophy %>
-        <% include _footer %>
-      </section>
-    </div>
+    <%- include('_header', {
+      section: 'lab'
+    }) %>
+    <% include _crazyeye %>
+    <section id='main'>
+      <% include _section_lab %>
+      <% include _section_philosophy %>
+      <% include _footer %>
+    </section>
   </body>
 </html>

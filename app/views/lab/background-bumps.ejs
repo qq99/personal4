@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <% include ../_head %>
+  <%- include('../_head', {
+    section: 'main',
+    title: 'WebGL Background Bump Mapping'
+  }) %>
   <body>
     <div class='content'>
-      <% include ../_header %>
+      <%- include('../_header', {
+        section: 'none'
+      }) %>
       <section id='main'>
         <canvas height='256' id='c' width='256'></canvas>
         <article class='readable-section'>

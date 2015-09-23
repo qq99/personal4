@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <% include ../_head %>
+  <%- include('../_head', {
+    section: 'main',
+    title: 'WebGL Strategy RPG Engine'
+  }) %>
   <body>
     <div class='content'>
-      <% include ../_header %>
+      <%- include('../_header', {
+        section: 'none'
+      }) %>
       <section id='main'>
         <article class='readable-section'>
 

@@ -1,6 +1,10 @@
 <head>
-  <title>Anthony Cameron</title>
-  <link href='/css/main.min.css' rel='stylesheet' type='text/css'>
+  <title><%= title %> - Anthony Cameron</title>
+  <% if (section == 'resume') { %>
+    <link href='/css/resume.min.css' rel='stylesheet' type='text/css'>
+  <% } else { %>
+    <link href='/css/main.min.css' rel='stylesheet' type='text/css'>
+  <% } %>
   <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' rel='stylesheet'>
   <meta content='width=device-width,initial-scale=1' name='viewport'>
   <meta content='Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy.' name='description'>

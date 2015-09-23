@@ -1,24 +1,28 @@
+@import '_variables';
+@import '_nav';
+
 * {
-	font-family: 'Roboto','Helvetica Neue',Helvetica,arial,freesans,clean,sans-serif;
+	font-family: 'Fira Sans','Ubuntu','Roboto','Helvetica Neue',Helvetica,arial,freesans,sans-serif;
 	box-sizing: border-box;
 }
+
 code, pre {
 	font-family: monospace;
 	font-size: 1.4em;
 }
-$text-color: #222;
 
 body {
 	margin: 0;
 	padding: 0;
 	color: $text-color;
 }
+
 a {
 	transition:all 0.25s ease-in-out;
 	text-decoration: none;
-	color: rgba(41, 157, 221, 1);
+	color: $link-color;
 	&:hover {
-		color: hotpink;
+		color: $link-color-hover;
 	}
 }
 h1,h2,h3,h4,h5 {
@@ -67,4 +71,95 @@ article section {
 ul {
 	margin: 0;
 	padding: 0;
+}
+
+.readable-section {
+	position:relative;
+	padding:$rough-height-of-fixed-nav $page-base-horz-padding;
+	width: $page-base-width;
+	max-width:100%;
+	margin:auto;
+	letter-spacing:normal;
+	line-height:normal;
+	min-height:50em;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		margin-right: $li-padding;
+		list-style-type:square;
+		li {
+			margin: 0;
+			line-height:1.75em;
+			position: relative;
+			left: $li-padding;
+		}
+	}
+
+	p {
+		text-align: justify;
+		line-height:1.75em;
+		margin:1.25em 0;
+	}
+
+	ul, ol {
+		line-height:1.75em;
+	}
+
+	p.overview {
+		font-size: 1.25em;
+		margin: 1em;
+		text-align: right;
+		font-style: italic;
+	}
+
+	img {
+		width:100%;
+		max-width:100%;
+		height:auto;
+	}
+}
+.anchor {
+	// with love: http://pixelflips.com/blog/anchor-links-with-a-fixed-header
+  display: block;
+  height: $rough-height-of-fixed-nav;
+  margin-top: -$rough-height-of-fixed-nav;
+  visibility: hidden;
+}
+
+.flashy-header {
+	transition: opacity 0.5s ease-in-out;
+	position: absolute;
+	top: 30em;
+	left: -60%;
+	width: 100%;
+	text-align: right;
+	h1 {
+		font-size: 500%;
+		margin: 0;
+		color: #fefefe;
+		text-shadow: -1px 2px 0px #999, 1px -1px #eee;
+		transform: rotateZ(-90deg);
+	}
+}
+
+@media (max-width:500px) {
+	.flashy-header h1 {
+		color:#222;
+		text-shadow:none;
+		text-align: left;
+		font-size:300%;
+		transform: none;
+	}
+}
+
+@media (max-width: 80em) {
+	.flashy-header {
+		opacity: 0;
+	}
+}
+@media print {
+	.flashy-header {
+		display: none;
+	}
 }

@@ -1,0 +1,52 @@
+@import '_variables';
+
+.top-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	z-index: 2;
+	border-bottom: 1px solid #ddd;
+}
+
+.bottom-footer {
+	position: relative;
+	z-index: 5;
+	background: #333;
+	color: #eee;
+
+	ul {
+		margin: 0;
+		list-style-type: none;
+		line-height:normal;
+		li {
+			display: inline-block;
+		}
+	}
+
+	a:hover {
+		color: #ddd;
+	}
+}
+
+nav {
+	padding:1em $page-base-horz-padding;
+	width: $page-base-width;
+	max-width:100%;
+	margin:auto;
+
+	ul {
+		margin: 0;
+		list-style-type: none;
+		line-height:normal;
+		display: inline-block;
+		li {
+			display: inline-block;
+			padding: 0 10px;
+      &:first-child {
+        padding-left: 0;
+      }
+		}
+	}
+}

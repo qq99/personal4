@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <% include ../_head %>
+  <%- include('../_head', {
+    section: 'main',
+    title: 'A ray-tracer with a focus on various material properties'
+  }) %>
   <body>
     <div class='content'>
-      <% include ../_header %>
+      <%- include('../_header', {
+        section: 'none'
+      }) %>
       <section id='main'>
         <article class='readable-section'>
           <section>

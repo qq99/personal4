@@ -1,25 +1,39 @@
 <header class='top-header'>
-  <div class='aligned-section'>
-    <div class='padded'>
-      <ul>
-        <li>
-          <a class='home' href='/#' title='Home'>
-            <i class='fa fa-home'></i>
-          </a>
-        </li>
-        <li>
-          <a href='/#lab'>Lab</a>
-        </li>
-        <li>
-          <a href='/#portfolio'>Portfolio</a>
-        </li>
-        <li>
-          <a href='/#philosophy'>Philosophy</a>
-        </li>
-        <li>
-          <a href='/resume.html' target="_blank">Resume</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <nav>
+    <ul>
+      <li>
+        <a class='home' href='/#' title='Home'>
+          <i class='fa fa-home'></i>
+        </a>
+      </li>
+      <li>
+        <% if ('lab' == section) { %>
+          Lab
+        <% } else { %>
+          <a href='/'>Lab</a>
+        <% } %>
+      </li>
+      <li>
+        <% if ('portfolio' == section) { %>
+          Portfolio
+        <% } else { %>
+          <a href='/portfolio'>Portfolio</a>
+        <% } %>
+      </li>
+      <li>
+        <% if ('philosophy' == section) { %>
+          Philosophy
+        <% } else { %>
+          <a href='/philosophy'>Philosophy</a>
+        <% } %>
+      </li>
+      <li>
+        <% if ('resume' == section) { %>
+          Resume
+        <% } else { %>
+          <a href='/resume'>Resume</a>
+        <% } %>
+      </li>
+    </ul>
+  </nav>
 </header>

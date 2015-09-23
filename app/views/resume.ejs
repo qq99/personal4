@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <% include _head %>
+  <%- include('_head', {
+    section: 'resume',
+    title: 'Resume'
+  }) %>
+  <link href='/css/resume.min.css' rel='stylesheet' type='text/css'>
   <body id='resume'>
+    <%- include('_header', {
+      section: 'resume'
+    }) %>
     <div class='readable-section'>
+      <div class='flashy-header'>
+        <h1>Resume</h1>
+      </div>
       <section id='title'>
         <h1>Hi, I'm Anthony Cameron</h1>
         <h2>I'm a software engineer with a passion for the web and computer graphics.</h2>
@@ -15,7 +25,6 @@
         </div>
       </section>
       <section id='work-experience'>
-        <h4 class='timeline-title'>Timeline</h4>
         <h3>Work Experience</h3>
         <div class='job'>
           <div class='position'>
@@ -23,10 +32,10 @@
             <h4 class='employer'>
               <a href='https://www.shopify.com/' target='_blank' title='Shopify homepage'>Shopify</a>
             </h4>
-          </div>
-          <div class='duration'>
-            <div class='from'>Oct 2013</div>
-            <div class='to'>Now</div>
+            <div class='duration'>
+              <div class='from'>Oct 2013</div>
+              <div class='to'>Now</div>
+            </div>
           </div>
           <p>
             In my first year, I worked primarily on the admin team &ndash; the section store owners use &ndash; implementing features, fixing bugs, filing issues, and writing maintenance tasks.  Since Shopify encourages a strong culture of ownership, I'm always looking out for potential problems regarding user experience across project and team boundaries.
@@ -47,10 +56,10 @@
             <h4 class='employer'>
               <a href='http://www.exinda.com/' target='_blank' title='Exinda Networks homepage'>Exinda Networks</a>
             </h4>
-          </div>
-          <div class='duration'>
-            <div class='from'>Aug 2013</div>
-            <div class='to'>Aug 2012</div>
+            <div class='duration'>
+              <div class='from'>Aug 2013</div>
+              <div class='to'>Aug 2012</div>
+            </div>
           </div>
           <p>At Exinda, I was working on a large-scope single-page JavaScript application.  We used Backbone to structure our core application, Underscore and jQuery for developer convenience, and Handlebars and i18n.js for templating.  I was deeply involved in the design and implementation of many interactive modules (e.g., line and bar graphs) at the core of the application. We unit tested our frontend with Sinon, Chai, Mocha, and Jasmine.  I wrote many acceptance tests using Cucumber (Capybara & Watir).</p>
           <p>It was at Exinda that I first got really involved with JavaScript-based developer utilities: node, bbb, jshint, and many others.  I wrote an intercepting proxy in Ruby to aid with manual testing when targeting different versions of our RESTful API.  Combined with Apache2 load balancers, this proxy also enabled us to simulate low-latency and unreliable-link scenarios while developing UI components, discovering bugs preemptively.</p>
@@ -63,10 +72,10 @@
               <a href='http://www.uptowncreativeinc.com' target='_blank' title="Uptown Creative Inc's homepage">Uptown Creative Inc,</a>
               ShirtsByMe, others
             </h4>
-          </div>
-          <div class='duration'>
-            <div class='from'>Dec 2009</div>
-            <div class='to'>Aug 2012</div>
+            <div class='duration'>
+              <div class='from'>Dec 2009</div>
+              <div class='to'>Aug 2012</div>
+            </div>
           </div>
           <p>Uptown Creative Group specializes in providing clean, cross-browser, interactive HTML5 websites. During my time there, I participated in the creation of many static and CMS-driven sites, with a heavy focus on interactive maps, dynamic map searches, Yelp and weather integration.  I also tailored 3rd party feeds, themed iHomeFinder sites, and provided integration for search, filtering, and pagination of MLS results.</p>
           <p>As a freelance web developer, I was responsible for the entirety of the development phase: I received a set of design documents, and from there I created semantic HTML5 mark-up using HAML (to insure well-formedness), sensible and minified CSS with the SASS compiler, and image spritesheets for anything that couldn't be done without them.</p>
@@ -77,10 +86,10 @@
           <div class='position'>
             <h4 class='job-title'>Web Developer (co-op)</h4>
             <h4 class='employer'>University of Waterloo, Special Projects Group</h4>
-          </div>
-          <div class='duration'>
-            <div class='from'>Jan 2009</div>
-            <div class='to'>Apr 2009</div>
+            <div class='duration'>
+              <div class='from'>Jan 2009</div>
+              <div class='to'>Apr 2009</div>
+            </div>
           </div>
           <p>
             At the University of Waterloo, I participated in a small team of around 6 students and 6 full-time developers, working under an agile methodology. Daily scrum is no stranger to me! We had fluid teamwork, using Microsoft Team Foundation Server for version control. We developed pages for an application in C#.net, with a heavy focus on AJAX. During this time, I took initiative to learn jQuery UI design principals, and as a result, created a fully functional widget to replace the
