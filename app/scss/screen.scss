@@ -1,15 +1,5 @@
 @import '_variables';
 
-
-
-ul.icons {
-	font-size: 2em;
-	color: #555;
-	a {
-		color: inherit;
-	}
-}
-
 .splash-container {
 	position:fixed;
 	top: 0;
@@ -21,72 +11,24 @@ ul.icons {
 	height: $splash-height;
 }
 
-@media (max-width: 45em) {
-	.top-header {
-		position: relative;
-	}
-	.top-header ul, .top-header ul li {
-		display: block;
-		margin: 0;
-	}
-	.top-header ul li {
-		position: static;
-		padding: 0.5em 1em;
-	}
-}
-@media (max-width: 900px) {
-	.splash, .splash-pusher {
-		display:none;
-	}
-	.images {
-		display: flex;
-		align-content: center;
-		justify-content: center;
-	}
-	.images-left, .images-right {
-		width: 100% !important;
-		float: none !important;
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-	.slide {
-		margin: 0.25em;
-	}
-}
-@media (max-width: 600px) {
-	.images {
-		display: block;
-	}
-}
-
 #main {
 	position:relative;
 	z-index:1;
-	background:#fefefe;
+	background: $page-background;
 	border-top: 1px solid #ddd;
 }
 
 @import '_lab.screen';
-
-#portfolio {
-	.slide {
-		margin-bottom:1em;
-		padding: 1em;
-		border: 1px solid #aaa;
-		img {
-			border:1px solid #eee;
-		}
-	}
-}
+@import '_portfolio.screen';
 
 .slide {
 	a, img {
 		display: block;
 	}
 	margin-bottom: 2em;
-}
-.images .slide:last-child {
-	margin-bottom: 0;
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 .annotation {
@@ -132,4 +74,55 @@ ul.icons {
 .echoplexus-frame {
 	width:100%;
 	height:400px;
+}
+
+@media (max-width: 45em) {
+	.top-header {
+		position: relative;
+	}
+	.top-header ul, .top-header ul li {
+		display: block;
+		margin: 0;
+	}
+	.top-header ul li {
+		position: static;
+		padding: 0.5em 1em;
+	}
+}
+@media (max-width: 900px) {
+	.splash, .splash-pusher {
+		display:none;
+	}
+	.images-left, .images-right {
+		width: 100% !important;
+		float: none !important;
+	}
+	.images {
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin: 0 0 1em 0 !important;
+		padding: 0 !important;
+	}
+	.slide {
+		margin: 0.25em;
+    flex-shrink: 1;
+    min-width: 25%;
+    margin: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+		&:last-child {
+			margin: 0.25em;
+		}
+	}
+	.annotation {
+		flex: 1;
+	}
+}
+@media (max-width: 600px) {
+	.images {
+		display: block;
+	}
 }

@@ -82,6 +82,7 @@ ul {
 	letter-spacing:normal;
 	line-height:normal;
 	min-height:50em;
+	background: $page-background;
 
 	ul {
 		margin: 0;
@@ -159,7 +160,5 @@ ul {
 	}
 }
 @media print {
-	.flashy-header {
-		display: none;
-	}
+  @import 'print';
 }

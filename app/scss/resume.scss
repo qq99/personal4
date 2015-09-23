@@ -26,7 +26,11 @@ h3 {
 }
 h4 {
 	margin-top: 0;
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
+	font-size: 1em;
+}
+.employer {
+	text-transform: none;
 }
 $subtle-grey: #ebebef;
 .position {
@@ -35,7 +39,8 @@ $subtle-grey: #ebebef;
 	float: left;
 	text-align: center;
 	background: $subtle-grey;
-	width: 14em;
+	width: 14rem;
+	font-size: 1em;
 }
 $duration-width: 8rem;
 .job-title {
@@ -50,36 +55,15 @@ $duration-width: 8rem;
 }
 .duration {
 	text-align: center;
-	.from, .to {
-		width: 100%;
-		color: #777;
-		font-size: 0.8em;
-		text-transform: uppercase;
-	}
-	.to {
-		top: 0;
-	}
-	.from {
-		bottom: 2em;
+	color: #777;
+	.from:after {
+		content: " - ";
 	}
 }
 @media (max-width: 700px) {
 	.duration {
 		position: static;
 		display: inline;
-		.from, .to {
-			position: static;
-			display: inline;
-			width: auto;
-		}
-		.from:before {
-			content: "From ";
-			display: inline;
-		}
-		.to:before {
-			content: " to ";
-			display: inline;
-		}
 	}
 	.meta {
 		position: static;
@@ -105,10 +89,15 @@ $duration-width: 8rem;
 	.meta {
 		display: none;
 	}
-	section:first-child {
+	#title {
 		border-top: 0;
 	}
 }
 @media print {
-
+	.top-header, .bottom-footer {
+		display: none;
+	}
+	.readable-section {
+		padding: 0;
+	}
 }
