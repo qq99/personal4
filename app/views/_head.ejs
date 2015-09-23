@@ -6,6 +6,8 @@
   <meta content='Everything you need to know about Anthony Cameron: A collection of personal projects, featuring WebGL, GLSL shaders, JavaScript, C++.  A sample of my portfolio.  My resume.  My philosophy.' name='description'>
   <meta content='Anthony Cameron' name='author'>
   <meta charset='utf-8'>
-  <% include _ga %>
+  <% if (env == 'prod') { %>
+    <% include _ga %>
+  <% } %>
 
 </head>

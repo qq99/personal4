@@ -65,7 +65,9 @@ gulp.task 'js', ->
 
 gulp.task 'ejs', ->
   return gulp.src(['app/views/**/*.ejs', '!app/views/**/_*.ejs'])
-    .pipe(ejs())
+    .pipe(ejs({
+      env: (process.env.ENVIRONMENT || 'dev')
+    }))
     .pipe(gulp.dest("./dist"))
     .pipe(reload({ stream: true }))
 
