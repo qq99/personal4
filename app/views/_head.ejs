@@ -1,9 +1,13 @@
 <head>
   <title><%= title %> - Anthony Cameron</title>
   <% if (section == 'resume') { %>
-    <link href='/css/resume.min.css' rel='stylesheet' type='text/css'>
+    <style>
+      <% include ../../dist/css/resume.min.css %>
+    </style>
   <% } else { %>
-    <link href='/css/main.min.css' rel='stylesheet' type='text/css'>
+    <style>
+      <% include ../../dist/css/main.min.css %>
+    </style>
   <% } %>
   <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' rel='stylesheet'>
   <meta content='width=device-width,initial-scale=1' name='viewport'>

@@ -64,7 +64,7 @@ gulp.task 'js', ->
   return gulp.src('app/js/*.min.js')
     .pipe(gulp.dest('dist/js'))
 
-gulp.task 'ejs', ->
+gulp.task 'ejs', ['raw', 'sass'], ->
   return gulp.src(['app/views/**/*.ejs', '!app/views/**/_*.ejs'])
     .pipe(ejs({
       env: (process.env.ENVIRONMENT || 'dev')
