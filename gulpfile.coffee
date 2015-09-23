@@ -1,6 +1,6 @@
 gulp = require 'gulp'
 browserSync = require('browser-sync')
-sass = require('gulp-ruby-sass')
+sass = require('gulp-sass')
 reload = browserSync.reload
 postcss = require('gulp-postcss')
 sourcemaps = require('gulp-sourcemaps')
@@ -44,7 +44,8 @@ gulp.task 'small-images', ->
     .pipe(reload({ stream: true }))
 
 gulp.task 'sass', ->
-  return sass('app/scss/main.scss')
+  return gulp.src(['app/scss/**/*.scss', '!app/scss/**/_*.scss'])
+    .pipe(sass())
     .pipe( postcss([ autoprefixer(browsers: ['last 1 versions']) ]) )
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
