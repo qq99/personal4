@@ -3,6 +3,8 @@
 .css
 .all
 .sass-cache
+css/
+css/all.min.css
 .map
 node_modules
 dist
