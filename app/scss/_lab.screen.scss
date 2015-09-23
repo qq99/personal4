@@ -3,6 +3,9 @@
 		@extend .clearfix;
 		padding:3em 0;
 		border-bottom:1px solid #cecece;
+		&:last-child {
+			border-bottom: 0;
+		}
 	}
 	.project-description {
 		h1 {
