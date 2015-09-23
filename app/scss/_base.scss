@@ -144,21 +144,39 @@ ul {
 	}
 }
 
-@media (max-width:500px) {
-	.flashy-header h1 {
-		color:#222;
-		text-shadow:none;
-		text-align: left;
-		font-size:300%;
-		transform: none;
-	}
-}
-
-@media (max-width: 80em) {
+@media (max-width: $page-base-width) {
 	.flashy-header {
 		opacity: 0;
 	}
 }
+
+@media (max-width: 45em) {
+	.top-header {
+		position: relative;
+	}
+	.top-header nav {
+		a {
+			display: block;
+			width: 100%;
+			margin: 0;
+			padding: 1em;
+			text-align: center;
+			&:hover {
+				background: #eee;
+			}
+			&:not([href]) {
+				background: #ccc;
+			}
+			&.home {
+				display: none;
+			}
+		}
+	}
+	.bottom-footer nav {
+		text-align: center;
+	}
+}
+
 @media print {
   @import 'print';
 }

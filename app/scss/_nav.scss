@@ -12,6 +12,9 @@ nav {
 	  &:first-child {
 	    padding-left: 0;
 	  }
+		&:not([href]) {
+			color: black;
+		}
 	}
 }
 

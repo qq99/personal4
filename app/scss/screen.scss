@@ -76,20 +76,7 @@
 	height:400px;
 }
 
-@media (max-width: 45em) {
-	.top-header {
-		position: relative;
-	}
-	.top-header ul, .top-header ul li {
-		display: block;
-		margin: 0;
-	}
-	.top-header ul li {
-		position: static;
-		padding: 0.5em 1em;
-	}
-}
-@media (max-width: 900px) {
+@media (max-width: $page-base-width) {
 	.splash, .splash-pusher {
 		display:none;
 	}
