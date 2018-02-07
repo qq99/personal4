@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../_head', {
+  <%- include('../../_head', {
     section: 'main',
     title: 'WebGL Strategy RPG Engine'
   }) %>
   <body>
     <div class='content'>
-      <%- include('../_header', {
+      <%- include('../../_header', {
         section: 'none'
       }) %>
       <section id='main'>
@@ -68,17 +68,17 @@
             </ul>
           </section>
 
-          <% include cs488-srpg/_introduction %>
-          <% include cs488-srpg/_vision %>
-          <% include cs488-srpg/_manual %>
-          <% include cs488-srpg/_technical_outline %>
-          <% include cs488-srpg/_caveats %>
-          <% include cs488-srpg/_future_work %>
-          <% include cs488-srpg/_codemap %>
-          <% include cs488-srpg/_references %>
+          <% include _introduction %>
+          <% include _vision %>
+          <% include _manual %>
+          <% include _technical_outline %>
+          <% include _caveats %>
+          <% include _future_work %>
+          <% include _codemap %>
+          <% include _references %>
         </article>
       </section>
-      <% include ../_footer %>
+      <%- include ../../_footer %>
     </div>
   </body>
 </html>

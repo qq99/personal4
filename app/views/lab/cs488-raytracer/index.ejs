@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../_head', {
+  <%- include('../../_head', {
     section: 'main',
     title: 'A ray-tracer with a focus on various material properties'
   }) %>
   <body>
     <div class='content'>
-      <%- include('../_header', {
+      <%- include('../../_header', {
         section: 'none'
       }) %>
       <section id='main'>
@@ -52,16 +52,16 @@
               </li>
             </ul>
           </section>
-          <% include cs488-raytracer/_introduction %>
-          <% include cs488-raytracer/_vision %>
-          <% include cs488-raytracer/_objectives %>
-          <% include cs488-raytracer/_technical_outline %>
-          <% include cs488-raytracer/_gallery %>
-          <% include cs488-raytracer/_codemap %>
-          <% include cs488-raytracer/_references %>
+          <% include _introduction %>
+          <% include _vision %>
+          <% include _objectives %>
+          <% include _technical_outline %>
+          <% include _gallery %>
+          <% include _codemap %>
+          <% include _references %>
         </article>
       </section>
-      <% include ../_footer %>
+      <%- include ../../_footer %>
     </div>
   </body>
 </html>
